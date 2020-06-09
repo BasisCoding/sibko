@@ -1,2 +1,3 @@
-# sibko
+# SIBKO
+
 Sistem Informasi Bimingan Konseling
