@@ -5,7 +5,7 @@
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
         <a class="navbar-brand" href="javascript:void(0)">
-          <img src="../assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+          <img src="<?= base_url('assets/img/logoo.png') ?>" class="navbar-brand-img" alt="...">
         </a>
       </div>
       <div class="navbar-inner">
@@ -21,14 +21,14 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="icons.html">
-                <i class="ni ni-planet text-orange"></i>
-                <span class="nav-link-text">Icons</span>
+                <i class="ni ni-single-02 text-yellow"></i>
+                <span class="nav-link-text">Biodata Siswa</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="map.html">
                 <i class="ni ni-pin-3 text-primary"></i>
-                <span class="nav-link-text">Google</span>
+                <span class="nav-link-text">Orang Tua/Wali</span>
               </a>
             </li>
             <li class="nav-item">
