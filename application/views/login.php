@@ -1,15 +1,4 @@
-<!--
-=========================================================
-* Argon Dashboard - v1.2.0
-=========================================================
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
 
-* Copyright  Creative Tim (http://www.creative-tim.com)
-* Coded by www.creative-tim.com
-=========================================================
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
-<!DOCTYPE html>
 <html>
 
 <head>
@@ -27,6 +16,7 @@
   <link rel="stylesheet" href="<?= base_url('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css') ?>" type="text/css">
   <!-- Argon CSS -->
   <link rel="stylesheet" href="<?= base_url('assets/css/argon.css?v=1.2.0') ?>" type="text/css">
+  <link rel="stylesheet" href="<?= base_url('assets/vendor/sweetalert2/dist/sweetalert2.min.css') ?>" type="text/css">
 </head>
 
 <body class="bg-default">
@@ -59,7 +49,7 @@
               <img src="<?= base_url('assets/img/logoo.png') ?>" width="200">
             </div>
             <div class="card-body px-lg-5 py-lg-5">
-              <form role="form" id="form-login" method="post">
+              <form id="form-login" method="post">
                 <div class="form-group mb-3">
                   <div class="input-group input-group-merge input-group-alternative">
                     <div class="input-group-prepend">
@@ -83,7 +73,7 @@
                   </label>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary my-4">Sign in</button>
+                  <button type="submit" id="btn-login" class="btn btn-primary my-4">Sign in</button>
                 </div>
               </form>
             </div>
@@ -101,75 +91,82 @@
     </div>
   </div>
 
-  <div class="col-md-4">
-      <button type="button" class="btn btn-block btn-warning mb-3" data-toggle="modal" data-target="#modal-notification">Pemberitahuan</button>
-      <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
-    <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-        <div class="modal-content bg-gradient-danger">
-          
-            <div class="modal-header">
-                <h6 class="modal-title" id="modal-title-notification">Sukses</h6>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            
-            <div class="modal-body">
-              
-                <div class="py-3 text-center">
-                    <i class="ni ni-bell-55 ni-3x"></i>
-                    <h4 class="heading mt-4">You should read this!</h4>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                </div>
-                
-            </div>
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-white">Ok, Got it</button>
-                <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Close</button>
-            </div>
-            
-        </div>
-    </div>
-</div>
-  <!-- Core -->
+  <!-- Core --> 
   <script src="<?= base_url('assets/vendor/jquery/dist/jquery.min.js') ?>"></script>
   <script src="<?= base_url('assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') ?>"></script>
   <script src="<?= base_url('assets/vendor/js-cookie/js.cookie.js') ?>"></script>
   <script src="<?= base_url('assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js') ?>"></script>
   <script src="<?= base_url('assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js') ?>"></script>
+  <script src="<?= base_url('assets/vendor/sweetalert2/dist/sweetalert2.min.js') ?>"></script>
   <!-- Argon JS -->
   <script src="<?= base_url('assets/js/argon.js?v=1.2.0') ?>"></script>
-   <script type="text/javascript">
-    $(document).ready(function() {
-
+  <script>
       $('#form-login').submit(function() {
         var username = $('[name="username"]').val().trim();
         var password = $('[name="password"]').val().trim();
         $.ajax({
-          url: '<?= base_url('login') ?>',
+          url: '<?= base_url('login/ceklogin') ?>',
           type: 'POST',
           dataType:'json',
           data: {username:username, password:password},
           success:function(response) {
             if (response.status == 'sukses') {
-              setTimeout(function(){ 
-                window.location.href = response.redirect;
-              }, 1500);
-              toastr.success(response.message, 'Sukses', {positionClass: 'md-toast-top-right'});
+              let timerInterval
+              Swal.fire({
+                title: 'SUKSES !!!',
+                html: 'Anda Akan Beralih Dalam <b></b> milliseconds.',
+                timer: 1500,
+                timerProgressBar: true,
+                onBeforeOpen: () => {
+                  Swal.showLoading()
+                  timerInterval = setInterval(() => {
+                    const content = Swal.getContent()
+                    if (content) {
+                      const b = content.querySelector('b')
+                      if (b) {
+                        b.textContent = Swal.getTimerLeft()
+                      }
+                    }
+                  }, 100)
+                },
+                onClose: () => {
+                  clearInterval(timerInterval)
+                  setTimeout(function(){ 
+                    window.location.href = response.redirect;
+                  }, 1500);
+                }
+              });
+
             }else{
-              setTimeout(function(){ 
-                window.location.href = response.redirect;
-              }, 1500);
-              toastr.error(response.message, 'Gagal', {positionClass: 'md-toast-top-right'});
+              let timerInterval
+              Swal.fire({
+                title: 'GAGAL !!!',
+                html: 'Silahkan Login Kembali Dalam <b></b> milliseconds.',
+                timer: 1500,
+                timerProgressBar: true,
+                onBeforeOpen: () => {
+                  Swal.showLoading()
+                  timerInterval = setInterval(() => {
+                    const content = Swal.getContent()
+                    if (content) {
+                      const b = content.querySelector('b')
+                      if (b) {
+                        b.textContent = Swal.getTimerLeft()
+                      }
+                    }
+                  }, 100)
+                },
+                onClose: () => {
+                  clearInterval(timerInterval)
+                }
+              });
             }
           }
         });
        return false; 
         
       });
-    });
-  </script>
+</script>
 </body>
 
 </html>
