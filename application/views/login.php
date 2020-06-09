@@ -38,8 +38,8 @@
         <div class="header-body text-center mb-7">
           <div class="row justify-content-center">
             <div class="col-xl-5 col-lg-6 col-md-8 px-5">
-              <h1 class="text-white">Welcome!</h1>
-              <p class="text-lead text-white">Use these awesome forms to login or create new account in your project for free.</p>
+              <h1 class="text-white">Selamat Datang !</h1>
+              <p class="text-lead text-white">Gunakan Halaman Ini Untuk Masuk Ke Sistem</p>
             </div>
           </div>
         </div>
@@ -56,17 +56,7 @@
         <div class="col-lg-5 col-md-7">
           <div class="card bg-secondary border-0 mb-0">
             <div class="card-header bg-transparent pb-5">
-              <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
-              <div class="btn-wrapper text-center">
-                <a href="#" class="btn btn-neutral btn-icon">
-                  <span class="btn-inner--icon"><img src="<?= base_url('assets/img/icons/common/github.svg') ?>"></span>
-                  <span class="btn-inner--text">Github</span>
-                </a>
-                <a href="#" class="btn btn-neutral btn-icon">
-                  <span class="btn-inner--icon"><img src="<?= base_url('assets/img/icons/common/google.svg') ?>"></span>
-                  <span class="btn-inner--text">Google</span>
-                </a>
-              </div>
+              <img src="">
             </div>
             <div class="card-body px-lg-5 py-lg-5">
               <div class="text-center text-muted mb-4">
