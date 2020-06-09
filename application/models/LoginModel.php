@@ -7,7 +7,7 @@ class LoginModel extends CI_Model {
 	{		
 		$this->db->select('*');
 		$this->db->from('user_aktif');
-		$this->db->join('user_group', 'user_group.id_akses = user_aktif.id_level', 'left');
+		$this->db->join('user_group', 'user_group.id = user_aktif.level', 'left');
 		$this->db->where($field1);
 		$this->db->where($field2);
 		$this->db->where('user_aktif.status', 'Aktif');

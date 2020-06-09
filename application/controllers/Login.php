@@ -10,16 +10,13 @@
 
 		public function index()
 		{
-			if ($this->session->userdata('status') == 'login') {
-				redirect(base_url($this->session->userdata('link').'/Dashboard'), 'refresh');
-			}
 			$this->load->view('login');
 		}
 
 		public function ceklogin()
 		{
 			$username = $this->input->post('username'); 
-			$pasword = hash('sha512', $this->input->post('password') . config_item('encryption_key'));
+			$password = hash('sha512', $this->input->post('password') . config_item('encryption_key'));
 
 			$cek = $this->LoginModel->data_login(
 					array('username' => $username),
@@ -29,9 +26,9 @@
 				foreach ($cek as $ck) {
 					$data_session = array(
 					'username'		=> $username,
-					'nama_user' 	=> $ck->nama_lengkap,
+					'nama_user' 	=> $ck->nama_user,
 					'id'			=> $ck->id,
-					'level'			=> $ck->id_level,
+					'level'			=> $ck->level,
 					'foto'			=> $ck->foto,
 					'email'			=> $ck->email,
 					'nama_akses'	=> $ck->nama_akses,
