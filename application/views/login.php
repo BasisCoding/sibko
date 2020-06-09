@@ -105,11 +105,7 @@
         var username = $('[name="username"]').val().trim();
         var password = $('[name="password"]').val().trim();
         $.ajax({
-<<<<<<< HEAD
-          url: '<?= base_url('login/cklogin') ?>',
-=======
           url: '<?= base_url('login/ceklogin') ?>',
->>>>>>> 5bfa0e483301eb8b0f64f30ed59b90813aac00f8
           type: 'POST',
           dataType:'json',
           data: {username:username, password:password},
