@@ -24,11 +24,11 @@
                     // periksa apakah ada sub menu
                   if ($sub_menu->num_rows() > 0) {?>
                     <li class="nav-item">
-                      <a class="nav-link active" href="#">
+                      <a class="nav-link" href="#">
                         <i class=" text-primary"></i>
                         <span class="nav-link-text">Dashboard</span>
                       </a>
-                      <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                      <ul aria-expanded="false" class="collapse first-level base-level-line">
                           
                           <?php foreach ($sub_menu->result() as $sub) {?>
                             <li class="sidebar-item">
@@ -43,8 +43,8 @@
                   <?php } else { ?>
                     <li class="nav-item">
                       <a class="nav-link" href="<?= $main->link ?>">
-                        <i class="<?= $main->icon ?> text-primary"></i>
-                        <span class="nav-link-text"><?= $main->nama_menu ?></span>
+                        <i class="<?= $main->icon .' '. $main->warna ?>"></i>
+                        <span class="nav-link-text <?= $main->warna ?>"><?= $main->nama_menu ?></span>
                       </a>
                     </li> 
                   <?php }
