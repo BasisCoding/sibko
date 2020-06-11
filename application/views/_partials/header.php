@@ -200,7 +200,7 @@
                     <img alt="<?= base_url('assets/img/users/'.$this->session->userdata("foto")) ?>" src="<?= base_url('assets/img/users/'.$this->session->userdata("foto")) ?>">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold"><?= $this->session->userdata('nama_user'); ?></span>
+                    <span class="mb-0 text-sm  font-weight-bold"><?= $this->session->userdata('nama_lengkap'); ?></span>
                   </div>
                 </div>
               </a>
@@ -254,7 +254,7 @@
                 ?>
               </h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
-                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                <ol class="breadcrumb breadcrumb-links p-1 breadcrumb-dark">
                   <?php 
                     if ($this->uri->segment(2) != '') {
                       echo '<li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>';

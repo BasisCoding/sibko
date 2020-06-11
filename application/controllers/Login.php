@@ -28,7 +28,7 @@
 				foreach ($cek as $ck) {
 					$data_session = array(
 					'username'		=> $username,
-					'nama_user' 	=> $ck->nama_user,
+					'nama_lengkap' 	=> $ck->nama_lengkap,
 					'id'			=> $ck->id,
 					'level'			=> $ck->level,
 					'foto'			=> $ck->foto,

@@ -42,7 +42,7 @@
                     </li>
                   <?php } else { ?>
                     <li class="nav-item">
-                      <a class="nav-link" href="<?= $main->link ?>">
+                      <a class="nav-link" href="<?= base_url($this->session->userdata('link').'/'.$main->link) ?>">
                         <i class="<?= $main->icon .' '. $main->warna ?>"></i>
                         <span class="nav-link-text <?= $main->warna ?>"><?= $main->nama_menu ?></span>
                       </a>

@@ -8,7 +8,7 @@
   	{
   		parent::__construct();
   		if ($this->session->userdata('status') != 'login') {
-			redirect(base_url('login'));
+			redirect(base_url('admin/login'));
 		}
   	}
 
