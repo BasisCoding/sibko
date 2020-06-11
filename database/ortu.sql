@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Jun 2020 pada 07.47
+-- Waktu pembuatan: 11 Jun 2020 pada 18.48
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.6
 
@@ -39,8 +39,17 @@ CREATE TABLE `ortu` (
   `pendidikan` varchar(20) NOT NULL,
   `agama` varchar(15) NOT NULL,
   `jenis_kelamin` varchar(15) NOT NULL,
-  `foto` text NOT NULL
+  `foto` text NOT NULL,
+  `status` varchar(10) NOT NULL,
+  `level` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `ortu`
+--
+
+INSERT INTO `ortu` (`id`, `username`, `email`, `password`, `nama_lengkap`, `alamat`, `hp`, `pekerjaan`, `pendidikan`, `agama`, `jenis_kelamin`, `foto`, `status`, `level`) VALUES
+(1, 'orangtua', 'orangua@gmail.com', '75f6f5649f707e10f29bbd1122f124a5f8c4698785411d32eb0ceffcc344983ee8229b7fce2e29a40b60889906b68d86f14994f693928d20eb683f59c26f0e95', 'Orang Tua', 'jl. raya cilegon km. 03', '089676490971', 'PNS', 'SMK', 'Islam', 'Laki-Laki', '', 'Aktif', 2);
 
 --
 -- Indexes for dumped tables
@@ -60,7 +69,7 @@ ALTER TABLE `ortu`
 -- AUTO_INCREMENT untuk tabel `ortu`
 --
 ALTER TABLE `ortu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

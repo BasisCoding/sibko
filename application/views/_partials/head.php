@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="<?= base_url('assets/vendor/nucleo/css/nucleo.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css') ?>" type="text/css">
   <!-- Page plugins -->
+  <link rel="stylesheet" href="<?= base_url('assets/vendor/select2/dist/css/select2.min.css') ?>">
   <!-- Argon CSS -->
   <link rel="stylesheet" href="<?= base_url('assets/css/argon.css?v=1.2.0') ?>" type="text/css">
 </head>

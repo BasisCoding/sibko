@@ -1,6 +1,9 @@
 
 <script type="text/javascript">
-$(document).ready(function(){  
+$(document).ready(function(){ 
+	$(".select").select2({
+		placeholder: 'Pilih Salah Satu'
+	}); 
 	let current_datetime = new Date()
 	let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate()
 
@@ -11,18 +14,18 @@ $(document).ready(function(){
     //  -----------------------------------------------------------------------------
 
     function daftar_siswa(query){
-        $.ajax({
-            url   : '<?= base_url("admin/Master/view_data_siswa")?>',
-            method:"POST",
-            async : false,
-            dataType:'json',
-            data:{query:query},
-            success : function(data){
+	    $.ajax({
+	        url   : '<?= base_url("admin/Master/view_data_siswa")?>',
+	        method:"POST",
+	        async : false,
+	        dataType:'json',
+	        data:{query:query},
+	        success : function(data){
 
-            	var base_url = ''
-                var html = '';
-                var i;
-                if (data.length > 0) {
+	        	var base_url = ''
+	            var html = '';
+	            var i;
+	            if (data.length > 0) {
 	                for (i = 0; i < data.length; i++) {
 	                	var tgl = data[i].tanggal_lahir;
 						var d = new Date(tgl);
@@ -59,20 +62,23 @@ $(document).ready(function(){
 				                '</div>'
 					}
 					$('#show_data_siswa').html(html);
-                }else{
+	            }else{
 					$('#show_data_siswa').html('<div class="col-12 text-center"><span class="badge badge-pill badge-lg badge-success">Data Tidak Di Temukan</span></div>');
-                }
-            }
+	            }
+	        }
 
-        });
+	    });
     }
 
 
     //  -----------------------------------------------------------------------------
-    //  |       PENCARIAN DATA                                                      |
+    //  |       TAMBAH DATA                                                         |
     //  -----------------------------------------------------------------------------
 
-    
+    $('#add-data').on('click', function () {
+    	$('#add-modal').modal('show');
+    })
+
     
     //  -----------------------------------------------------------------------------
     //  |       PENCARIAN DATA                                                      |

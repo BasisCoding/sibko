@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Jun 2020 pada 07.47
+-- Waktu pembuatan: 11 Jun 2020 pada 18.48
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.6
 
@@ -30,6 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `siswa` (
   `id` int(11) NOT NULL,
   `nis` int(10) NOT NULL,
+  `nama_lengkap` varchar(150) NOT NULL,
+  `email` varchar(150) NOT NULL,
   `tempat_lahir` varchar(50) NOT NULL,
   `tanggal_lahir` date NOT NULL,
   `jenis_kelamin` varchar(15) NOT NULL,
@@ -41,6 +43,13 @@ CREATE TABLE `siswa` (
   `id_kelas` int(11) NOT NULL,
   `foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `siswa`
+--
+
+INSERT INTO `siswa` (`id`, `nis`, `nama_lengkap`, `email`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `agama`, `anak_ke`, `alamat`, `hp`, `id_ortu`, `id_kelas`, `foto`) VALUES
+(1, 1101161014, 'Ahmad Fatoni', 'achmad.fatoni33@gmail.com', 'Serang', '1997-08-20', 'Laki-Laki', 'Islam', 2, 'Jl. Raya Cilegon Km. 03', '089676490971', 1, 1, '1101161014.png');
 
 --
 -- Indexes for dumped tables
@@ -60,7 +69,7 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

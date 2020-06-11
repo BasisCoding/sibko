@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Jun 2020 pada 07.46
+-- Waktu pembuatan: 11 Jun 2020 pada 18.48
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.6
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `id_user` int(11) NOT NULL,
-  `nama_user` varchar(150) NOT NULL,
+  `nama_lengkap` varchar(150) NOT NULL,
   `username` varchar(150) NOT NULL,
   `email` varchar(150) NOT NULL,
   `password` varchar(200) NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE `admin` (
 -- Dumping data untuk tabel `admin`
 --
 
-INSERT INTO `admin` (`id_user`, `nama_user`, `username`, `email`, `password`, `status`, `foto`, `level`) VALUES
+INSERT INTO `admin` (`id_user`, `nama_lengkap`, `username`, `email`, `password`, `status`, `foto`, `level`) VALUES
 (1, 'Ahmad Fatoni', 'admin', 'achmad.fatoni33@gmail.com', '0ae02c00d2b1196589a5be37f718fbeec0c6f07968f90f41dbc2b167fdd919f57e9616c08130157ed4a22f7f7cae387276d456d01a98310f1b1d5f00999d5cb0', 'Aktif', 'admin.png', 1);
 
 --
