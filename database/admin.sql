@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Jun 2020 pada 15.42
+-- Waktu pembuatan: 11 Jun 2020 pada 07.46
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.6
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_aktif`
+-- Struktur dari tabel `admin`
 --
 
-CREATE TABLE `user_aktif` (
+CREATE TABLE `admin` (
   `id_user` int(11) NOT NULL,
   `nama_user` varchar(150) NOT NULL,
   `username` varchar(150) NOT NULL,
@@ -39,10 +39,10 @@ CREATE TABLE `user_aktif` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user_aktif`
+-- Dumping data untuk tabel `admin`
 --
 
-INSERT INTO `user_aktif` (`id_user`, `nama_user`, `username`, `email`, `password`, `status`, `foto`, `level`) VALUES
+INSERT INTO `admin` (`id_user`, `nama_user`, `username`, `email`, `password`, `status`, `foto`, `level`) VALUES
 (1, 'Ahmad Fatoni', 'admin', 'achmad.fatoni33@gmail.com', '0ae02c00d2b1196589a5be37f718fbeec0c6f07968f90f41dbc2b167fdd919f57e9616c08130157ed4a22f7f7cae387276d456d01a98310f1b1d5f00999d5cb0', 'Aktif', 'admin.png', 1);
 
 --
@@ -50,9 +50,9 @@ INSERT INTO `user_aktif` (`id_user`, `nama_user`, `username`, `email`, `password
 --
 
 --
--- Indeks untuk tabel `user_aktif`
+-- Indeks untuk tabel `admin`
 --
-ALTER TABLE `user_aktif`
+ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_user`);
 
 --
@@ -60,9 +60,9 @@ ALTER TABLE `user_aktif`
 --
 
 --
--- AUTO_INCREMENT untuk tabel `user_aktif`
+-- AUTO_INCREMENT untuk tabel `admin`
 --
-ALTER TABLE `user_aktif`
+ALTER TABLE `admin`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 

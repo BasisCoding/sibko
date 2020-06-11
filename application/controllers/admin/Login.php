@@ -10,14 +10,14 @@
 
 		public function index()
 		{
-			$this->load->view('login');
+			$this->load->view('admin/login');
 		}
 
 		public function ceklogin()
 		{
 			$username = $this->input->post('username'); 
 			$password = hash('sha512', $this->input->post('password') . config_item('encryption_key'));
-			$table = 'ortu';
+			$table = 'admin';
 
 			$cek = $this->LoginModel->data_login(
 					array('username' => $username),
