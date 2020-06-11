@@ -4,6 +4,11 @@
 
 	class Master extends CI_Controller 
 	{
+		public function __construct()
+		{
+			parent::__construct();
+			$this->load->model('MasterModel');
+		}
 
 		public function data_siswa()
 		{
@@ -14,6 +19,18 @@
 			$this->load->view('_partials/footer');
 			$this->load->view('_partials/plugin');
 			$this->load->view('services/admin/siswa');
+		}
+
+		public function view_data_siswa()
+		{
+			$query = '';
+
+			if($this->input->post('query'))
+		  	{
+		   		$query = $this->input->post('query');
+		  	}
+			$data = $this->MasterModel->data_siswa($query);
+			echo json_encode($data);
 		}
 
 		public function data_jurusan()
