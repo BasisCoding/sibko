@@ -18,6 +18,23 @@
 			}
 			return $this->db->get()->result();
 		}
+
+		function tambah_siswa($data)
+		{
+			$this->db->insert('siswa', $data);
+		}
+
+		function tambah_ortu($data)
+		{
+			$this->db->insert('ortu', $data);
+		}
+
+		function data_ortu()
+		{
+			$this->db->select('ortu.nama_lengkap, ortu.id, ortu.alamat, ortu.hp, ortu.pekerjaan, ortu.pendidikan, ortu.agama, ortu.jenis_kelamin, ortu.foto, ortu.status');
+			$this->db->from('ortu');
+			return $this->db->get()->result();
+		}
 	
 	}
 	

@@ -8,7 +8,13 @@ $(document).ready(function(){
 	let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate()
 
     daftar_siswa();
+    daftar_ortu();
 
+    $('[name="id_ortu"]').on('change', function () {
+    	if ($(this).val() == 'lainnya') {
+    		$('#add-modal-ortu').modal('show');
+    	}
+    })
     //  -----------------------------------------------------------------------------
     //  |       AMBIL DATA KE DATABASE                                              |
     //  -----------------------------------------------------------------------------
@@ -78,6 +84,157 @@ $(document).ready(function(){
     $('#add-data').on('click', function () {
     	$('#add-modal').modal('show');
     })
+
+    $('#btn-add').on('click', function () {
+                
+	    if ($('[name="nis"]').val().length == 0){
+	        $('[name="nis"]').addClass('border-danger');
+	        $('[name="nis"]').focus();
+	        return false;
+	    }
+	    if ($('[name="nama_lengkap"]').val().length == 0){
+	        $('[name="nama_lengkap"]').addClass('border-danger');
+	        $('[name="nama_lengkap"]').focus();
+	        return false;
+	    }
+	    if ($('[name="tempat_lahir"]').val().length == 0){
+	        $('[name="tempat_lahir"]').addClass('border-danger');
+	        $('[name="tempat_lahir"]').focus();
+	        return false;
+	    }
+	    if ($('[name="tanggal_lahir"]').val().length == 0){
+	        $('[name="tanggal_lahir"]').addClass('border-danger');
+	        $('[name="tanggal_lahir"]').focus();
+	        return false;
+	    }
+
+	    var formData = new FormData();
+	    formData.append('nis', $('[name="nis"]').val()); 
+	    formData.append('nama_lengkap', $('[name="nama_lengkap"]').val()); 
+	    formData.append('tempat_lahir', $('[name="tempat_lahir"]').val()); 
+	    formData.append('tanggal_lahir', $('[name="tanggal_lahir"]').val()); 
+	    formData.append('jenis_kelamin', $('[name="jenis_kelamin"]').val()); 
+	    formData.append('agama', $('[name="agama"]').val()); 
+	    formData.append('alamat', $('[name="alamat"]').val()); 
+	    formData.append('anak_ke', $('[name="anak_ke"]').val()); 
+	    formData.append('id_ortu', $('[name="id_ortu"]').val()); 
+	    formData.append('hp', $('[name="hp"]').val()); 
+	    formData.append('email', $('[name="email"]').val()); 
+	    formData.append('foto', $('[name="foto"]')[0].files[0]);
+	   
+    	$('.loader').css('display', 'inline-block');
+    	$(this).attr('disabled');
+	    $.ajax({
+	        url: '<?= base_url("admin/Master/save_siswa")?>',
+	        type: 'POST',
+	        dataType: 'JSON',
+	        data: formData,
+	        cache: false,
+	        processData: false,
+	        contentType: false,
+
+	        success: function (data) {
+	        	if (data.status == 'success') {
+
+		            $('[name="nik"]').val(''); 
+		            $('[name="nama_lengkap"]').val(''); 
+		            $('[name="tempat_lahir"]').val(''); 
+		            $('[name="tanggal_lahir"]').val(''); 
+		            $('[name="agama"]').val(''); 
+		            $('[name="alamat"]').val(''); 
+		            $('[name="anak_ke"]').val(''); 
+		            $('[name="id_ortu"]').val(''); 
+		            $('[name="hp"]').val(''); 
+		            $('[name="foto"]').val(''); 
+		            $('[name="hp"]').val('');
+		            $('[name="email"]').val('');
+	        		$(this).removeAttr('disabled');
+					$('.loader').css('display', 'none');
+
+
+		            $('#add-modal').modal('hide');
+		            $("#alert-success-text").html('Data Berhasil di Tambahkan');
+		            $("#alert-success").fadeIn().delay(2000).fadeOut();
+		            daftar_siswa();
+
+	        	}else{
+		            $('#add-modal').modal('hide');
+	        		$(this).removeAttr('disabled');
+					$('.loader').css('display', 'none');
+	        	}
+	            let timerInterval
+	              Swal.fire({
+	                title: data.status,
+	                html: data.message,
+	                timer: 1500,
+	                onClose: () => {
+	                  clearInterval(timerInterval)
+	                }
+	            });
+	        }
+	    });
+	    return false;
+	});
+
+	 $('#btn-add-ortu').on('click', function () {
+                
+	    if ($('[name="nama_lengkap_ortu"]').val().length == 0){
+	        $('[name="nama_lengkap_ortu"]').addClass('border-danger');
+	        $('[name="nama_lengkap_ortu"]').focus();
+	        return false;
+	    }
+	    if ($('[name="username"]').val().length == 0){
+	        $('[name="username"]').addClass('border-danger');
+	        $('[name="username"]').focus();
+	        return false;
+	    }
+	    if ($('[name="password"]').val().length == 0){
+	        $('[name="password"]').addClass('border-danger');
+	        $('[name="password"]').focus();
+	        return false;
+	    }
+
+	    var formData = new FormData();
+	    formData.append('nama_lengkap_ortu', $('[name="nama_lengkap_ortu"]').val()); 
+	    formData.append('jenis_kelamin_ortu', $('[name="jenis_kelamin_ortu"]').val()); 
+	    formData.append('hp_ortu', $('[name="hp_ortu"]').val()); 
+	    formData.append('email_ortu', $('[name="email_ortu"]').val()); 
+	    formData.append('username', $('[name="username"]').val()); 
+	    formData.append('password', $('[name="password"]').val()); 
+	   
+	    $.ajax({
+	        url: '<?= base_url("admin/Master/save_ortu")?>',
+	        type: 'POST',
+	        dataType: 'JSON',
+	        data: formData,
+	        cache: false,
+	        processData: false,
+	        contentType: false,
+
+	        success: function (data) {
+		        $('#add-modal-ortu').modal('hide');
+		        daftar_ortu();
+	        }
+	    });
+	    return false;
+	});
+
+	function daftar_ortu() {
+		$.ajax ({
+			url   : '<?= base_url("admin/Master/daftar_ortu")?>',
+	        method:"POST",
+	        async : false,
+	        dataType:'json',
+	        success : function(data){
+	        	var ortu = '';
+	        	var i;
+	        	for (var i = 0; i < data.length; i++) {
+	        		ortu += '<option value="'+data[i].id+'">'+data[i].nama_lengkap+'</option>';
+	        	}
+	        $('[name="id_ortu"]').html('<option></option>'+ortu+'<option value="lainnya">Lainnya</option>');	
+	        }
+		});
+	}
 
     
     //  -----------------------------------------------------------------------------

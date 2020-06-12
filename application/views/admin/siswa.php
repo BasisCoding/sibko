@@ -41,46 +41,46 @@
             <div class="modal-content">
               
                 <div class="modal-header">
-                    <h6 class="modal-title" id="modal-title-default">Tambah Data Siswa</h6>
+                    <h3 class="modal-title" id="modal-title-default">Tambah Data Siswa</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 
                 <div class="modal-body">
-                  <form id="form-tambah">
-                    <hr class="my-1">
+                  <form id="form-tambah" method="POST">
+                    <hr class="my-1 mt-0">
                     <h2>Biodata</h2>
                     <hr class="my-1">
 
                     <div class="row my-1">
                       <div class="col-md">
-                        <input type="text" name="nis" placeholder="NIS" class="form-control form-control-sm">
+                        <input type="number" name="nis" placeholder="NIS" class="form-control form-control-sm mb-1">
                       </div>
                       <div class="col-md">
-                        <input type="text" name="nama_lengkap" placeholder="Nama Lengkap" class="form-control form-control-sm">
-                      </div>
-                    </div>
-
-                    <div class="row my-1">
-                      <div class="col-md">
-                        <input type="text" name="tempat_lahir" placeholder="Tempat Lahir" class="form-control form-control-sm">
-                      </div>
-                      <div class="col-md">
-                        <input type="date" name="tanggal_lahir" placeholder="Tanggal Lahir" class="form-control form-control-sm">
+                        <input type="text" name="nama_lengkap" placeholder="Nama Lengkap" class="form-control form-control-sm mb-1">
                       </div>
                     </div>
 
                     <div class="row my-1">
                       <div class="col-md">
-                        <select class="form-control form-control-sm select">
+                        <input type="text" name="tempat_lahir" placeholder="Tempat Lahir" class="form-control form-control-sm mb-1">
+                      </div>
+                      <div class="col-md">
+                        <input type="date" name="tanggal_lahir" placeholder="Tanggal Lahir" class="form-control form-control-sm mb-1">
+                      </div>
+                    </div>
+
+                    <div class="row my-1">
+                      <div class="col-md mb-1">
+                        <select class="form-control form-control-sm select" name="jenis_kelamin">
                           <option></option>
                           <option>Laki-Laki</option>
                           <option>Perempuan</option>
                         </select>
                       </div>
-                      <div class="col-md">
-                        <select class="form-control form-control-sm select">
+                      <div class="col-md mb-1">
+                        <select class="form-control form-control-sm select" name="agama">
                           <option></option>
                           <option>Islam</option>
                           <option>Kristen</option>
@@ -94,7 +94,7 @@
                     <div class="row my-1">
                       <div class="col-md">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="foto" lang="en">
+                            <input type="file" class="custom-file-input" id="foto" lang="en" name="foto">
                             <label class="custom-file-label" for="foto">Pilih Foto</label>
                         </div>
                       </div>
@@ -104,17 +104,11 @@
                       <div class="col-md">
                         <div class="row">
                           <div class="col-md-8">
-                            <textarea class="form-control" placeholder="Alamat"></textarea>
+                            <textarea class="form-control mb-1" placeholder="Alamat" name="alamat"></textarea>
                           </div>
                           <div class="col-md">
                             <input type="number" name="anak_ke" placeholder="Anak Ke" class="form-control form-control-sm mb-1">
-                            <select class="form-control form-control-sm select">
-                              <option></option>
-                              <option>Islam</option>
-                              <option>Kristen</option>
-                              <option>Budha</option>
-                              <option>Hindu</option>
-                              <option>Katholik</option>
+                            <select class="form-control form-control-sm select mb-1" name="id_ortu">
                             </select>
                           </div>
                         </div>
@@ -127,42 +121,73 @@
 
                     <div class="row my-1">
                       <div class="col-md">
-                        <input type="number" name="hp" placeholder="HP" class="form-control form-control-sm">
+                        <input type="number" name="hp" placeholder="HP" class="form-control form-control-sm mb-1">
                       </div>
                       <div class="col-md">
-                        <input type="email" name="email" placeholder="Email" class="form-control form-control-sm">
+                        <input type="email" name="email" placeholder="Email" class="form-control form-control-sm mb-1">
                       </div>
                     </div>
+      
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="submit" id="btn-add" class="btn btn-sm btn-success"><i class="fa fa-spinner fa-spin loader" style="display: none"></i> Save</button>
+                </div>
+                  </form>
+                
+            </div>
+        </div>
+      </div>
 
-                    <hr class="my-3">
-                    <h2>Sekolah</h2>
-                    <hr class="my-1">
+      <div class="modal fade" id="add-modal-ortu" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modal-title-default">Tambah Data Orang Tua</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                  <form id="form-tambah" method="POST">
 
                     <div class="row my-1">
                       <div class="col-md">
-                        <select class="form-control form-control-sm select">
+                        <input type="text" name="nama_lengkap_ortu" placeholder="Nama Orang Tua" class="form-control form-control-sm mb-1">
+                        <select class="form-control form-control-sm select" name="jenis_kelamin_ortu">
                           <option></option>
                           <option>Laki-Laki</option>
                           <option>Perempuan</option>
                         </select>
                       </div>
+                    </div>
+
+                    <div class="row my-1">
                       <div class="col-md">
-                        <select class="form-control form-control-sm select">
-                          <option></option>
-                          <option>Islam</option>
-                          <option>Kristen</option>
-                          <option>Budha</option>
-                          <option>Hindu</option>
-                          <option>Katholik</option>
-                        </select>
+                        <input type="number" name="hp_ortu" placeholder="HP" class="form-control form-control-sm mb-1">
                       </div>
-                    </div>             
-                  </form>
+                      <div class="col-md">
+                        <input type="email" name="email_ortu" placeholder="Email" class="form-control form-control-sm mb-1">
+                      </div>
+                    </div>
+
+                    <div class="row my-1">
+                      <div class="col-md">
+                        <input type="text" name="username" placeholder="Username" class="form-control form-control-sm mb-1">
+                      </div>
+                      <div class="col-md">
+                        <input type="password" name="password" placeholder="Password" class="form-control form-control-sm mb-1">
+                      </div>
+                    </div>
+      
                 </div>
                 
                 <div class="modal-footer">
-                    
+                    <button type="submit" id="btn-add-ortu" class="btn btn-sm btn-success">Save</button>
                 </div>
+                  </form>
                 
             </div>
         </div>

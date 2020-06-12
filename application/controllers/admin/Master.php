@@ -33,6 +33,55 @@
 			echo json_encode($data);
 		}
 
+		public function save_siswa()
+		{
+			$cek = $this->db->get_where('siswa', array('nis' => $this->input->post('nis')));
+			if ($cek->num_rows() > 0) {
+				$respond = array(
+					'status' => 'GAGAL !!!',
+					'message' => 'Data Sudah Ada',
+				 );
+			}else{
+				$config['upload_path'] = './assets/img/siswa/';
+		        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+		        $config['max_size'] = '1024';
+		        $config['file_name'] = $this->input->post('nis');
+		        $this->load->library('upload', $config);
+
+		        if($this->upload->do_upload("foto")){
+					$foto = $this->upload->file_name;
+				} else {
+					$foto = '';
+				}
+
+				$data = array(
+		 			'nis' 				=> $this->input->post('nis'),
+		 			'nama_lengkap' 		=> $this->input->post('nama_lengkap'),
+		 			'tempat_lahir' 		=> $this->input->post('tempat_lahir'),
+		 			'tanggal_lahir' 	=> $this->input->post('tanggal_lahir'),
+		 			'jenis_kelamin' 	=> $this->input->post('jenis_kelamin'),
+		 			'agama' 			=> $this->input->post('agama'),
+		 			'alamat' 			=> $this->input->post('alamat'),
+		 			'anak_ke' 			=> $this->input->post('anak_ke'),
+		 			'id_ortu'			=> $this->input->post('id_ortu'),
+		 			'hp' 				=> $this->input->post('hp'),
+		 			'email' 			=> $this->input->post('email'),
+		 			
+		 			'created_at' 		=> date('Y-m-d H:i:s'),
+		 			'created_by' 		=> $this->session->userdata('id'),
+		 			'foto' 				=> $foto
+					 );
+
+				$this->MasterModel->tambah_siswa($data);
+				$respond = array(
+					'status' => 'SUKSES !!!',
+					'message' => 'Data Berhasil Disimpan',
+				 );
+			}
+			echo json_encode($respond);
+
+		}
+
 		public function data_jurusan()
 		{
 			$this->load->view('_partials/head');
@@ -64,6 +113,30 @@
 			$this->load->view('_partials/footer');
 			$this->load->view('_partials/plugin');
 			$this->load->view('services/admin/ortu');
+		}
+
+		public function daftar_ortu()
+		{
+			$data = $this->MasterModel->data_ortu();
+			echo json_encode($data);
+		}
+
+		public function save_ortu()
+		{
+			$data = array(
+	 			'username' 				=> $this->input->post('username'),
+	 			'nama_lengkap' 			=> $this->input->post('nama_lengkap_ortu'),
+	 			'jenis_kelamin' 		=> $this->input->post('jenis_kelamin_ortu'),
+	 			'hp' 					=> $this->input->post('hp_ortu'),
+	 			'email' 				=> $this->input->post('email_ortu'),
+	 			'password' 				=> hash('sha512', $this->input->post('password') . config_item('encryption_key')),
+	 			
+	 			'created_at' 		=> date('Y-m-d H:i:s'),
+	 			'created_by' 		=> $this->session->userdata('id'),
+				 );
+
+			$data = $this->MasterModel->tambah_ortu($data);
+			echo json_encode($data);
 		}
 
 		public function data_pelanggaran()
