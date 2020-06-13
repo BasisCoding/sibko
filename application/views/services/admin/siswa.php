@@ -19,7 +19,10 @@ $(document).ready(function(){
 	$("[name='id_ortu_update']").select2({
 		placeholder: 'Pilih Orang Tua'
 	}); 
-	
+	$("[name='jenis_kelamin_ortu']").select2({
+		placeholder: 'Jenis Kelamin'
+	}); 
+
 	let current_datetime = new Date();
 	let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate()
 
@@ -134,13 +137,13 @@ $(document).ready(function(){
         var nis=$(this).attr('data-nis');
 
     	Swal.fire({
-		  title: 'Are you sure?',
-		  text: "You won't be able to revert this!",
+		  title: 'Are you sure ?',
+		  text: "Anda Akan Kehilangan Data ini",
 		  icon: 'warning',
 		  showCancelButton: true,
 		  confirmButtonColor: '#3085d6',
 		  cancelButtonColor: '#d33',
-		  confirmButtonText: 'Yes, delete it!'
+		  confirmButtonText: 'Ya, Hapus!'
 		}).then((result) => {
 			$.ajax({
 		        url   : '<?= base_url("admin/Master/delete_siswa")?>',
@@ -151,8 +154,8 @@ $(document).ready(function(){
 		        success : function(data){
 				  if (result.value) {
 				    Swal.fire(
-				      'Deleted!',
-				      'Your file has been deleted.',
+				      'Terhapus!',
+				      'Data Anda Sudah Terhapus.',
 				      'success'
 				    )
 				    daftar_siswa();

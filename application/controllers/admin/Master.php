@@ -188,7 +188,7 @@
 
 		public function save_ortu()
 		{
-			$cek = $this->db->get_where('ortu', array('nis' => $this->input->post('nis')));
+			$cek = $this->db->get_where('ortu', array('nik' => $this->input->post('nik')));
 			if ($cek->num_rows() > 0) {
 				$respond = array(
 					'status' => 'error',
