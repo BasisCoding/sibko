@@ -51,6 +51,11 @@
 			return $this->db->get()->result();
 		}
 
+		function tambah_jurusan($data)
+		{
+			$this->db->insert('jurusan', $data);
+		}
+
 	// Model Data Jurusan
 
 		function tambah_ortu($data)
@@ -62,14 +67,14 @@
 		{
 			$this->db->select('ortu.nama_lengkap, ortu.id');
 			$this->db->from('ortu');
-			return $this->db->get();
+			return $this->db->get()->result();
 		}
 		
 		function select_data_guru()
 		{
 			$this->db->select('guru.id, guru.nama_lengkap');
 			$this->db->from('guru');
-			return $this->db->get();
+			return $this->db->get()->result();
 		}
 	}
 	

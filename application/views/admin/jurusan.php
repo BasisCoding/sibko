@@ -3,8 +3,19 @@
         <div class="col">
           <div class="card">
             <!-- Card header -->
-            <div class="card-header border-0">
-              <h3 class="mb-0">DAFTAR JURUSAN</h3>
+            <div class="card-header bg-transparent row align-items-center">
+              <h3 class="mb-0 col-md-3">DAFTAR JURUSAN</h3>
+              <div class="col-md-9">
+                <div class="row">
+                  <div class="col-md d-flex my-1 my-md-0">
+                    <button class="form-control form-control-sm col-2" id="add-data" data-toggle="modal" data-target="#add-modal">New</button>
+                  </div>
+                  
+                  <div class="col-md-4 text-right">
+                    <input type="text" id="search" class="form-control form-control-sm" placeholder="Search ...">
+                  </div>
+                </div>
+              </div>
             </div>
             <!-- Light table -->
             <div class="table-responsive">
@@ -81,9 +92,18 @@
                         <input type="text" name="semester" placeholder="Semester" class="form-control form-control-sm mb-1">
                       </div>
                       <div class="col-md mb-1">
-                        <select class="form-control form-control-sm select" name="kepala_jurusan">
-
+                        <select class="form-control form-control-sm select" name="kajur">
                         </select>
+                      </div>
+                    </div>
+
+                    <div class="row my-1">
+                      <div class="col-md">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="logo" lang="en" name="logo">
+                            <label class="custom-file-label" for="logo">Pilih Logo</label>
+                          </div>
+                        <font size="1" color="red"><i>*Upload Logo Dengan Ukuran 1MB .JPG .PNG .GIF .JPEG (Background Berwarna Merah Atau Biru)</i></font>
                       </div>
                     </div>
       

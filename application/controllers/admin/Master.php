@@ -10,6 +10,7 @@
 			$this->load->model('MasterModel');
 		}
 
+	// Controller Data Siswa
 		public function data_siswa()
 		{
 			$this->load->view('_partials/head');
@@ -81,7 +82,6 @@
 				 );
 			}
 			echo json_encode($respond);
-
 		}
 
 		public function update_siswa()
@@ -146,6 +146,9 @@
 			
 			echo json_encode($respond);
 		}
+	// Controller Data Siswa
+
+	// Controller Data Jurusan
 
 		public function data_jurusan()
 		{
@@ -169,6 +172,49 @@
 			$data = $this->MasterModel->data_jurusan($query);
 			echo json_encode($data);
 		}
+
+		public function save_jurusan()
+		{
+			$cek = $this->db->get_where('guru', array('kode_jurusan' => $this->input->post('kode_jurusan')));
+			if ($cek->num_rows() > 0) {
+				$respond = array(
+					'status' => 'error',
+					'title' => 'GAGAL !!!',
+					'message' => 'Data Sudah Ada',
+				 );
+			}else{
+				$config['upload_path'] = './assets/img/logo-jurusan/';
+		        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+		        $config['max_size'] = '1024';
+		        $config['file_name'] = $this->input->post('kode_jurusan');
+		        $this->load->library('upload', $config);
+
+		        if($this->upload->do_upload("logo")){
+					$logo = $this->upload->file_name;
+				} else {
+					$logo = '';
+				}
+
+				$data = array(
+		 			'kode_jurusan' 				=> $this->input->post('kode_jurusan'),
+		 			'nama_jurusan' 		=> $this->input->post('nama_jurusan'),
+		 			'semester' 		=> $this->input->post('semester'),
+		 			'kepala_jurusan' 	=> $this->input->post('kajur'),
+		 			
+		 			'logo' 				=> $logo
+					 );
+
+				$this->MasterModel->tambah_jurusan($data);
+				$respond = array(
+					'status' => 'success',
+					'title' => 'SUKSES !!!',
+					'message' => 'Data Berhasil DiSimpan',
+				 );
+			}
+			echo json_encode($respond);
+		}
+
+	// Controller Data Jurusan
 
 		public function data_kelas()
 		{
@@ -277,7 +323,7 @@
 			$this->load->view('services/admin/guru');
 		}
 
-		public function daftar_guru()
+		public function select_guru()
 		{
 			$data = $this->MasterModel->select_data_guru();
 			echo json_encode($data);
