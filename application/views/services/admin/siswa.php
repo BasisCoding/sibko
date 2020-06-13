@@ -325,8 +325,6 @@ $(document).ready(function(){
 	    return false;
 	});
 
-
-
 	$('#btn-add-ortu').on('click', function () {
                 
 	    if ($('[name="nama_lengkap_ortu"]').val().length == 0){
