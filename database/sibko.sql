@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Jun 2020 pada 18.50
+-- Waktu pembuatan: 13 Jun 2020 pada 19.17
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.6
 
@@ -53,6 +53,7 @@ INSERT INTO `admin` (`id_user`, `nama_lengkap`, `username`, `email`, `password`,
 
 CREATE TABLE `jurusan` (
   `id` int(11) NOT NULL,
+  `kode_jurusan` varchar(10) NOT NULL,
   `nama_jurusan` varchar(150) NOT NULL,
   `semester` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -129,11 +130,9 @@ CREATE TABLE `ortu` (
 
 INSERT INTO `ortu` (`id`, `username`, `email`, `password`, `nik`, `nama_lengkap`, `alamat`, `hp`, `pekerjaan`, `pendidikan`, `agama`, `jenis_kelamin`, `foto`, `status`, `level`, `created_at`, `created_by`) VALUES
 (1, 'orangtua', 'orangua@gmail.com', '75f6f5649f707e10f29bbd1122f124a5f8c4698785411d32eb0ceffcc344983ee8229b7fce2e29a40b60889906b68d86f14994f693928d20eb683f59c26f0e95', '', 'Orang Tua', 'jl. raya cilegon km. 03', '089676490971', 'PNS', 'SMK', 'Islam', 'Laki-Laki', '', 'Aktif', 2, NULL, 0),
-(2, 'darto', 'achmasdasd@gmail.com', '002fe9feaf4a97a448c7c0ab4d4daf566e4d3816e6da301004aaadf957b21bfff2b562e305c453e32046b25506b84589ae70ad70c2c5b02574891f7370ba8115', '', 'Sudarto', '', '089676490971', '', '', '', 'Laki-Laki', '', '', 0, '0000-00-00 00:00:00', 1),
-(3, 'darto', 'achmasdasd@gmail.com', '002fe9feaf4a97a448c7c0ab4d4daf566e4d3816e6da301004aaadf957b21bfff2b562e305c453e32046b25506b84589ae70ad70c2c5b02574891f7370ba8115', '', 'Sudarto', '', '089676490971', '', '', '', 'Laki-Laki', '', '', 0, '0000-00-00 00:00:00', 1),
-(4, 'darto', 'achmasdasd@gmail.com', '002fe9feaf4a97a448c7c0ab4d4daf566e4d3816e6da301004aaadf957b21bfff2b562e305c453e32046b25506b84589ae70ad70c2c5b02574891f7370ba8115', '', 'Sudarto', '', '089676490971', '', '', '', 'Laki-Laki', '', '', 0, '0000-00-00 00:00:00', 1),
-(5, 'aasd', 'sdasd@gma', '76e07b604378346057db6e271262612f1331b8dade8535610bc5c501c57f4db0dc80823af5ebb3c0a56539a0caadd6db837e82c08ca4b30e8b5bddcde272108b', '', 'Maem', '', '018239', '', '', '', 'Perempuan', '', '', 0, '0000-00-00 00:00:00', 1),
-(6, 'asda', 'zsd@gajsd', 'e15435f75bbc63f3e7c54e77fcbac51cd769fb224ea6d74dea69b1ac8ff2415fcee16330a29935cfb29160ebbee1a06eee92f6f101d769679c2adfc74cc1c030', '', 'ajds', '', '081293123', '', '', '', 'Laki-Laki', '', '', 0, '0000-00-00 00:00:00', 1);
+(7, 'asasd', 'acashmd@gmail.', 'ba4adf22baf90df8057a8a17d85382f1892b00b114f6ccd71d27d52d3e164355d63b9d106ec01961c63bbcd143bbbb2ef7927795f9181ef1c0b18776776bbf0d', '110112367123', 'Ahma', '', '089676490971', '', '', '', 'Laki-Laki', '', '', 0, '2020-06-13 19:03:53', 1),
+(8, 'asasd', 'acashmd@gmail.', 'ba4adf22baf90df8057a8a17d85382f1892b00b114f6ccd71d27d52d3e164355d63b9d106ec01961c63bbcd143bbbb2ef7927795f9181ef1c0b18776776bbf0d', '110112367123', 'Ahma', '', '089676490971', '', '', '', 'Laki-Laki', '', '', 0, '2020-06-13 19:04:28', 1),
+(9, 'asasd', 'acashmd@gmail.', 'ba4adf22baf90df8057a8a17d85382f1892b00b114f6ccd71d27d52d3e164355d63b9d106ec01961c63bbcd143bbbb2ef7927795f9181ef1c0b18776776bbf0d', '110112367123', 'Ahma', '', '089676490971', '', '', '', 'Laki-Laki', '', '', 0, '2020-06-13 19:05:18', 1);
 
 -- --------------------------------------------------------
 
@@ -259,7 +258,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT untuk tabel `ortu`
 --
 ALTER TABLE `ortu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `siswa`

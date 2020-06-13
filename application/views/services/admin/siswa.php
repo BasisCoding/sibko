@@ -408,7 +408,7 @@ $(document).ready(function(){
 
 	function daftar_ortu() {
 		$.ajax ({
-			url   : '<?= base_url("admin/Master/daftar_ortu")?>',
+			url   : '<?= base_url("admin/Master/select_ortu")?>',
 	        method:"POST",
 	        async : false,
 	        dataType:'json',

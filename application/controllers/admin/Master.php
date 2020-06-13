@@ -158,6 +158,18 @@
 			$this->load->view('services/admin/jurusan');
 		}
 
+		public function view_data_jurusan()
+		{
+			$query = '';
+
+			if($this->input->post('query'))
+		  	{
+		   		$query = $this->input->post('query');
+		  	}
+			$data = $this->MasterModel->data_jurusan($query);
+			echo json_encode($data);
+		}
+
 		public function data_kelas()
 		{
 			$this->load->view('_partials/head');
@@ -180,9 +192,9 @@
 			$this->load->view('services/admin/ortu');
 		}
 
-		public function daftar_ortu()
+		public function select_ortu()
 		{
-			$data = $this->MasterModel->data_ortu();
+			$data = $this->MasterModel->select_data_ortu();
 			echo json_encode($data);
 		}
 
@@ -263,6 +275,12 @@
 			$this->load->view('_partials/footer');
 			$this->load->view('_partials/plugin');
 			$this->load->view('services/admin/guru');
+		}
+
+		public function daftar_guru()
+		{
+			$data = $this->MasterModel->select_data_guru();
+			echo json_encode($data);
 		}
 	}
 	

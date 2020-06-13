@@ -3,6 +3,7 @@
 	
 	class MasterModel extends CI_Model {
 	
+	// Model Data Siswa
 		function data_siswa($query)
 		{
 			$this->db->select('siswa.*, ortu.nama_lengkap as nama_ortu');
@@ -33,19 +34,43 @@
 		{
 			$this->db->delete('siswa', array('nis' => $nis));
 		}
+	// Model Data Siswa
+
+	// Model Data Jurusan
+
+		function data_jurusan($query)
+		{
+			$this->db->select('*');
+			$this->db->from('jurusan');
+			if ($query != '') {
+				$this->db->group_start();
+			 		$this->db->or_like('kode_jurusan', $query);
+			 		$this->db->or_like('nama_jurusan', $query);
+			 	$this->db->group_end();
+			}
+			return $this->db->get()->result();
+		}
+
+	// Model Data Jurusan
 
 		function tambah_ortu($data)
 		{
 			$this->db->insert('ortu', $data);
 		}
 
-		function data_ortu()
+		function select_data_ortu()
 		{
-			$this->db->select('ortu.nama_lengkap, ortu.id, ortu.alamat, ortu.hp, ortu.pekerjaan, ortu.pendidikan, ortu.agama, ortu.jenis_kelamin, ortu.foto, ortu.status');
+			$this->db->select('ortu.nama_lengkap, ortu.id');
 			$this->db->from('ortu');
-			return $this->db->get()->result();
+			return $this->db->get();
 		}
-	
+		
+		function select_data_guru()
+		{
+			$this->db->select('guru.id, guru.nama_lengkap');
+			$this->db->from('guru');
+			return $this->db->get();
+		}
 	}
 	
 	/* End of file MasterModel.php */
