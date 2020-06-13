@@ -1,10 +1,26 @@
 
 <script type="text/javascript">
 $(document).ready(function(){ 
-	$(".select").select2({
-		placeholder: 'Pilih Salah Satu'
+	$("[name='jenis_kelamin']").select2({
+		placeholder: 'Jenis Kelamin'
 	}); 
-	let current_datetime = new Date()
+	$("[name='jenis_kelamin_update']").select2({
+		placeholder: 'Jenis Kelamin'
+	}); 
+	$("[name='agama']").select2({
+		placeholder: 'Pilih Agama'
+	}); 
+	$("[name='agama_update']").select2({
+		placeholder: 'Pilih Agama'
+	}); 
+	$("[name='id_ortu']").select2({
+		placeholder: 'Pilih Orang Tua'
+	}); 
+	$("[name='id_ortu_update']").select2({
+		placeholder: 'Pilih Orang Tua'
+	}); 
+	
+	let current_datetime = new Date();
 	let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate()
 
     daftar_siswa();
