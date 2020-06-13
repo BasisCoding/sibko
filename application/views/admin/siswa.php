@@ -93,6 +93,8 @@
 
                     <div class="row my-1">
                       <div class="col-md">
+                        <small>Pilih Foto</small>
+                      <font size="2" color="red"><i>*Upload Foto Dengan Ukuran 1MB .JPG .PNG .GIF .JPEG (Background Berwarna Merah Atau Biru)</i></font>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="foto" lang="en" name="foto">
                             <label class="custom-file-label" for="foto">Pilih Foto</label>
