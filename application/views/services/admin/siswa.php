@@ -116,7 +116,7 @@ $(document).ready(function(){
 
     $('#show_data_siswa').on('click','.delete_siswa',function(){
         var nis=$(this).attr('data-nis');
-    	
+
     	Swal.fire({
 		  title: 'Are you sure?',
 		  text: "You won't be able to revert this!",
@@ -139,6 +139,7 @@ $(document).ready(function(){
 				      'Your file has been deleted.',
 				      'success'
 				    )
+				    daftar_siswa();
 				  }
 		        }
 
