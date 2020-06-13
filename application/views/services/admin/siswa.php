@@ -47,8 +47,8 @@ $(document).ready(function(){
 				                    '</div>' +
 				                    '<div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">' +
 				                      '<div class="d-flex justify-content-between">' +
-				                        '<a href="#" class="btn btn-sm btn-info mr-4 ">Update</a>' +
-				                        '<a href="#" class="btn btn-sm btn-danger float-right">Delete</a>' +
+				                        '<button data-nis="'+data[i].nis+'" data-nama_lengkap="'+data[i].nama_lengkap+'" data-tempat_lahir="'+data[i].tempat_lahir+'" data-tanggal_lahir="'+data[i].tanggal_lahir+'" data-jenis_kelamin="'+data[i].jenis_kelamin+'" data-agama="'+data[i].agama+'" data-alamat="'+data[i].alamat+'" data-anak_ke="'+data[i].anak_ke+'" data-id_ortu="'+data[i].id_ortu+'" data-hp="'+data[i].hp+'" data-email="'+data[i].email+'" class="btn btn-sm btn-info mr-4 update_siswa">Update</button>' +
+				                        '<button data-nis="'+data[i].nis+'" class="btn btn-sm btn-danger float-right delete_siswa">Delete</button>' +
 				                      '</div>' +
 				                    '</div>' +
 				                    '<div class="card-body pt-0">' +
@@ -83,7 +83,34 @@ $(document).ready(function(){
 
     $('#add-data').on('click', function () {
     	$('#add-modal').modal('show');
-    })
+    });
+
+   	$('#show_data_siswa').on('click','.update_siswa',function(){
+        var nis=$(this).attr('data-nis');
+        var nama_lengkap=$(this).attr('data-nama_lengkap');
+        var tempat_lahir=$(this).attr('data-tempat_lahir');
+        var tanggal_lahir=$(this).attr('data-tanggal_lahir');
+        var jenis_kelamin=$(this).attr('data-jenis_kelamin');
+        var alamat=$(this).attr('data-alamat');
+        var anak_ke=$(this).attr('data-anak_ke');
+        var hp=$(this).attr('data-hp');
+        var id_ortu=$(this).attr('data-id_ortu');
+        var email=$(this).attr('data-email');
+
+        $('[name="nis_update"]').val(nis);
+        $('[name="nama_lengkap_update"]').val(nama_lengkap);
+        $('[name="tempat_lahir_update"]').val(tempat_lahir);
+        $('[name="tanggal_lahir_update"]').val(tanggal_lahir);
+        $('[name="jenis_kelamin_update"]').val(jenis_kelamin);
+        $('[name="alamat_update"]').val(alamat);
+        $('[name="anak_ke_update"]').val(anak_ke);
+        $('[name="hp_update"]').val(hp);
+        $('[name="id_ortu_update"]').val(id_ortu);
+        $('[name="email_update"]').val(email);
+
+        $('[name="nis_update"]').attr('disabled', true);
+        $('#update-modal').modal('show');
+    });
 
     $('#btn-add').on('click', function () {
                 
@@ -153,8 +180,6 @@ $(document).ready(function(){
 
 
 		            $('#add-modal').modal('hide');
-		            $("#alert-success-text").html('Data Berhasil di Tambahkan');
-		            $("#alert-success").fadeIn().delay(2000).fadeOut();
 		            daftar_siswa();
 
 	        	}else{
@@ -164,7 +189,7 @@ $(document).ready(function(){
 	        	}
 	            let timerInterval
 	              Swal.fire({
-	                title: data.status,
+	                title: data.title,
 	                html: data.message,
 	                timer: 1500,
 	                onClose: () => {
@@ -176,11 +201,16 @@ $(document).ready(function(){
 	    return false;
 	});
 
-	 $('#btn-add-ortu').on('click', function () {
+	$('#btn-add-ortu').on('click', function () {
                 
 	    if ($('[name="nama_lengkap_ortu"]').val().length == 0){
 	        $('[name="nama_lengkap_ortu"]').addClass('border-danger');
 	        $('[name="nama_lengkap_ortu"]').focus();
+	        return false;
+	    }
+	    if ($('[name="nik_orangtua"]').val().length == 0){
+	        $('[name="nik_orangtua"]').addClass('border-danger');
+	        $('[name="nik_orangtua"]').focus();
 	        return false;
 	    }
 	    if ($('[name="username"]').val().length == 0){
@@ -195,6 +225,7 @@ $(document).ready(function(){
 	    }
 
 	    var formData = new FormData();
+	    formData.append('nik_orangtua', $('[name="nik_orangtua"]').val()); 
 	    formData.append('nama_lengkap_ortu', $('[name="nama_lengkap_ortu"]').val()); 
 	    formData.append('jenis_kelamin_ortu', $('[name="jenis_kelamin_ortu"]').val()); 
 	    formData.append('hp_ortu', $('[name="hp_ortu"]').val()); 
@@ -212,8 +243,21 @@ $(document).ready(function(){
 	        contentType: false,
 
 	        success: function (data) {
-		        $('#add-modal-ortu').modal('hide');
-		        daftar_ortu();
+	        	if (data.status == 'success') {
+			        $('#add-modal-ortu').modal('hide');
+			        daftar_ortu();
+	        	}else{
+	        		$('#add-modal-ortu').modal('hide');
+	        	}
+	        	let timerInterval
+	              Swal.fire({
+	                title: data.title,
+	                html: data.message,
+	                timer: 1500,
+	                onClose: () => {
+	                  clearInterval(timerInterval)
+	                }
+	            });
 	        }
 	    });
 	    return false;
@@ -232,6 +276,7 @@ $(document).ready(function(){
 	        		ortu += '<option value="'+data[i].id+'">'+data[i].nama_lengkap+'</option>';
 	        	}
 	        $('[name="id_ortu"]').html('<option></option>'+ortu+'<option value="lainnya">Lainnya</option>');	
+	        $('[name="id_ortu_update"]').html('<option></option>'+ortu+'<option value="lainnya">Lainnya</option>');	
 	        }
 		});
 	}

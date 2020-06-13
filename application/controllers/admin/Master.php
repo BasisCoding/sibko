@@ -38,7 +38,8 @@
 			$cek = $this->db->get_where('siswa', array('nis' => $this->input->post('nis')));
 			if ($cek->num_rows() > 0) {
 				$respond = array(
-					'status' => 'GAGAL !!!',
+					'status' => 'error',
+					'title' => 'GAGAL !!!',
 					'message' => 'Data Sudah Ada',
 				 );
 			}else{
@@ -74,8 +75,9 @@
 
 				$this->MasterModel->tambah_siswa($data);
 				$respond = array(
-					'status' => 'SUKSES !!!',
-					'message' => 'Data Berhasil Disimpan',
+					'status' => 'success',
+					'title' => 'SUKSES !!!',
+					'message' => 'Data Bl DiSimpan',
 				 );
 			}
 			echo json_encode($respond);
@@ -123,19 +125,34 @@
 
 		public function save_ortu()
 		{
-			$data = array(
-	 			'username' 				=> $this->input->post('username'),
-	 			'nama_lengkap' 			=> $this->input->post('nama_lengkap_ortu'),
-	 			'jenis_kelamin' 		=> $this->input->post('jenis_kelamin_ortu'),
-	 			'hp' 					=> $this->input->post('hp_ortu'),
-	 			'email' 				=> $this->input->post('email_ortu'),
-	 			'password' 				=> hash('sha512', $this->input->post('password') . config_item('encryption_key')),
-	 			
-	 			'created_at' 		=> date('Y-m-d H:i:s'),
-	 			'created_by' 		=> $this->session->userdata('id'),
+			$cek = $this->db->get_where('siswa', array('nis' => $this->input->post('nis')));
+			if ($cek->num_rows() > 0) {
+				$respond = array(
+					'status' => 'error',
+					'title' => 'GAGAL !!!',
+					'message' => 'Data Orang Tua Sudah Ada',
 				 );
+			}else{
+				$data = array(
+		 			'nik' 				=> $this->input->post('nik_orangtua'),
+		 			'username' 				=> $this->input->post('username'),
+		 			'nama_lengkap' 			=> $this->input->post('nama_lengkap_ortu'),
+		 			'jenis_kelamin' 		=> $this->input->post('jenis_kelamin_ortu'),
+		 			'hp' 					=> $this->input->post('hp_ortu'),
+		 			'email' 				=> $this->input->post('email_ortu'),
+		 			'password' 				=> hash('sha512', $this->input->post('password') . config_item('encryption_key')),
+		 			
+		 			'created_at' 		=> date('Y-m-d H:i:s'),
+		 			'created_by' 		=> $this->session->userdata('id'),
+					 );
 
-			$data = $this->MasterModel->tambah_ortu($data);
+				$data = $this->MasterModel->tambah_ortu($data);
+				$respond = array(
+					'status' => 'success',
+					'title' => 'SUKSES !!!',
+					'message' => 'Data Sudah Ada',
+				 );
+			}
 			echo json_encode($data);
 		}
 
