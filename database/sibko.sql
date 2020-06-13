@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Jun 2020 pada 13.47
+-- Waktu pembuatan: 13 Jun 2020 pada 18.50
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.6
 
@@ -108,6 +108,7 @@ CREATE TABLE `ortu` (
   `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` text NOT NULL,
+  `nik` varchar(16) NOT NULL,
   `nama_lengkap` varchar(50) NOT NULL,
   `alamat` text NOT NULL,
   `hp` varchar(15) NOT NULL,
@@ -126,13 +127,13 @@ CREATE TABLE `ortu` (
 -- Dumping data untuk tabel `ortu`
 --
 
-INSERT INTO `ortu` (`id`, `username`, `email`, `password`, `nama_lengkap`, `alamat`, `hp`, `pekerjaan`, `pendidikan`, `agama`, `jenis_kelamin`, `foto`, `status`, `level`, `created_at`, `created_by`) VALUES
-(1, 'orangtua', 'orangua@gmail.com', '75f6f5649f707e10f29bbd1122f124a5f8c4698785411d32eb0ceffcc344983ee8229b7fce2e29a40b60889906b68d86f14994f693928d20eb683f59c26f0e95', 'Orang Tua', 'jl. raya cilegon km. 03', '089676490971', 'PNS', 'SMK', 'Islam', 'Laki-Laki', '', 'Aktif', 2, NULL, 0),
-(2, 'darto', 'achmasdasd@gmail.com', '002fe9feaf4a97a448c7c0ab4d4daf566e4d3816e6da301004aaadf957b21bfff2b562e305c453e32046b25506b84589ae70ad70c2c5b02574891f7370ba8115', 'Sudarto', '', '089676490971', '', '', '', 'Laki-Laki', '', '', 0, '0000-00-00 00:00:00', 1),
-(3, 'darto', 'achmasdasd@gmail.com', '002fe9feaf4a97a448c7c0ab4d4daf566e4d3816e6da301004aaadf957b21bfff2b562e305c453e32046b25506b84589ae70ad70c2c5b02574891f7370ba8115', 'Sudarto', '', '089676490971', '', '', '', 'Laki-Laki', '', '', 0, '0000-00-00 00:00:00', 1),
-(4, 'darto', 'achmasdasd@gmail.com', '002fe9feaf4a97a448c7c0ab4d4daf566e4d3816e6da301004aaadf957b21bfff2b562e305c453e32046b25506b84589ae70ad70c2c5b02574891f7370ba8115', 'Sudarto', '', '089676490971', '', '', '', 'Laki-Laki', '', '', 0, '0000-00-00 00:00:00', 1),
-(5, 'aasd', 'sdasd@gma', '76e07b604378346057db6e271262612f1331b8dade8535610bc5c501c57f4db0dc80823af5ebb3c0a56539a0caadd6db837e82c08ca4b30e8b5bddcde272108b', 'Maem', '', '018239', '', '', '', 'Perempuan', '', '', 0, '0000-00-00 00:00:00', 1),
-(6, 'asda', 'zsd@gajsd', 'e15435f75bbc63f3e7c54e77fcbac51cd769fb224ea6d74dea69b1ac8ff2415fcee16330a29935cfb29160ebbee1a06eee92f6f101d769679c2adfc74cc1c030', 'ajds', '', '081293123', '', '', '', 'Laki-Laki', '', '', 0, '0000-00-00 00:00:00', 1);
+INSERT INTO `ortu` (`id`, `username`, `email`, `password`, `nik`, `nama_lengkap`, `alamat`, `hp`, `pekerjaan`, `pendidikan`, `agama`, `jenis_kelamin`, `foto`, `status`, `level`, `created_at`, `created_by`) VALUES
+(1, 'orangtua', 'orangua@gmail.com', '75f6f5649f707e10f29bbd1122f124a5f8c4698785411d32eb0ceffcc344983ee8229b7fce2e29a40b60889906b68d86f14994f693928d20eb683f59c26f0e95', '', 'Orang Tua', 'jl. raya cilegon km. 03', '089676490971', 'PNS', 'SMK', 'Islam', 'Laki-Laki', '', 'Aktif', 2, NULL, 0),
+(2, 'darto', 'achmasdasd@gmail.com', '002fe9feaf4a97a448c7c0ab4d4daf566e4d3816e6da301004aaadf957b21bfff2b562e305c453e32046b25506b84589ae70ad70c2c5b02574891f7370ba8115', '', 'Sudarto', '', '089676490971', '', '', '', 'Laki-Laki', '', '', 0, '0000-00-00 00:00:00', 1),
+(3, 'darto', 'achmasdasd@gmail.com', '002fe9feaf4a97a448c7c0ab4d4daf566e4d3816e6da301004aaadf957b21bfff2b562e305c453e32046b25506b84589ae70ad70c2c5b02574891f7370ba8115', '', 'Sudarto', '', '089676490971', '', '', '', 'Laki-Laki', '', '', 0, '0000-00-00 00:00:00', 1),
+(4, 'darto', 'achmasdasd@gmail.com', '002fe9feaf4a97a448c7c0ab4d4daf566e4d3816e6da301004aaadf957b21bfff2b562e305c453e32046b25506b84589ae70ad70c2c5b02574891f7370ba8115', '', 'Sudarto', '', '089676490971', '', '', '', 'Laki-Laki', '', '', 0, '0000-00-00 00:00:00', 1),
+(5, 'aasd', 'sdasd@gma', '76e07b604378346057db6e271262612f1331b8dade8535610bc5c501c57f4db0dc80823af5ebb3c0a56539a0caadd6db837e82c08ca4b30e8b5bddcde272108b', '', 'Maem', '', '018239', '', '', '', 'Perempuan', '', '', 0, '0000-00-00 00:00:00', 1),
+(6, 'asda', 'zsd@gajsd', 'e15435f75bbc63f3e7c54e77fcbac51cd769fb224ea6d74dea69b1ac8ff2415fcee16330a29935cfb29160ebbee1a06eee92f6f101d769679c2adfc74cc1c030', '', 'ajds', '', '081293123', '', '', '', 'Laki-Laki', '', '', 0, '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -158,13 +159,6 @@ CREATE TABLE `siswa` (
   `created_at` datetime DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `siswa`
---
-
-INSERT INTO `siswa` (`id`, `nis`, `nama_lengkap`, `email`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `agama`, `anak_ke`, `alamat`, `hp`, `id_ortu`, `id_kelas`, `foto`, `created_at`, `created_by`) VALUES
-(4, 110116101, 'Ahmad Fatoni', '', 'Serang', '1997-08-20', 'Laki-Laki', 'Islam', 2, 'Jlska', '', 1, NULL, '110116101.png', '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
