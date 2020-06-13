@@ -77,9 +77,55 @@
 				$respond = array(
 					'status' => 'success',
 					'title' => 'SUKSES !!!',
-					'message' => 'Data Bl DiSimpan',
+					'message' => 'Data Berhasil DiSimpan',
 				 );
 			}
+			echo json_encode($respond);
+
+		}
+
+		public function update_siswa()
+		{
+			$nis = $this->input->post('nis')
+			$config['upload_path'] = './assets/img/siswa/';
+	        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+	        $config['max_size'] = '1024';
+	        $config['file_name'] = $this->input->post('nis');
+	        $this->load->library('upload', $config);
+
+	         if($this->upload->do_upload("foto")){
+				$foto = $this->upload->file_name;
+				@unlink("./assets/img/siswa/".$this->input->post('foto_lama'));
+			} else {
+				$foto = $this->input->post('foto_lama');
+			} 
+			
+			$data = array(
+	 			'nis' 				=> $this->input->post('nis'),
+	 			'nama_lengkap' 		=> $this->input->post('nama_lengkap'),
+	 			'tempat_lahir' 		=> $this->input->post('tempat_lahir'),
+	 			'tanggal_lahir' 	=> $this->input->post('tanggal_lahir'),
+	 			'jenis_kelamin' 	=> $this->input->post('jenis_kelamin'),
+	 			'agama' 			=> $this->input->post('agama'),
+	 			'alamat' 			=> $this->input->post('alamat'),
+	 			'anak_ke' 			=> $this->input->post('anak_ke'),
+	 			'id_ortu'			=> $this->input->post('id_ortu'),
+	 			'hp' 				=> $this->input->post('hp'),
+	 			'email' 			=> $this->input->post('email'),
+	 			
+	 			'created_at' 		=> date('Y-m-d H:i:s'),
+	 			'created_by' 		=> $this->session->userdata('id'),
+	 			'foto' 				=> $foto
+				 );
+
+			$this->MasterModel->ubah_siswa($nis, $data);
+			$respond = array(
+				'status' => 'success',
+				'title' => 'SUKSES !!!',
+				'message' => 'Data Berhasil DiSimpan',
+			 );
+
+			
 			echo json_encode($respond);
 
 		}
@@ -125,7 +171,7 @@
 
 		public function save_ortu()
 		{
-			$cek = $this->db->get_where('siswa', array('nis' => $this->input->post('nis')));
+			$cek = $this->db->get_where('ortu', array('nis' => $this->input->post('nis')));
 			if ($cek->num_rows() > 0) {
 				$respond = array(
 					'status' => 'error',
@@ -155,6 +201,7 @@
 			}
 			echo json_encode($data);
 		}
+
 
 		public function data_pelanggaran()
 		{

@@ -197,7 +197,8 @@
                     <div class="row my-1">
                       <div class="col-md">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="foto" lang="en" name="foto_update">
+                            <input hidden type="text" id="foto_lama" name="foto_lama">
+                            <input type="file" class="custom-file-input" id="foto_update" lang="en" name="foto_update">
                             <label class="custom-file-label" for="foto">Pilih Foto</label>
                         </div>
                       </div>
@@ -234,7 +235,7 @@
                 </div>
                 
                 <div class="modal-footer">
-                    <button type="submit" id="btn-add" class="btn btn-sm btn-success"><i class="fa fa-spinner fa-spin loader" style="display: none"></i> Save</button>
+                    <button type="submit" id="btn-update" class="btn btn-sm btn-success"><i class="fa fa-spinner fa-spin loader" style="display: none"></i> Update</button>
                 </div>
                   </form>
                 

@@ -47,7 +47,7 @@ $(document).ready(function(){
 				                    '</div>' +
 				                    '<div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">' +
 				                      '<div class="d-flex justify-content-between">' +
-				                        '<button data-nis="'+data[i].nis+'" data-nama_lengkap="'+data[i].nama_lengkap+'" data-tempat_lahir="'+data[i].tempat_lahir+'" data-tanggal_lahir="'+data[i].tanggal_lahir+'" data-jenis_kelamin="'+data[i].jenis_kelamin+'" data-agama="'+data[i].agama+'" data-alamat="'+data[i].alamat+'" data-anak_ke="'+data[i].anak_ke+'" data-id_ortu="'+data[i].id_ortu+'" data-hp="'+data[i].hp+'" data-email="'+data[i].email+'" class="btn btn-sm btn-info mr-4 update_siswa">Update</button>' +
+				                        '<button data-nis="'+data[i].nis+'" data-nama_lengkap="'+data[i].nama_lengkap+'" data-tempat_lahir="'+data[i].tempat_lahir+'" data-tanggal_lahir="'+data[i].tanggal_lahir+'" data-jenis_kelamin="'+data[i].jenis_kelamin+'" data-agama="'+data[i].agama+'" data-alamat="'+data[i].alamat+'" data-anak_ke="'+data[i].anak_ke+'" data-id_ortu="'+data[i].id_ortu+'" data-foto="'+data[i].foto+'" data-hp="'+data[i].hp+'" data-email="'+data[i].email+'" class="btn btn-sm btn-info mr-4 update_siswa">Update</button>' +
 				                        '<button data-nis="'+data[i].nis+'" class="btn btn-sm btn-danger float-right delete_siswa">Delete</button>' +
 				                      '</div>' +
 				                    '</div>' +
@@ -96,6 +96,7 @@ $(document).ready(function(){
         var hp=$(this).attr('data-hp');
         var id_ortu=$(this).attr('data-id_ortu');
         var email=$(this).attr('data-email');
+        var foto=$(this).attr('data-foto');
 
         $('[name="nis_update"]').val(nis);
         $('[name="nama_lengkap_update"]').val(nama_lengkap);
@@ -107,6 +108,7 @@ $(document).ready(function(){
         $('[name="hp_update"]').val(hp);
         $('[name="id_ortu_update"]').val(id_ortu);
         $('[name="email_update"]').val(email);
+        $('[name="foto_lama"]').val(foto);
 
         $('[name="nis_update"]').attr('disabled', true);
         $('#update-modal').modal('show');
@@ -184,6 +186,95 @@ $(document).ready(function(){
 
 	        	}else{
 		            $('#add-modal').modal('hide');
+	        		$(this).removeAttr('disabled');
+					$('.loader').css('display', 'none');
+	        	}
+	            let timerInterval
+	              Swal.fire({
+	                title: data.title,
+	                html: data.message,
+	                timer: 1500,
+	                onClose: () => {
+	                  clearInterval(timerInterval)
+	                }
+	            });
+	        }
+	    });
+	    return false;
+	});
+
+	 $('#btn-update').on('click', function () {
+                
+	    if ($('[name="nis_update"]').val().length == 0){
+	        $('[name="nis_update"]').addClass('border-danger');
+	        $('[name="nis_update"]').focus();
+	        return false;
+	    }
+	    if ($('[name="nama_lengkap_update"]').val().length == 0){
+	        $('[name="nama_lengkap_update"]').addClass('border-danger');
+	        $('[name="nama_lengkap_update"]').focus();
+	        return false;
+	    }
+	    if ($('[name="tempat_lahir_update"]').val().length == 0){
+	        $('[name="tempat_lahir_update"]').addClass('border-danger');
+	        $('[name="tempat_lahir_update"]').focus();
+	        return false;
+	    }
+	    if ($('[name="tanggal_lahir_update"]').val().length == 0){
+	        $('[name="tanggal_lahir_update"]').addClass('border-danger');
+	        $('[name="tanggal_lahir_update"]').focus();
+	        return false;
+	    }
+
+	    var formData = new FormData();
+
+	    formData.append('nis', $('[name="nis_update"]').val()); 
+	    formData.append('nama_lengkap', $('[name="nama_lengkap_update"]').val()); 
+	    formData.append('tempat_lahir', $('[name="tempat_lahir_update"]').val()); 
+	    formData.append('tanggal_lahir', $('[name="tanggal_lahir_update"]').val()); 
+	    formData.append('jenis_kelamin', $('[name="jenis_kelamin_update"]').val()); 
+	    formData.append('agama', $('[name="agama_update"]').val()); 
+	    formData.append('alamat', $('[name="alamat_update"]').val()); 
+	    formData.append('anak_ke', $('[name="anak_ke_update"]').val()); 
+	    formData.append('id_ortu', $('[name="id_ortu_update"]').val()); 
+	    formData.append('hp', $('[name="hp_update"]').val()); 
+	    formData.append('email', $('[name="email_update"]').val()); 
+	    formData.append('foto_lama', $('[name="foto_lama"]').val()); 
+	    formData.append('foto', $('[name="foto_update"]')[0].files[0]);
+	   
+    	$('.loader').css('display', 'inline-block');
+    	$(this).attr('disabled');
+	    $.ajax({
+	        url: '<?= base_url("admin/Master/update_siswa")?>',
+	        type: 'POST',
+	        dataType: 'JSON',
+	        data: formData,
+	        cache: false,
+	        processData: false,
+	        contentType: false,
+
+	        success: function (data) {
+	        	if (data.status == 'success') {
+
+		            $('[name="nis_update"]').val();
+			        $('[name="nama_lengkap_update"]').val();
+			        $('[name="tempat_lahir_update"]').val();
+			        $('[name="tanggal_lahir_update"]').val();
+			        $('[name="jenis_kelamin_update"]').val();
+			        $('[name="alamat_update"]').val();
+			        $('[name="anak_ke_update"]').val();
+			        $('[name="hp_update"]').val();
+			        $('[name="id_ortu_update"]').val();
+			        $('[name="email_update"]').val();
+	        		$(this).removeAttr('disabled');
+					$('.loader').css('display', 'none');
+
+
+		            $('#update-modal').modal('hide');
+		            daftar_siswa();
+
+	        	}else{
+		            $('#update-modal').modal('hide');
 	        		$(this).removeAttr('disabled');
 					$('.loader').css('display', 'none');
 	        	}

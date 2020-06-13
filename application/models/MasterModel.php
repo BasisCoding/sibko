@@ -24,6 +24,11 @@
 			$this->db->insert('siswa', $data);
 		}
 
+		function ubah_siswa($nis, $data)
+		{
+			$this->db->update('siswa', $data, array('nis' => $nis));
+		}
+
 		function tambah_ortu($data)
 		{
 			$this->db->insert('ortu', $data);
