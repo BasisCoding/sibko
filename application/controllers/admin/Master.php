@@ -127,7 +127,24 @@
 
 			
 			echo json_encode($respond);
+		}
 
+		public function delete_siswa()
+		{
+			$nis = $this->input->post('nis');
+			$query = $this->db->get_where('siswa', array('nis' => $nis ))->row();
+	    	if ($query) {
+				@unlink("./assets/img/siswa/$query->foto");
+			}
+			$this->MasterModel->hapus_siswa($nis);
+			$respond = array(
+				'status' => 'success',
+				'title' => 'SUKSES !!!',
+				'message' => 'Data Berhasil Di Hapus'
+			 );
+
+			
+			echo json_encode($respond);
 		}
 
 		public function data_jurusan()

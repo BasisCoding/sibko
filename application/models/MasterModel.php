@@ -29,6 +29,11 @@
 			$this->db->update('siswa', $data, array('nis' => $nis));
 		}
 
+		function hapus_siswa($nis)
+		{
+			$this->db->delete('siswa', array('nis' => $nis));
+		}
+
 		function tambah_ortu($data)
 		{
 			$this->db->insert('ortu', $data);

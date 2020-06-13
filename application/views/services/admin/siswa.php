@@ -114,6 +114,38 @@ $(document).ready(function(){
         $('#update-modal').modal('show');
     });
 
+    $('#show_data_siswa').on('click','.delete_siswa',function(){
+        var nis=$(this).attr('data-nis');
+    	
+    	Swal.fire({
+		  title: 'Are you sure?',
+		  text: "You won't be able to revert this!",
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: 'Yes, delete it!'
+		}).then((result) => {
+			$.ajax({
+		        url   : '<?= base_url("admin/Master/delete_siswa")?>',
+		        method:"POST",
+		        async : false,
+		        dataType:'json',
+		        data:{nis:nis},
+		        success : function(data){
+				  if (result.value) {
+				    Swal.fire(
+				      'Deleted!',
+				      'Your file has been deleted.',
+				      'success'
+				    )
+				  }
+		        }
+
+		   	});
+		});
+    });
+
     $('#btn-add').on('click', function () {
                 
 	    if ($('[name="nis"]').val().length == 0){
@@ -203,7 +235,7 @@ $(document).ready(function(){
 	    return false;
 	});
 
-	 $('#btn-update').on('click', function () {
+	$('#btn-update').on('click', function () {
                 
 	    if ($('[name="nis_update"]').val().length == 0){
 	        $('[name="nis_update"]').addClass('border-danger');
@@ -291,6 +323,8 @@ $(document).ready(function(){
 	    });
 	    return false;
 	});
+
+
 
 	$('#btn-add-ortu').on('click', function () {
                 
