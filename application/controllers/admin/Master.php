@@ -197,7 +197,7 @@
 				 );
 			}else{
 				$data = array(
-		 			'nik' 				=> $this->input->post('nik_orangtua'),
+		 			'nik' 					=> $this->input->post('nik_orangtua'),
 		 			'username' 				=> $this->input->post('username'),
 		 			'nama_lengkap' 			=> $this->input->post('nama_lengkap_ortu'),
 		 			'jenis_kelamin' 		=> $this->input->post('jenis_kelamin_ortu'),
@@ -205,8 +205,8 @@
 		 			'email' 				=> $this->input->post('email_ortu'),
 		 			'password' 				=> hash('sha512', $this->input->post('password') . config_item('encryption_key')),
 		 			
-		 			'created_at' 		=> date('Y-m-d H:i:s'),
-		 			'created_by' 		=> $this->session->userdata('id'),
+		 			'created_at' 			=> date('Y-m-d H:i:s'),
+		 			'created_by' 			=> $this->session->userdata('id'),
 					 );
 
 				$data = $this->MasterModel->tambah_ortu($data);
@@ -216,7 +216,7 @@
 					'message' => 'Data Sudah Ada',
 				 );
 			}
-			echo json_encode($data);
+			echo json_encode($respond);
 		}
 
 
