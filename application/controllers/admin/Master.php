@@ -86,7 +86,7 @@
 
 		public function update_siswa()
 		{
-			$nis = $this->input->post('nis')
+			$nis = $this->input->post('nis');
 			$config['upload_path'] = './assets/img/siswa/';
 	        $config['allowed_types'] = 'gif|jpg|png|jpeg';
 	        $config['max_size'] = '1024';
