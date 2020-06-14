@@ -282,11 +282,15 @@
 		}
 
 		public function save_kelas()
-		{
-			$data['kode_jurusan'] = $this->input->post('kode_jurusan');
+		{	
+			$data['id_jurusan'] = $this->input->post('id_jurusan');
 			$data['tingkat'] = $this->input->post('tingkat');
 
-			$cek = $this->db->get_where('kelas', array('kode_jurusan' => $this->input->post('kode_jurusan')));
+			$cek = $this->db->get_where('kelas', array(
+				'id_jurusan' 	=> $this->input->post('id_jurusan'), 
+				'tingkat'		=> $this->input->post('tingkat')
+			));
+
 			if ($cek->num_rows() > 0) {
 				$respond = array(
 					'status' => 'error',
@@ -294,27 +298,27 @@
 					'message' => 'Data Sudah Ada',
 				 );
 			}else{
-				$data = $this->MasterModel->tambah_kelas($data);
+				$query = $this->MasterModel->tambah_kelas($data);
 				$respond = array(
 					'status' => 'success',
 					'title' => 'SUKSES !!!',
 					'message' => 'Data Sudah Disimpan',
 				 );
 			}
-			echo json_encode($data);
+			echo json_encode($respond);
 		}
 
 		public function update_kelas()
 		{
 			$id = $this->input->post('id');
 			$data['tingkat'] = $this->input->post('tingkat');
-			$data['id_jurusan'] = $this->input->post('kode_jurusan');
+			$data['id_jurusan'] = $this->input->post('id_jurusan');
 
 			$this->MasterModel->ubah_kelas($id, $data);
 			$respond = array(
 					'status' => 'success',
 					'title' => 'SUKSES !!!',
-					'message' => 'Data Sudah Disimpan',
+					'message' => 'Data Berhasil Disimpan',
 				 );
 			echo json_encode($respond);
 		}

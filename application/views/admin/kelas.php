@@ -78,16 +78,18 @@
 
                         <input type="number" name="tingkat" placeholder="Tingkat" class="form-control form-control-sm mb-1">
                       
-                        <select class="form-control form-control-sm select" name="kode_jurusan">
+                        <select class="form-control form-control-sm select" name="id_jurusan">
                           <option></option>
                         </select>
-                       
+
+                    <div class="row my-1">
+                      <div class="col-md text-right">
+                        <button type="submit" id="btn-add" class="btn btn-sm btn-success"><i class="fa fa-spinner fa-spin loader" style="display: none"></i> Save</button>
+                      </div>
+                    </div>
+                  </form>
                 </div>
                 
-                <div class="modal-footer">
-                    <button type="submit" id="btn-add" class="btn btn-sm btn-success"><i class="fa fa-spinner fa-spin loader" style="display: none"></i> Save</button>
-                </div>
-                  </form>
                 
             </div>
         </div>
@@ -108,7 +110,7 @@
                     <input type="text" name="id" hidden>
                     <input type="number" name="tingkat_update" placeholder="Tingkat" class="form-control form-control-sm mb-1">
                   
-                    <select class="form-control form-control-sm select" name="kode_jurusan_update">
+                    <select class="form-control form-control-sm select" name="id_jurusan_update">
                     </select>
                 </div>
                 

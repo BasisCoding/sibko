@@ -63,7 +63,7 @@
 
 		function select_jurusan()
 		{
-			$this->db->select('jurusan.nama_jurusan, jurusan.kode_jurusan');
+			$this->db->select('jurusan.id, jurusan.nama_jurusan, jurusan.kode_jurusan');
 			$this->db->from('jurusan');
 			return $this->db->get()->result();
 		}
@@ -73,9 +73,9 @@
 
 		function data_kelas($query)
 		{
-			$this->db->select('kelas.*, jurusan.id, jurusan.nama_jurusan, jurusan.kode_jurusan');
+			$this->db->select('kelas.*, jurusan.nama_jurusan, jurusan.kode_jurusan');
 			$this->db->from('kelas');
-			$this->db->join('jurusan', 'jurusan.kode_jurusan = kelas.id_jurusan', 'left');
+			$this->db->join('jurusan', 'jurusan.id = kelas.id_jurusan', 'left');
 			if ($query != '') {
 				$this->db->group_start();
 			 		$this->db->or_like('nama_kelas', $query);
@@ -85,9 +85,9 @@
 			return $this->db->get()->result();
 		}
 
-		function tambah_kelas($kode_jurusan, $tingkat)
+		function tambah_kelas($data)
 		{
-			$this->db->insert('kelas', $data, array('kode_jurusan' => $kode_jurusan));
+			$this->db->insert('kelas', $data);
 		}
 
 		function ubah_kelas($id, $data)

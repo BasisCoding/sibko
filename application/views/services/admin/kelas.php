@@ -3,10 +3,10 @@
 		daftar_kelas();
 		daftar_jurusan();
 
-		$("[name='kode_jurusan']").select2({
+		$("[name='id_jurusan']").select2({
 			placeholder: 'Pilih Jurusan'
 		}); 
-		$("[name='kode_jurusan_update']").select2({
+		$("[name='id_jurusan_update']").select2({
 			placeholder: 'Pilih Jurusan'
 		});
 		function daftar_kelas(query){
@@ -57,27 +57,27 @@
 	    			var kode_jurusan = '';
 		        	var i;
 		        	for (var i = 0; i < data.length; i++) {
-		        		kode_jurusan += '<option value="'+data[i].kode_jurusan+'">'+data[i].nama_jurusan+'</option>';
+		        		kode_jurusan += '<option value="'+data[i].id+'">'+data[i].nama_jurusan+'</option>';
 		        	}
-		        	$('[name="kode_jurusan"]').html('<option></option>'+kode_jurusan);	
-		        	$('[name="kode_jurusan_update"]').html('<option></option>'+kode_jurusan);	
+		        	$('[name="id_jurusan"]').html('<option></option>'+kode_jurusan);	
+		        	$('[name="id_jurusan_update"]').html('<option></option>'+kode_jurusan);	
 	    		}
 	    	}); 	
 	    }
 
-	    $('#btn-add').submit(function() {
+	    $('#btn-add').on('click', function() {
 	    	var tingkat = $('[name="tingkat"]').val();
-	    	var kode_jurusan = $('[name="kode_jurusan"]').val();
+	    	var id_jurusan = $('[name="id_jurusan"]').val();
 
 	    	$.ajax({
 	    		url: '<?= base_url('admin/Master/save_kelas') ?>',
 	    		type: 'POST',
 	    		dataType: 'JSON',
-	    		data:{tingkat:tingkat, kode_jurusan:kode_jurusan},
+	    		data:{tingkat:tingkat, id_jurusan:id_jurusan},
 	    		success:function (data) {
 	    			if (data.status == 'success') {
 
-			            $('[name="kode_jurusan"]').val(''); 
+			            $('[name="id_jurusan"]').val(''); 
 			            $('[name="tingkat"]').val(''); 
 
 			            $('#add-modal').modal('hide');
@@ -102,18 +102,18 @@
 	    $('#btn-update').on('click', function() {
 	    	var id = $('[name="id"]').val();
 	    	var tingkat = $('[name="tingkat_update"]').val();
-	    	var kode_jurusan = $('[name="kode_jurusan_update"]').val();
+	    	var id_jurusan = $('[name="id_jurusan_update"]').val();
 
 	    	$.ajax({
 	    		url: '<?= site_url('admin/Master/update_kelas') ?>',
 	    		type: 'POST',
 	    		dataType: 'JSON',
-	    		data:{id:id, tingkat:tingkat, kode_jurusan:kode_jurusan},
+	    		data:{id:id, tingkat:tingkat, id_jurusan:id_jurusan},
 	    		success:function (data) {
 	    			if (data.status == 'success') {
 
 			            $('[name="id"]').val(''); 
-			            $('[name="kode_jurusan_update"]').val(''); 
+			            $('[name="id_jurusan_update"]').val(''); 
 			            $('[name="tingkat_update"]').val(''); 
 
 			            $('#update-modal').modal('hide');
