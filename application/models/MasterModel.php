@@ -56,7 +56,46 @@
 			$this->db->insert('jurusan', $data);
 		}
 
+		function ubah_jurusan($id, $data)
+		{
+			$this->db->update('jurusan', $data, array('id' => $id));
+		}
+
+		function select_jurusan()
+		{
+			$this->db->select('jurusan.nama_jurusan, jurusan.kode_jurusan');
+			$this->db->from('jurusan');
+			return $this->db->get()->result();
+		}
 	// Model Data Jurusan
+
+	// Model Data Kelas
+
+		function data_kelas($query)
+		{
+			$this->db->select('kelas.*, jurusan.id, jurusan.nama_jurusan, jurusan.kode_jurusan');
+			$this->db->from('kelas');
+			$this->db->join('jurusan', 'jurusan.kode_jurusan = kelas.id_jurusan', 'left');
+			if ($query != '') {
+				$this->db->group_start();
+			 		$this->db->or_like('nama_kelas', $query);
+			 		$this->db->or_like('nama_jurusan', $query);
+			 	$this->db->group_end();
+			}
+			return $this->db->get()->result();
+		}
+
+		function tambah_kelas($kode_jurusan, $tingkat)
+		{
+			$this->db->insert('kelas', $data, array('kode_jurusan' => $kode_jurusan));
+		}
+
+		function ubah_kelas($id, $data)
+		{
+			$this->db->update('kelas', $data, array('id' => $id));
+		}
+
+	// Model Data Kelas
 
 		function tambah_ortu($data)
 		{

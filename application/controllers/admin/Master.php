@@ -1,7 +1,6 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 	
-
 	class Master extends CI_Controller 
 	{
 		public function __construct()
@@ -175,7 +174,7 @@
 
 		public function save_jurusan()
 		{
-			$cek = $this->db->get_where('guru', array('kode_jurusan' => $this->input->post('kode_jurusan')));
+			$cek = $this->db->get_where('jurusan', array('kode_jurusan' => $this->input->post('kode_jurusan')));
 			if ($cek->num_rows() > 0) {
 				$respond = array(
 					'status' => 'error',
@@ -196,12 +195,12 @@
 				}
 
 				$data = array(
-		 			'kode_jurusan' 				=> $this->input->post('kode_jurusan'),
-		 			'nama_jurusan' 		=> $this->input->post('nama_jurusan'),
-		 			'semester' 		=> $this->input->post('semester'),
-		 			'kepala_jurusan' 	=> $this->input->post('kajur'),
+		 			'kode_jurusan' 			=> $this->input->post('kode_jurusan'),
+		 			'nama_jurusan' 			=> $this->input->post('nama_jurusan'),
+		 			'semester' 				=> $this->input->post('semester'),
+		 			'kepala_jurusan' 		=> $this->input->post('kajur'),
 		 			
-		 			'logo' 				=> $logo
+		 			'logo' 					=> $logo
 					 );
 
 				$this->MasterModel->tambah_jurusan($data);
@@ -214,8 +213,51 @@
 			echo json_encode($respond);
 		}
 
+		public function update_jurusan()
+		{
+			$id = $this->input->post('id');
+			$config['upload_path'] = './assets/img/logo-jurusan/';
+	        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+	        $config['max_size'] = '1024';
+	        $config['file_name'] = $this->input->post('kode_jurusan');
+	        $this->load->library('upload', $config);
+
+	         if($this->upload->do_upload("logo")){
+				$logo = $this->upload->file_name;
+				@unlink("./assets/img/logo-jurusan/".$this->input->post('logo_lama'));
+			} else {
+				$logo = $this->input->post('logo_lama');
+			} 
+			
+			$data = array(
+	 			'kode_jurusan' 				=> $this->input->post('kode_jurusan'),
+	 			'nama_jurusan' 		=> $this->input->post('nama_jurusan'),
+	 			'semester' 		=> $this->input->post('semester'),
+	 			'kepala_jurusan' 	=> $this->input->post('kajur'),
+	 			
+	 			'logo' 				=> $logo
+				 );
+
+			$this->MasterModel->ubah_jurusan($id, $data);
+			$respond = array(
+				'status' => 'success',
+				'title' => 'SUKSES !!!',
+				'message' => 'Data Berhasil DiSimpan',
+			 );
+
+			
+			echo json_encode($respond);
+		}
+
+		public function select_jurusan()
+		{
+			$data = $this->MasterModel->select_jurusan();
+			echo json_encode($data);
+		}
+
 	// Controller Data Jurusan
 
+	// Controller Data Kelas
 		public function data_kelas()
 		{
 			$this->load->view('_partials/head');
@@ -225,7 +267,58 @@
 			$this->load->view('_partials/footer');
 			$this->load->view('_partials/plugin');
 			$this->load->view('services/admin/kelas');
-		}	
+		}
+
+		public function view_data_kelas()
+		{
+			$query = '';
+
+			if($this->input->post('query'))
+		  	{
+		   		$query = $this->input->post('query');
+		  	}
+			$data = $this->MasterModel->data_kelas($query);
+			echo json_encode($data);
+		}
+
+		public function save_kelas()
+		{
+			$data['kode_jurusan'] = $this->input->post('kode_jurusan');
+			$data['tingkat'] = $this->input->post('tingkat');
+
+			$cek = $this->db->get_where('kelas', array('kode_jurusan' => $this->input->post('kode_jurusan')));
+			if ($cek->num_rows() > 0) {
+				$respond = array(
+					'status' => 'error',
+					'title' => 'GAGAL !!!',
+					'message' => 'Data Sudah Ada',
+				 );
+			}else{
+				$data = $this->MasterModel->tambah_kelas($data);
+				$respond = array(
+					'status' => 'success',
+					'title' => 'SUKSES !!!',
+					'message' => 'Data Sudah Disimpan',
+				 );
+			}
+			echo json_encode($data);
+		}
+
+		public function update_kelas()
+		{
+			$id = $this->input->post('id');
+			$data['tingkat'] = $this->input->post('tingkat');
+			$data['id_jurusan'] = $this->input->post('kode_jurusan');
+
+			$this->MasterModel->ubah_kelas($id, $data);
+			$respond = array(
+					'status' => 'success',
+					'title' => 'SUKSES !!!',
+					'message' => 'Data Sudah Disimpan',
+				 );
+			echo json_encode($respond);
+		}
+	// Controller Data Kelas
 
 		public function data_ortu()
 		{
@@ -271,7 +364,7 @@
 				$respond = array(
 					'status' => 'success',
 					'title' => 'SUKSES !!!',
-					'message' => 'Data Sudah Ada',
+					'message' => 'Data Berhasil Di Simpan',
 				 );
 			}
 			echo json_encode($respond);

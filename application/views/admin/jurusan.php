@@ -8,7 +8,7 @@
               <div class="col-md-9">
                 <div class="row">
                   <div class="col-md d-flex my-1 my-md-0">
-                    <button class="form-control form-control-sm col-2" id="add-data" data-toggle="modal" data-target="#add-modal">New</button>
+                    <button class="form-control form-control-sm col-2" id="add-data-jurusan">New</button>
                   </div>
                   
                   <div class="col-md-4 text-right">
@@ -30,7 +30,7 @@
                   </tr>
                 </thead>
                 <tbody id="show_data_jurusan">
-                                    
+                          
                 </tbody>
               </table>
             </div>
@@ -64,8 +64,8 @@
         </div>
       </div>
       
-      <div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+      <div class="modal fade" id="add-modal-jurusan" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
               
                 <div class="modal-header">
@@ -76,7 +76,7 @@
                 </div>
                 
                 <div class="modal-body">
-                  <form id="form-tambah" method="POST">
+                  <form id="form-tambah-jurusan" method="POST">
                     
                     <div class="row my-1">
                       <div class="col-md">
@@ -89,7 +89,7 @@
 
                     <div class="row my-1">
                       <div class="col-md">
-                        <input type="text" name="semester" placeholder="Semester" class="form-control form-control-sm mb-1">
+                        <input type="number" name="semester" placeholder="Semester" class="form-control form-control-sm mb-1">
                       </div>
                       <div class="col-md mb-1">
                         <select class="form-control form-control-sm select" name="kajur">
@@ -106,14 +106,72 @@
                         <font size="1" color="red"><i>*Upload Logo Dengan Ukuran 1MB .JPG .PNG .GIF .JPEG (Background Berwarna Merah Atau Biru)</i></font>
                       </div>
                     </div>
-      
-                </div>
-                
-                <div class="modal-footer">
-                    <button type="submit" id="btn-add" class="btn btn-sm btn-success"><i class="fa fa-spinner fa-spin loader" style="display: none"></i> Save</button>
-                </div>
+                   
+                    <div class="row">
+                      <div class="col-md text-right">
+                        <button type="button" id="btn-add-jurusan" class="btn btn-sm btn-success"><i class="fa fa-spinner fa-spin loader" style="display: none"></i> Save</button>
+                      </div>
+                    </div>
                   </form>
+                </div>
                 
+                
+            </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="update-modal-jurusan" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+              
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modal-title-default">Update Data Jurusan</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                  <form id="form-update-jurusan" method="POST">
+                    
+                    <div class="row my-1">
+                      <div class="col-md">
+                        <input type="text" name="kode_jurusan_update" placeholder="Kode Jurusan" class="form-control form-control-sm mb-1">
+                        <input type="hidden" name="id">
+                      </div>
+                      <div class="col-md">
+                        <input type="text" name="nama_jurusan_update" placeholder="Nama Jurusan" class="form-control form-control-sm mb-1">
+                      </div>
+                    </div>
+
+                    <div class="row my-1">
+                      <div class="col-md">
+                        <input type="number" name="semester_update" placeholder="Semester" class="form-control form-control-sm mb-1">
+                      </div>
+                      <div class="col-md mb-1">
+                        <select class="form-control form-control-sm select" name="kajur_update">
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="row my-1">
+                      <div class="col-md">
+                          <div class="custom-file">
+                            <input type="text" hidden name="logo_lama">
+                            <input type="file" class="custom-file-input" id="logo" lang="en" name="logo_update">
+                            <label class="custom-file-label" for="logo_update">Pilih Logo</label>
+                          </div>
+                        <font size="1" color="red"><i>*Upload Logo Dengan Ukuran 1MB .JPG .PNG .GIF .JPEG (Background Berwarna Merah Atau Biru)</i></font>
+                      </div>
+                    </div>
+                    
+                    <div class="row">
+                      <div class="col-md text-right">
+                        <button type="button" id="btn-update-jurusan" class="btn btn-sm btn-success"><i class="fa fa-spinner fa-spin loader" style="display: none"></i> Save</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
             </div>
         </div>
       </div>

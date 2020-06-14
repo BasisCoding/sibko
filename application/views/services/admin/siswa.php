@@ -91,7 +91,6 @@ $(document).ready(function(){
 					$('#show_data_siswa').html('<div class="col-12 text-center"><span class="badge badge-pill badge-lg badge-success">Data Tidak Di Temukan</span></div>');
 	            }
 	        }
-
 	    });
     }
 
