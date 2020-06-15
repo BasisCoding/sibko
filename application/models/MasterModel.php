@@ -37,6 +37,19 @@
 		{
 			$this->db->delete('siswa', array('nis' => $nis));
 		}
+
+		function select_siswa()
+		{
+			$this->db->select('siswa.nis, siswa.nama_lengkap, siswa.jenis_kelamin, siswa.id');
+			$this->db->from('siswa');
+			$this->db->where('id_kelas', NULL);
+			return $this->db->get()->result();
+		}
+
+		function tambah_siswa_kelas($id, $data)
+		{
+			$this->db->update('siswa', $data, array('id' => $id));
+		}
 	// Model Data Siswa
 
 	// Model Data Jurusan
@@ -62,6 +75,12 @@
 		function ubah_jurusan($id, $data)
 		{
 			$this->db->update('jurusan', $data, array('id' => $id));
+		}
+
+		function hapus_jurusan($id)
+		{
+			$this->db->delete('jurusan', array('id' => $id));
+			$this->db->update('kelas', array('id_jurusan' => NULL) , array('id_jurusan' => $id));
 		}
 
 		function select_jurusan()
@@ -96,6 +115,20 @@
 		function ubah_kelas($id, $data)
 		{
 			$this->db->update('kelas', $data, array('id' => $id));
+		}
+
+		function hapus_kelas($id)
+		{
+			$this->db->delete('kelas', array('id' => $id));
+			$this->db->update('siswa', array('id_kelas' => NULL), array('id_kelas' => $id));
+		}
+
+		function siswa_kelas($id_kelas)
+		{
+			$this->db->select('siswa.nis, siswa.nama_lengkap, siswa.jenis_kelamin, siswa.id');
+			$this->db->from('siswa');
+			$this->db->where('id_kelas', $id_kelas);
+			return $this->db->get()->result();
 		}
 
 	// Model Data Kelas

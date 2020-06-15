@@ -145,6 +145,19 @@
 			
 			echo json_encode($respond);
 		}
+
+		public function view_kelas_siswa()
+		{
+			$id_kelas = $this->input->post('id');
+			$data = $this->MasterModel->siswa_kelas($id_kelas);
+			echo json_encode($data);
+		}
+
+		public function select_siswa()
+		{
+			$data = $this->MasterModel->select_siswa();
+			echo json_encode($data);
+		}
 	// Controller Data Siswa
 
 	// Controller Data Jurusan
@@ -249,12 +262,29 @@
 			echo json_encode($respond);
 		}
 
+		public function delete_jurusan()
+		{
+			$id = $this->input->post('id');
+			$query = $this->db->get_where('jurusan', array('id' => $id ))->row();
+	    	if ($query) {
+				@unlink("./assets/img/logo-jurusan/$query->logo");
+			}
+			$this->MasterModel->hapus_jurusan($id);
+			$respond = array(
+				'status' => 'success',
+				'title' => 'SUKSES !!!',
+				'message' => 'Data Berhasil Di Hapus'
+			 );
+
+			
+			echo json_encode($respond);
+		}
+
 		public function select_jurusan()
 		{
 			$data = $this->MasterModel->select_jurusan();
 			echo json_encode($data);
 		}
-
 	// Controller Data Jurusan
 
 	// Controller Data Kelas
@@ -322,7 +352,38 @@
 				 );
 			echo json_encode($respond);
 		}
+
+		public function delete_kelas()
+		{
+			$id = $this->input->post('id');
+			
+			$this->MasterModel->hapus_kelas($id);
+			$respond = array(
+				'status' => 'success',
+				'title' => 'SUKSES !!!',
+				'message' => 'Data Berhasil Di Hapus'
+			 );
+
+			
+			echo json_encode($respond);
+		}
+
+		public function tarik_siswa()
+		{
+			$data['id_kelas'] = $this->input->post('id_kelas');
+			$id = $this->input->post('id');
+
+			$this->MasterModel->tambah_siswa_kelas($id, $data);
+			$respond = array(
+					'status' => 'success',
+					'title' => 'SUKSES !!!',
+					'message' => 'Data Berhasil Disimpan',
+				 );
+			echo json_encode($respond);
+		}
 	// Controller Data Kelas
+
+	// Controller Data Orang Tua
 
 		public function data_ortu()
 		{
@@ -373,6 +434,7 @@
 			}
 			echo json_encode($respond);
 		}
+	// Controller Data Orang Tua
 
 
 		public function data_pelanggaran()

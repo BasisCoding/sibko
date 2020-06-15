@@ -4,7 +4,7 @@
           <div class="card">
             <!-- Card header -->
             <div class="card-header bg-transparent row align-items-center">
-              <h3 class="mb-0 col-md-3">DAFTAR JURUSAN</h3>
+              <h3 class="mb-0 col-md-3">DAFTAR KELAS</h3>
               <div class="col-md-9">
                 <div class="row">
                   <div class="col-md d-flex my-1 my-md-0">
@@ -117,6 +117,68 @@
                 <div class="modal-footer">
                     <button type="submit" id="btn-update" class="btn btn-sm btn-success"><i class="fa fa-spinner fa-spin loader" style="display: none"></i> Save</button>
                 </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="lihat-siswa-modal" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md">
+                      <div class="card">
+                        <!-- Card header -->
+                        <div class="card-header bg-transparent row align-items-center">
+                          <h3 class="mb-0">Siswa Kelas <span class="nama_kelas"></span></h3>
+                        </div>
+                        <!-- Light table -->
+                        <div class="table-responsive">
+                          <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                              <tr>
+                                <th scope="col">NIS</th>
+                                <th scope="col">NAMA SISWA</th>
+                                <th scope="col">JENIS KELAMIN</th>
+                                <th scope="col"></th>
+                              </tr>
+                            </thead>
+                            <tbody id="show_data_siswa_kelas">        
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md">
+                      <div class="card">
+                        <!-- Card header -->
+                        <div class="card-header bg-transparent row align-items-center">
+                          <h3 class="mb-0">Tambah Data Siswa Ke Kelas</h3>
+                        </div>
+                        <!-- Light table -->
+                        <div class="table-responsive">
+                          <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                              <tr>
+                                <th scope="col">NIS</th>
+                                <th scope="col">NAMA SISWA</th>
+                                <th scope="col">JENIS KELAMIN</th>
+                                <th scope="col"></th>
+                              </tr>
+                            </thead>
+                            <input type="hidden" id="id_kelas">
+                            <tbody id="show_data_siswa">        
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
             </div>
         </div>
       </div>

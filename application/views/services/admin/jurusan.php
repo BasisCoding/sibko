@@ -45,7 +45,7 @@
 					                        '</a>'+
 					                        '<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">'+
 					                          '<button class="dropdown-item update-jurusan" data-id="'+data[i].id+'" data-kode_jurusan="'+data[i].kode_jurusan+'" data-nama_jurusan="'+data[i].nama_jurusan+'" data-semester="'+data[i].semester+'" data-logo="'+data[i].logo+'">Update</button>'+
-					                          '<button class="dropdown-item delete-jurusan">Delete</button>'+
+					                          '<button class="dropdown-item delete-jurusan" data-id="'+data[i].id+'">Delete</button>'+
 					                       ' </div>'+
 					                      '</div>'+
 					                   '</td>'+
@@ -170,6 +170,39 @@
 
 	        $('#update-modal-jurusan').modal('show');
 	    });
+
+	    $('#show_data_jurusan').on('click','.delete-jurusan',function(){
+        var id=$(this).attr('data-id');
+
+    	Swal.fire({
+		  title: 'Are you sure ?',
+		  text: "Jika Anda Menghapus Jurusan Maka Kelas dan Siswa Tidak ada Data Jurusan",
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: 'Ya, Hapus!'
+		}).then((result) => {
+			$.ajax({
+		        url   : '<?= base_url("admin/Master/delete_jurusan")?>',
+		        method:"POST",
+		        async : false,
+		        dataType:'json',
+		        data:{id:id},
+		        success : function(data){
+				  if (result.value) {
+				    Swal.fire(
+				      'Terhapus!',
+				      'Data Anda Sudah Terhapus.',
+				      'success'
+				    )
+				    daftar_jurusan();
+				  }
+		        }
+
+		   	});
+		});
+    });
 
 	    $('#btn-update-jurusan').on('click', function () {
                 
