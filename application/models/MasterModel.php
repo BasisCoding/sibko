@@ -56,8 +56,9 @@
 
 		function data_jurusan($query)
 		{
-			$this->db->select('*');
+			$this->db->select('jurusan.*, guru.nama_lengkap');
 			$this->db->from('jurusan');
+			$this->db->join('guru', 'guru.id = jurusan.kepala_jurusan', 'left');
 			if ($query != '') {
 				$this->db->group_start();
 			 		$this->db->or_like('kode_jurusan', $query);
@@ -130,7 +131,6 @@
 			$this->db->where('id_kelas', $id_kelas);
 			return $this->db->get()->result();
 		}
-
 	// Model Data Kelas
 
 		function tambah_ortu($data)

@@ -38,6 +38,7 @@
 					                   '</th>'+
 					                   '<td>'+data[i].kode_jurusan+'</td>'+
 					                   '<td>'+data[i].semester+'</td>'+
+					                   '<td>'+data[i].nama_lengkap+'</td>'+
 					                   '<td class="text-right">'+
 					                      '<div class="dropdown">'+
 					                        '<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+

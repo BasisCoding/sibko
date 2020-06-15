@@ -25,6 +25,7 @@
                     <th scope="col">NAMA JURUSAN</th>
                     <th scope="col">KODE JURUSAN</th>
                     <th scope="col">SEMESTER</th>
+                    <th scope="col">KEPALA JURUSAN</th>
                     <th scope="col"></th>
                     
                   </tr>
