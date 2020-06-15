@@ -45,7 +45,7 @@
 					                          '<i class="fas fa-ellipsis-v"></i>'+
 					                        '</a>'+
 					                        '<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">'+
-					                          '<button class="dropdown-item update-jurusan" data-id="'+data[i].id+'" data-kode_jurusan="'+data[i].kode_jurusan+'" data-nama_jurusan="'+data[i].nama_jurusan+'" data-semester="'+data[i].semester+'" data-logo="'+data[i].logo+'">Update</button>'+
+					                          '<button class="dropdown-item update-jurusan" data-id="'+data[i].id+'" data-kode_jurusan="'+data[i].kode_jurusan+'" data-nama_jurusan="'+data[i].nama_jurusan+'" data-kajur="'+data[i].kepala_jurusan+'" data-nama_kajur="'+data[i].nama_lengkap+'" data-semester="'+data[i].semester+'" data-logo="'+data[i].logo+'">Update</button>'+
 					                          '<button class="dropdown-item delete-jurusan" data-id="'+data[i].id+'">Delete</button>'+
 					                       ' </div>'+
 					                      '</div>'+
@@ -60,7 +60,7 @@
 		    });
 	    }
 
-	    function daftar_guru() {
+	    function daftar_guru(id, nama_kajur) {
 	    	$.ajax ({
 				url   : '<?= base_url("admin/Master/select_guru")?>',
 		        method:"POST",
@@ -72,8 +72,13 @@
 		        		kajur += '<option value="'+data[i].id+'">'+data[i].nama_lengkap+'</option>';
 		        	}
 	        	$('[name="kajur"]').html('<option></option>'+kajur);	
-	        	$('[name="kajur_update"]').html('<option></option>'+kajur);	
-		        }
+		        	if (id>0) {
+		        		$('[name="kajur_update"]').html('<option value="'+id+'">'+nama_kajur+'</option>'+kajur);
+		        	}else {
+
+		        		$('[name="kajur_update"]').html('<option></option>'+kajur);
+			        }
+	        	}
 			});
 	    }
 
@@ -160,6 +165,8 @@
 	        var id=$(this).attr('data-id');
 	        var kode_jurusan=$(this).attr('data-kode_jurusan');
 	        var nama_jurusan=$(this).attr('data-nama_jurusan');
+	        var kajur=$(this).attr('data-kajur');
+	        var nama_kajur=$(this).attr('data-nama_kajur');
 	        var semester=$(this).attr('data-semester');
 	        var logo=$(this).attr('data-logo');
 
@@ -170,6 +177,7 @@
 	        $('[name="logo_lama"]').val(logo);
 
 	        $('#update-modal-jurusan').modal('show');
+	        daftar_guru(kajur, nama_kajur);
 	    });
 
 	    $('#show_data_jurusan').on('click','.delete-jurusan',function(){
