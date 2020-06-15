@@ -6,15 +6,18 @@
 	// Model Data Siswa
 		function data_siswa($query)
 		{
-			$this->db->select('siswa.*, ortu.nama_lengkap as nama_ortu');
+			$this->db->select('siswa.*, ortu.nama_lengkap as nama_ortu, kelas.tingkat, jurusan.nama_jurusan, jurusan.semester, jurusan.kode_jurusan');
 			$this->db->from('siswa');
 			$this->db->join('ortu', 'ortu.id = siswa.id_ortu', 'left');
+			$this->db->join('kelas', 'kelas.id = siswa.id_kelas', 'left');
+			$this->db->join('jurusan', 'jurusan.id = kelas.id_jurusan', 'left');
 			if ($query != '') {
 				$this->db->group_start();
 			 		$this->db->or_like('siswa.nama_lengkap', $query);
 			 		$this->db->or_like('siswa.nis', $query);
 			 		$this->db->or_like('ortu.nama_lengkap', $query);
 			 		$this->db->or_like('siswa.tempat_lahir', $query);
+			 		$this->db->or_like('jurusan.nama_jurusan', $query);
 			 	$this->db->group_end();
 			}
 			return $this->db->get()->result();

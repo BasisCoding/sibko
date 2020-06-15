@@ -76,10 +76,11 @@ $(document).ready(function(){
 				                        '<h5 class="h3">'+data[i].nama_lengkap+'<span class="font-weight-light"></span></h5>' +
 				                        '<div class="h5 font-weight-300"><i class="ni location_pin mr-2"></i>'+data[i].tempat_lahir+', '+n+'</div>' +
 				                        '<div class="h5 mt-2"><i class="ni business_briefcase-24 mr-2"></i>'+data[i].jenis_kelamin+'</div>' +
-				                        '<div><i class="ni education_hat mr-2"></i>'+data[i].nama_ortu+'</div>' +
+				                        '<div class="h5 mt-2"><i class="ni business_briefcase-24 mr-2"></i>'+data[i].nama_jurusan+'</div>' +
+				                        '<div><i class="ni education_hat mr-2"></i>'+data[i].tingkat+' '+data[i].kode_jurusan+'</div>' +
 				                      '</div>' +
 				                    '</div>' +
-				                    '<div class="d-flex justify-content-between mt-2">' +
+				                    '<div class="d-flex justify-content-between mt-1">' +
 				                      '<button type="button" class="btn btn-sm btn-success"><i class="ni ni-send"></i> Lihat Alamat</button>' +
 				                      '<button type="button" class="btn btn-sm btn-dark"><i class="ni ni-send"></i>Lihat Detail</button>' +
 				                    '</div>' +
