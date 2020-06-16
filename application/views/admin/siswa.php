@@ -257,7 +257,7 @@
                 </div>
                 
                 <div class="modal-body">
-                  <form id="form-tambah" method="POST">
+                  <form id="" method="POST">
 
                     <div class="row my-1">
                       <div class="col-md">

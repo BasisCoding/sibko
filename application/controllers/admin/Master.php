@@ -470,7 +470,7 @@
 			$this->load->view('_partials/plugin');
 			$this->load->view('services/admin/users');
 		}
-
+	// Controller Data Guru
 		public function data_guru()
 		{
 			$this->load->view('_partials/head');
@@ -482,6 +482,135 @@
 			$this->load->view('services/admin/guru');
 		}
 
+		public function view_data_guru()
+		{
+			$query = '';
+
+			if($this->input->post('query'))
+		  	{
+		   		$query = $this->input->post('query');
+		  	}
+			$data = $this->MasterModel->data_guru($query);
+			echo json_encode($data);
+		}
+
+		public function save_guru()
+		{
+			$cek = $this->db->get_where('guru', array(
+				'nik' => $this->input->post('nik'),
+				'username' => $this->input->post('username'),
+				'email' => $this->input->post('email'),
+			));
+			if ($cek->num_rows() > 0) {
+				$respond = array(
+					'status' => 'error',
+					'title' => 'GAGAL !!!',
+					'message' => 'Data Sudah Ada',
+				 );
+			}else{
+				$config['upload_path'] = './assets/img/guru/';
+		        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+		        $config['max_size'] = '1024';
+		        $config['file_name'] = $this->input->post('nik');
+		        $this->load->library('upload', $config);
+
+		        if($this->upload->do_upload("foto")){
+					$foto = $this->upload->file_name;
+				} else {
+					$foto = '';
+				}
+
+				$data = array(
+		 			'nik' 				=> $this->input->post('nik'),
+		 			'nama_lengkap' 		=> $this->input->post('nama_lengkap'),
+		 			'tempat_lahir' 		=> $this->input->post('tempat_lahir'),
+		 			'tanggal_lahir' 	=> $this->input->post('tanggal_lahir'),
+		 			'jenis_kelamin' 	=> $this->input->post('jenis_kelamin'),
+		 			'agama' 			=> $this->input->post('agama'),
+		 			'alamat' 			=> $this->input->post('alamat'),
+		 			'pendidikan'		=> $this->input->post('pendidikan'),
+		 			'hp' 				=> $this->input->post('hp'),
+		 			'email' 			=> $this->input->post('email'),
+		 			'username' 			=> $this->input->post('username'),
+		 			'password' 			=> $this->input->post('password'),
+		 			
+		 			'created_at' 		=> date('Y-m-d H:i:s'),
+		 			'created_by' 		=> $this->session->userdata('id'),
+		 			'foto' 				=> $foto
+					 );
+
+				$this->MasterModel->tambah_guru($data);
+				$respond = array(
+					'status' => 'success',
+					'title' => 'SUKSES !!!',
+					'message' => 'Data Berhasil DiSimpan',
+				 );
+			}
+			echo json_encode($respond);
+		}
+
+		public function update_guru()
+		{
+			$nik = $this->input->post('nik');
+			$config['upload_path'] = './assets/img/guru/';
+	        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+	        $config['max_size'] = '1024';
+	        $config['file_name'] = $this->input->post('guru');
+	        $this->load->library('upload', $config);
+
+	         if($this->upload->do_upload("foto")){
+				$foto = $this->upload->file_name;
+				@unlink("./assets/img/guru/".$this->input->post('foto_lama'));
+			} else {
+				$foto = $this->input->post('foto_lama');
+			} 
+			
+			$data = array(
+	 			'nik' 				=> $this->input->post('nik'),
+	 			'nama_lengkap' 		=> $this->input->post('nama_lengkap'),
+	 			'tempat_lahir' 		=> $this->input->post('tempat_lahir'),
+	 			'tanggal_lahir' 	=> $this->input->post('tanggal_lahir'),
+	 			'jenis_kelamin' 	=> $this->input->post('jenis_kelamin'),
+	 			'agama' 			=> $this->input->post('agama'),
+	 			'alamat' 			=> $this->input->post('alamat'),
+	 			'pendidikan'		=> $this->input->post('pendidikan'),
+	 			'hp' 				=> $this->input->post('hp'),
+	 			'email' 			=> $this->input->post('email'),
+	 			
+	 			'created_at' 		=> date('Y-m-d H:i:s'),
+	 			'created_by' 		=> $this->session->userdata('id'),
+	 			'foto' 				=> $foto
+			);
+
+			$this->MasterModel->ubah_guru($nik, $data);
+			$respond = array(
+				'status' => 'success',
+				'title' => 'SUKSES !!!',
+				'message' => 'Data Berhasil DiSimpan',
+			 );
+
+			
+			echo json_encode($respond);
+		}
+
+		public function delete_guru()
+		{
+			$nik = $this->input->post('nik');
+			$query = $this->db->get_where('guru', array('nik' => $nik ))->row();
+	    	if ($query) {
+				@unlink("./assets/img/guru/$query->foto");
+			}
+			$this->MasterModel->hapus_guru($nik);
+			$respond = array(
+				'status' => 'success',
+				'title' => 'SUKSES !!!',
+				'message' => 'Data Berhasil Di Hapus'
+			 );
+
+			
+			echo json_encode($respond);
+		}
+	// Controller End Data Guru
 		public function select_guru()
 		{
 			$data = $this->MasterModel->select_data_guru();
