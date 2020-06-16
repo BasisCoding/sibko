@@ -158,7 +158,7 @@
 
 		function data_guru($query)
 		{
-			$this->db->select('nik,nama_lengkap,pendidikan,jenis_kelamin,status,username,id,tanggal_lahir,tempat_lahir,alamat,hp,agama,foto');
+			$this->db->select('nik,nama_lengkap,pendidikan,jenis_kelamin,status,username,email,id,tanggal_lahir,tempat_lahir,alamat,hp,agama,foto');
 			$this->db->from('guru');
 			
 			if ($query != '') {

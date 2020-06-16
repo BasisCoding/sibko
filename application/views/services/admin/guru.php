@@ -13,9 +13,13 @@ $(document).ready(function(){
 	$("[name='agama_update']").select2({
 		placeholder: 'Pilih Agama'
 	});
-	$("[name='jenis_kelamin_ortu']").select2({
-		placeholder: 'Jenik Kelamin'
+	$("[name='pendidikan']").select2({
+		placeholder: 'Pilih Pendidikan'
 	}); 
+	$("[name='pendidikan_update']").select2({
+		placeholder: 'Pilih Pendidikan'
+	});
+	
 
 	let current_datetime = new Date();
 	let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate()

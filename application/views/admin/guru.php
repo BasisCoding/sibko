@@ -226,7 +226,7 @@
                             <textarea class="form-control mb-1" placeholder="Alamat" name="alamat_update"></textarea>
                           </div>
                           <div class="col-md">
-                            <select class="form-control form-control-sm select mb-1" name="pendidikan">
+                            <select class="form-control form-control-sm select mb-1" name="pendidikan_update">
                               <option></option>
                               <option value="SD Sederajat">SD</option>
                               <option value="SMP Sederajat">SMP</option>
