@@ -402,7 +402,7 @@
 			echo json_encode($data);
 		}
 
-		public function save_ortu()
+		public function save_ortu_siswa()
 		{
 			$cek = $this->db->get_where('ortu', array('nik' => $this->input->post('nik')));
 			if ($cek->num_rows() > 0) {
@@ -432,6 +432,135 @@
 					'message' => 'Data Berhasil Di Simpan',
 				 );
 			}
+			echo json_encode($respond);
+		}
+
+		public function view_data_ortu()
+		{
+			$query = '';
+
+			if($this->input->post('query'))
+		  	{
+		   		$query = $this->input->post('query');
+		  	}
+			$data = $this->MasterModel->data_ortu($query);
+			echo json_encode($data);
+		}
+
+		public function save_ortu()
+		{
+			$cek = $this->db->get_where('ortu', array(
+				'nik' => $this->input->post('nik'),
+				'username' => $this->input->post('username'),
+				'email' => $this->input->post('email'),
+			));
+			if ($cek->num_rows() > 0) {
+				$respond = array(
+					'status' => 'error',
+					'title' => 'GAGAL !!!',
+					'message' => 'Data Sudah Ada',
+				 );
+			}else{
+				$config['upload_path'] = './assets/img/ortu/';
+		        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+		        $config['max_size'] = '1024';
+		        $config['file_name'] = $this->input->post('nik');
+		        $this->load->library('upload', $config);
+
+		        if($this->upload->do_upload("foto")){
+					$foto = $this->upload->file_name;
+				} else {
+					$foto = '';
+				}
+
+				$data = array(
+		 			'nik' 				=> $this->input->post('nik'),
+		 			'nama_lengkap' 		=> $this->input->post('nama_lengkap'),
+		 			'tempat_lahir' 		=> $this->input->post('tempat_lahir'),
+		 			'tanggal_lahir' 	=> $this->input->post('tanggal_lahir'),
+		 			'jenis_kelamin' 	=> $this->input->post('jenis_kelamin'),
+		 			'agama' 			=> $this->input->post('agama'),
+		 			'alamat' 			=> $this->input->post('alamat'),
+		 			'pendidikan'		=> $this->input->post('pendidikan'),
+		 			'hp' 				=> $this->input->post('hp'),
+		 			'email' 			=> $this->input->post('email'),
+		 			'username' 			=> $this->input->post('username'),
+		 			'password' 			=> $this->input->post('password'),
+		 			
+		 			'created_at' 		=> date('Y-m-d H:i:s'),
+		 			'created_by' 		=> $this->session->userdata('id'),
+		 			'foto' 				=> $foto
+					 );
+
+				$this->MasterModel->tambah_ortu($data);
+				$respond = array(
+					'status' => 'success',
+					'title' => 'SUKSES !!!',
+					'message' => 'Data Berhasil DiSimpan',
+				 );
+			}
+			echo json_encode($respond);
+		}
+
+		public function update_ortu()
+		{
+			$nik = $this->input->post('nik');
+			$config['upload_path'] = './assets/img/ortu/';
+	        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+	        $config['max_size'] = '1024';
+	        $config['file_name'] = $this->input->post('ortu');
+	        $this->load->library('upload', $config);
+
+	         if($this->upload->do_upload("foto")){
+				$foto = $this->upload->file_name;
+				@unlink("./assets/img/ortu/".$this->input->post('foto_lama'));
+			} else {
+				$foto = $this->input->post('foto_lama');
+			} 
+			
+			$data = array(
+	 			'nik' 				=> $this->input->post('nik'),
+	 			'nama_lengkap' 		=> $this->input->post('nama_lengkap'),
+	 			'tempat_lahir' 		=> $this->input->post('tempat_lahir'),
+	 			'tanggal_lahir' 	=> $this->input->post('tanggal_lahir'),
+	 			'jenis_kelamin' 	=> $this->input->post('jenis_kelamin'),
+	 			'agama' 			=> $this->input->post('agama'),
+	 			'alamat' 			=> $this->input->post('alamat'),
+	 			'pendidikan'		=> $this->input->post('pendidikan'),
+	 			'hp' 				=> $this->input->post('hp'),
+	 			'email' 			=> $this->input->post('email'),
+	 			
+	 			'created_at' 		=> date('Y-m-d H:i:s'),
+	 			'created_by' 		=> $this->session->userdata('id'),
+	 			'foto' 				=> $foto
+			);
+
+			$this->MasterModel->ubah_ortu($nik, $data);
+			$respond = array(
+				'status' => 'success',
+				'title' => 'SUKSES !!!',
+				'message' => 'Data Berhasil DiSimpan',
+			 );
+
+			
+			echo json_encode($respond);
+		}
+
+		public function delete_ortu()
+		{
+			$nik = $this->input->post('nik');
+			$query = $this->db->get_where('ortu', array('nik' => $nik ))->row();
+	    	if ($query) {
+				@unlink("./assets/img/ortu/$query->foto");
+			}
+			$this->MasterModel->hapus_ortu($nik);
+			$respond = array(
+				'status' => 'success',
+				'title' => 'SUKSES !!!',
+				'message' => 'Data Berhasil Di Hapus'
+			 );
+
+			
 			echo json_encode($respond);
 		}
 	// Controller Data Orang Tua

@@ -134,6 +134,24 @@
 	// Model Data Kelas
 
 	// Mode Data Orang Tua
+		function data_ortu($query)
+		{
+			$this->db->select('nik,nama_lengkap,pendidikan,pekerjaan,jenis_kelamin,status,username,email,id,tanggal_lahir,tempat_lahir,alamat,hp,agama,foto');
+			$this->db->from('ortu');
+			
+			if ($query != '') {
+				$this->db->group_start();
+			 		$this->db->or_like('nama_lengkap', $query);
+			 		$this->db->or_like('pendidikan', $query);
+			 		$this->db->or_like('username', $query);
+			 		$this->db->or_like('jenis_kelamin', $query);
+			 		$this->db->or_like('pendidikan', $query);
+			 		$this->db->or_like('status', $query);
+			 	$this->db->group_end();
+			}
+			return $this->db->get()->result();
+		}
+
 		function tambah_ortu($data)
 		{
 			$this->db->insert('ortu', $data);
@@ -151,6 +169,16 @@
 			$this->db->select('guru.id, guru.nama_lengkap');
 			$this->db->from('guru');
 			return $this->db->get()->result();
+		}
+
+		function ubah_ortu($nik, $data)
+		{
+			$this->db->update('ortu', $data, array('nik' => $nik));
+		}
+
+		function hapus_ortu($nik)
+		{
+			$this->db->delete('ortu', array('nik' => $nik));
 		}
 	// Model Data Orang Tua
 
@@ -188,6 +216,7 @@
 			$this->db->delete('guru', array('nik' => $nik));
 		}
 	// Model Data Guru
+
 	}
 	
 	/* End of file MasterModel.php */
