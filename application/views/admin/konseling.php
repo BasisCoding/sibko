@@ -1,6 +1,6 @@
 <div class="container-fluid mt--6">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-5">
       <div class="card">
         <!-- Card header -->
         <div class="card-header bg-transparent row align-items-center">
@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-7">
       <div class="card">
         <!-- Card header -->
         <div class="card-header bg-transparent row align-items-center">
@@ -42,6 +42,7 @@
                 <th scope="col">JENIS PELANGGARAN</th>
                 <th scope="col">TINGKAT</th>
                 <th scope="col">MAKSIMAL MELANGGAR</th>
+                <th scope="col">GURU YANG MELAPOR</th>
                 <th scope="col"></th>
                 
               </tr>
@@ -71,6 +72,7 @@
                 <div class="row my-1">
                     <input type="text" name="jenis_pelanggaran" placeholder="Jenis Pelanggaran" class="form-control form-control-sm mb-1">
                     <select class="form-control form-control-sm mb-1" name="tingkat">
+                      <option value="0">Tingkat Pelanggaran</option>
                       <option value="1">Sederhana</option>
                       <option value="2">Buruk</option>
                       <option value="3">Sangat Buruk</option>
