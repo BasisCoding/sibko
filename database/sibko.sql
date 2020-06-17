@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Jun 2020 pada 15.35
+-- Waktu pembuatan: 17 Jun 2020 pada 18.05
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.3
 
@@ -73,6 +73,13 @@ CREATE TABLE `guru` (
   `created_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `guru`
+--
+
+INSERT INTO `guru` (`id`, `username`, `email`, `password`, `nik`, `nama_lengkap`, `tanggal_lahir`, `tempat_lahir`, `alamat`, `hp`, `pendidikan`, `agama`, `jenis_kelamin`, `foto`, `status`, `level`, `created_at`, `created_by`) VALUES
+(1, 'guru', 'guru@gmail.com', '65f8e7d22d43b52fdecb8684f017e7069cba22e68f5e54f065713f005fe1728f5150b9d361a543281091f51396bf2ea701d369eba177dfce42a1c390778a1e2e', '1234567891258', 'Debi Sutisna', '2020-06-03', 'Serang', 'Jl.Raya Cilegon Km.03', '089676490971', 'SMA', 'Islam', 'Lai-Laki', '1234567891258.png', 'Aktif', 3, '2020-06-17 05:13:12', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -93,7 +100,7 @@ CREATE TABLE `jurusan` (
 --
 
 INSERT INTO `jurusan` (`id`, `kode_jurusan`, `nama_jurusan`, `semester`, `kepala_jurusan`, `logo`) VALUES
-(1, 'AP', 'Administrasi Perkantoran', 21, 0, 'aas.png'),
+(1, 'AP', 'Administrasi Perkantoran', 21, 1, 'aas.png'),
 (2, 'TKJ', 'Teknik Komputer Jaringan', 2, 0, 'TKJ.png');
 
 -- --------------------------------------------------------
@@ -126,7 +133,8 @@ INSERT INTO `kelas` (`id`, `tingkat`, `id_jurusan`) VALUES
 CREATE TABLE `konseling` (
   `id` int(11) NOT NULL,
   `id_siswa` int(11) NOT NULL,
-  `id_pelangaran` int(11) NOT NULL,
+  `id_guru` int(11) NOT NULL,
+  `id_pelanggaran` int(11) NOT NULL,
   `keterangan` text NOT NULL,
   `tanggal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -158,7 +166,12 @@ INSERT INTO `menus` (`id`, `nama_menu`, `link`, `icon`, `sub_menu`, `level`, `wa
 (5, 'Data Kelas', 'Master/Data_Kelas', 'ni ni-building', 0, 1, 'text-warning'),
 (6, 'Data Guru', 'Master/Data_Guru', 'ni ni-satisfied', 0, 1, 'text-info'),
 (7, 'Data Orang Tua', 'Master/Data_Ortu', 'ni ni-circle-08', 0, 1, 'text-success'),
-(9, 'Data Konseling', 'Master/Data_Konseling', 'ni ni-key-25', 0, 1, 'text-danger');
+(9, 'Data Konseling', 'Master/Data_Konseling', 'ni ni-key-25', 0, 1, 'text-danger'),
+(10, 'Dashboard', 'Dashboard', 'ni ni-tv-2', 0, 3, 'text-warning'),
+(11, 'Data Siswa', 'Master/Data_Siswa', 'ni ni-circle-08', 0, 3, 'text-primary'),
+(13, 'Data Kelas', 'Master/Data_Kelas', 'ni ni-building', 0, 3, 'text-warning'),
+(15, 'Data Orang Tua', 'Master/Data_Ortu', 'ni ni-circle-08', 0, 3, 'text-success'),
+(16, 'Data Konseling', 'Master/Data_Konseling', 'ni ni-key-25', 0, 3, 'text-danger');
 
 -- --------------------------------------------------------
 
@@ -213,8 +226,9 @@ CREATE TABLE `pelanggaran` (
 --
 
 INSERT INTO `pelanggaran` (`id`, `jenis_pelanggaran`, `tingkat`, `max_langgaran`) VALUES
-(1, 'Keluar Dari Sekolah', 2, 3),
-(2, 'Merokok Di Sekolah', 3, 3);
+(3, 'tidur di sekolah', 1, 5),
+(4, 'Keluar dari kelas', 2, 3),
+(5, 'Merokok di kelas', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -348,7 +362,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `jurusan`
@@ -372,7 +386,7 @@ ALTER TABLE `konseling`
 -- AUTO_INCREMENT untuk tabel `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `ortu`
@@ -384,7 +398,7 @@ ALTER TABLE `ortu`
 -- AUTO_INCREMENT untuk tabel `pelanggaran`
 --
 ALTER TABLE `pelanggaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `siswa`
