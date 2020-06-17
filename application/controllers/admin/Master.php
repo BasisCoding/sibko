@@ -696,7 +696,7 @@
 		 			'hp' 				=> $this->input->post('hp'),
 		 			'email' 			=> $this->input->post('email'),
 		 			'username' 			=> $this->input->post('username'),
-		 			'password' 			=> $this->input->post('password'),
+		 			'password' 			=> hash('sha512', $this->input->post('password') . config_item('encryption_key')),
 		 			
 		 			'created_at' 		=> date('Y-m-d H:i:s'),
 		 			'created_by' 		=> $this->session->userdata('id'),
