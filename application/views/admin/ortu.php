@@ -3,7 +3,7 @@
         <div class="col-md">
           <div class="card">
             <div class="card-header bg-transparent row align-items-center">
-              <h3 class="mb-0 col-md-3">DAFTAR ORTU</h3>
+              <h3 class="mb-0 col-md-3">DAFTAR ORANG TUA</h3>
               <div class="col-md-9">
                 <div class="row">
                   <div class="col-md d-flex my-1 my-md-0">
@@ -241,6 +241,13 @@
                               <option value="S1">S1</option>
                               <option value="S2">S2</option>
                               <option value="S3">S3</option>
+                            </select>
+                            <select class="form-control form-control-sm select mb-1" name="pekerjaan_update">
+                              <option></option>
+                              <option value="PNS">PNS</option>
+                              <option value="Wirausaha">Wirausaha</option>
+                              <option value="Pekerja Swasta">Pekerja Swasta</option>
+                              <option value="Buruh">Buruh</option>
                             </select>
                           </div>
                         </div>

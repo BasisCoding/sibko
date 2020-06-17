@@ -419,6 +419,7 @@
 		 			'jenis_kelamin' 		=> $this->input->post('jenis_kelamin_ortu'),
 		 			'hp' 					=> $this->input->post('hp_ortu'),
 		 			'email' 				=> $this->input->post('email_ortu'),
+		 			'status' 				=> 'Aktif',
 		 			'password' 				=> hash('sha512', $this->input->post('password') . config_item('encryption_key')),
 		 			
 		 			'created_at' 			=> date('Y-m-d H:i:s'),
@@ -565,7 +566,7 @@
 		}
 	// Controller Data Orang Tua
 
-
+	// Controller Data Pelanggaran
 		public function data_pelanggaran()
 		{
 			$this->load->view('_partials/head');
@@ -577,7 +578,21 @@
 			$this->load->view('services/admin/pelanggaran');
 		}
 
+		public function view_pelanggaran()
+		{
+			$data = $this->MasterModel->view_pelanggaran();
+			echo json_encode($data);
+		}
 
+		public function save_pelanggaran()
+		{
+			$data['jenis_pelanggaran'] = $this->input->post('jenis_pelanggaran');
+			$data['tingkat'] = $this->input->post('tingkat');
+			$data['max_langgaran'] = $this->input->post('max_langgaran');
+		}
+	// Controller Data Pelanggaran
+
+	// Controller Data Konseling
 		public function data_konseling()
 		{
 			$this->load->view('_partials/head');
@@ -588,7 +603,7 @@
 			$this->load->view('_partials/plugin');
 			$this->load->view('services/admin/konseling');
 		}
-
+	// Controller Data Konseling
 		public function data_users()
 		{
 			$this->load->view('_partials/head');

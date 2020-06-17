@@ -217,6 +217,21 @@
 		}
 	// Model Data Guru
 
+	// Model Data Pelanggaran
+		function view_pelanggaran()
+		{
+			$this->db->select('*');
+			$this->db->select('
+				CASE 
+				WHEN tingkat = 1 THEN "Sederhana" 
+				WHEN tingkat = 2 THEN "Buruk" 
+				WHEN tingkat = 3 THEN "Sangat Buruk" 
+				END as tingkatan', false);
+			$this->db->from('pelanggaran');
+			return $this->db->get()->result();
+		}
+	// Model Data Pelanggaran
+
 	}
 	
 	/* End of file MasterModel.php */

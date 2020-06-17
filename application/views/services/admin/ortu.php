@@ -20,10 +20,10 @@ $(document).ready(function(){
 		placeholder: 'Pilih Pendidikan'
 	});
 	$("[name='pekerjaan']").select2({
-		placeholder: 'Pilih Pendidikan'
+		placeholder: 'Pilih Pekerjaan'
 	}); 
 	$("[name='pekerjaan_update']").select2({
-		placeholder: 'Pilih Pendidikan'
+		placeholder: 'Pilih Pekerjaan'
 	});
 	
 
