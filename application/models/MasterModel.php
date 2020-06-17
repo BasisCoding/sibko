@@ -133,6 +133,25 @@
 		}
 	// Model Data Kelas
 
+	// Mode Data Orang Tua
+		function data_ortu($query)
+		{
+			$this->db->select('nik,nama_lengkap,pendidikan,pekerjaan,jenis_kelamin,status,username,email,id,tanggal_lahir,tempat_lahir,alamat,hp,agama,foto');
+			$this->db->from('ortu');
+			
+			if ($query != '') {
+				$this->db->group_start();
+			 		$this->db->or_like('nama_lengkap', $query);
+			 		$this->db->or_like('pendidikan', $query);
+			 		$this->db->or_like('username', $query);
+			 		$this->db->or_like('jenis_kelamin', $query);
+			 		$this->db->or_like('pendidikan', $query);
+			 		$this->db->or_like('status', $query);
+			 	$this->db->group_end();
+			}
+			return $this->db->get()->result();
+		}
+
 		function tambah_ortu($data)
 		{
 			$this->db->insert('ortu', $data);
@@ -151,6 +170,68 @@
 			$this->db->from('guru');
 			return $this->db->get()->result();
 		}
+
+		function ubah_ortu($nik, $data)
+		{
+			$this->db->update('ortu', $data, array('nik' => $nik));
+		}
+
+		function hapus_ortu($nik)
+		{
+			$this->db->delete('ortu', array('nik' => $nik));
+		}
+	// Model Data Orang Tua
+
+	// Model Data Guru
+
+		function data_guru($query)
+		{
+			$this->db->select('nik,nama_lengkap,pendidikan,jenis_kelamin,status,username,email,id,tanggal_lahir,tempat_lahir,alamat,hp,agama,foto');
+			$this->db->from('guru');
+			
+			if ($query != '') {
+				$this->db->group_start();
+			 		$this->db->or_like('nama_lengkap', $query);
+			 		$this->db->or_like('pendidikan', $query);
+			 		$this->db->or_like('username', $query);
+			 		$this->db->or_like('jenis_kelamin', $query);
+			 		$this->db->or_like('status', $query);
+			 	$this->db->group_end();
+			}
+			return $this->db->get()->result();
+		}
+
+		function tambah_guru($data)
+		{
+			$this->db->insert('guru', $data);
+		}
+
+		function ubah_guru($nik, $data)
+		{
+			$this->db->update('guru', $data, array('nik' => $nik));
+		}
+
+		function hapus_guru($nik)
+		{
+			$this->db->delete('guru', array('nik' => $nik));
+		}
+	// Model Data Guru
+
+	// Model Data Pelanggaran
+		function view_pelanggaran()
+		{
+			$this->db->select('*');
+			$this->db->select('
+				CASE 
+				WHEN tingkat = 1 THEN "Sederhana" 
+				WHEN tingkat = 2 THEN "Buruk" 
+				WHEN tingkat = 3 THEN "Sangat Buruk" 
+				END as tingkatan', false);
+			$this->db->from('pelanggaran');
+			return $this->db->get()->result();
+		}
+	// Model Data Pelanggaran
+
 	}
 	
 	/* End of file MasterModel.php */

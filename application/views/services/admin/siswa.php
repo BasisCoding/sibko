@@ -377,7 +377,7 @@ $(document).ready(function(){
 	    formData.append('password', $('[name="password"]').val()); 
 	   
 	    $.ajax({
-	        url: '<?= base_url("admin/Master/save_ortu")?>',
+	        url: '<?= base_url("admin/Master/save_ortu_siswa")?>',
 	        type: 'POST',
 	        dataType: 'JSON',
 	        data: formData,
