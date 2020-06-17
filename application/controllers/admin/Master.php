@@ -589,6 +589,26 @@
 			$data['jenis_pelanggaran'] = $this->input->post('jenis_pelanggaran');
 			$data['tingkat'] = $this->input->post('tingkat');
 			$data['max_langgaran'] = $this->input->post('max_langgaran');
+
+			$query = $this->MasterModel->tambah_pelanggaran($data);
+			$respond = array(
+				'status' => 'success',
+				'title' => 'SUKSES !!!',
+				'message' => 'Data Sudah Disimpan',
+			);
+			echo json_encode($respond);
+		}
+
+		public function delete_pelanggaran()
+		{
+			$id = $this->input->post('id');
+			$this->MasterModel->hapus_pelanggaran($id);
+			$respond = array(
+				'status' => 'success',
+				'title' => 'SUKSES !!!',
+				'message' => 'Data Sudah Disimpan',
+			);
+			echo json_encode($respond);
 		}
 	// Controller Data Pelanggaran
 

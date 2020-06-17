@@ -230,6 +230,17 @@
 			$this->db->from('pelanggaran');
 			return $this->db->get()->result();
 		}
+
+		function tambah_pelanggaran($data)
+		{
+			$this->db->insert('pelanggaran', $data);
+		}
+
+		function hapus_pelanggaran($id)
+		{
+			$this->db->delete('pelanggaran', array('id' => $id));
+			$this->db->delete('konseling', array('id_pelanggaran' => $id));
+		}
 	// Model Data Pelanggaran
 
 	}
