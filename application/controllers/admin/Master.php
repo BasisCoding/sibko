@@ -584,6 +584,13 @@
 			echo json_encode($data);
 		}
 
+		public function view_pelanggar()
+		{
+			$sesi_guru = '';
+			$data = $this->MasterModel->view_pelanggar($sesi_guru);
+			echo json_encode($data);
+		}
+
 		public function save_pelanggaran()
 		{
 			$data['jenis_pelanggaran'] = $this->input->post('jenis_pelanggaran');

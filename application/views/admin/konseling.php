@@ -39,15 +39,15 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
+                <th scope="col">NIS</th>
+                <th scope="col">NAMA LENGKAP</th>
                 <th scope="col">JENIS PELANGGARAN</th>
-                <th scope="col">TINGKAT</th>
-                <th scope="col">MAKSIMAL MELANGGAR</th>
-                <th scope="col">GURU YANG MELAPOR</th>
+                <th scope="col">KETERANGAN</th>
                 <th scope="col"></th>
                 
               </tr>
             </thead>
-            <tbody id="show_data_pelanggaran">
+            <tbody id="show_data_pelanggar">
             </tbody>
           </table>
         </div>  

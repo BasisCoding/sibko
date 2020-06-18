@@ -260,7 +260,9 @@
 			$this->db->join('kelas', 'siswa.id_kelas = kelas.id', 'left');
 			$this->db->join('ortu', 'ortu.id = siswa.id_ortu', 'left');
 			$this->db->join('jurusan', 'jurusan.id = kelas.id_jurusan', 'left');
-			$this->db->where('konseling.id_guru', $sesi_guru);
+			if ($sesi_guru != '') {
+				$this->db->where('konseling.id_guru', $sesi_guru);
+			}
 			return $this->db->get()->result();
 		}
 

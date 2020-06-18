@@ -41,7 +41,7 @@
 						}
 						$('#show_data_pelanggar').html(html);
 		            }else{
-						$('#show_data_pelanggar').html('<tr><td colspan="4" class="text-center"><span class="badge badge-pill badge-lg badge-success">Data Tidak Di Temukan</span></td></tr>');
+						$('#show_data_pelanggar').html('<tr><td colspan="6" class="text-center"><span class="badge badge-pill badge-lg badge-success">Data Tidak Di Temukan</span></td></tr>');
 		            }
 				}
 			});	
@@ -103,7 +103,7 @@
 			            $('#add-modal-pelanggar').modal('hide');
 			            $(this).removeAttr('disabled');
 						$('.loader').css('display', 'none');
-			            data_pelangga();
+			            data_pelanggar();
 
 		        	}else{
 			            $('#add-modal-pelanggar').modal('hide');
@@ -135,24 +135,24 @@
 			  cancelButtonColor: '#d33',
 			  confirmButtonText: 'Ya, Hapus!'
 			}).then((result) => {
-				$.ajax({
-			        url   : '<?= base_url("guru/Master/delete_pelanggar")?>',
-			        method:"POST",
-			        async : false,
-			        dataType:'json',
-			        data:{id:id},
-			        success : function(data){
-					  if (result.value) {
-					    Swal.fire(
-					      'Terhapus!',
-					      'Data Anda Sudah Terhapus.',
-					      'success'
-					    )
-					    daftar_pelanggar();
-					  }
-			        }
+				if (result.value) {
+					$.ajax({
+				        url   : '<?= base_url("guru/Master/delete_pelanggar")?>',
+				        method:"POST",
+				        async : false,
+				        dataType:'json',
+				        data:{id:id},
+				        success : function(data){
+						    Swal.fire(
+						      'Terhapus!',
+						      'Data Anda Sudah Terhapus.',
+						      'success'
+						    )
+						    data_pelanggar();
+						}
 
-			   	});
+				   	});
+				}
 			});
 		});
 	});
