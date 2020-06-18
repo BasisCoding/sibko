@@ -12,10 +12,11 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
+                <th scope="col">NIS</th>
+                <th scope="col">NAMA SISWA</th>
                 <th scope="col">JENIS PELANGGARAN</th>
-                <th scope="col">TINGKAT</th>
-                <th scope="col">MAKSIMAL MELANGGAR</th>
-                <th scope="col">GURU YANG MELAPOR</th>
+                <th scope="col">TANGGAL</th>
+                <th scope="col">KETERANGAN</th>
                 <th scope="col"></th>
                 
               </tr>
