@@ -176,7 +176,7 @@
                   <span>Bantuan</span>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="<?= base_url('Logout')  ?>" class="dropdown-item">
+                <a href="<?= base_url('Logout/')  ?>" class="dropdown-item">
                   <i class="ni ni-user-run"></i>
                   <span>Keluar</span>
                 </a>
