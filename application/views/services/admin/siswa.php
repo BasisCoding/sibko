@@ -145,24 +145,24 @@ $(document).ready(function(){
 		  cancelButtonColor: '#d33',
 		  confirmButtonText: 'Ya, Hapus!'
 		}).then((result) => {
-			$.ajax({
-		        url   : '<?= base_url("admin/Master/delete_siswa")?>',
-		        method:"POST",
-		        async : false,
-		        dataType:'json',
-		        data:{nis:nis},
-		        success : function(data){
-				  if (result.value) {
-				    Swal.fire(
-				      'Terhapus!',
-				      'Data Anda Sudah Terhapus.',
-				      'success'
-				    )
-				    daftar_siswa();
-				  }
-		        }
+			if (result.value) {
+				$.ajax({
+			        url   : '<?= base_url("admin/Master/delete_siswa")?>',
+			        method:"POST",
+			        async : false,
+			        dataType:'json',
+			        data:{nis:nis},
+			        success : function(data){
+					    Swal.fire(
+					      'Terhapus!',
+					      'Data Anda Sudah Terhapus.',
+					      'success'
+					    )
+					    daftar_siswa();
+					  }
 
-		   	});
+			   	});
+			}
 		});
     });
 
@@ -377,7 +377,7 @@ $(document).ready(function(){
 	    formData.append('password', $('[name="password"]').val()); 
 	   
 	    $.ajax({
-	        url: '<?= base_url("admin/Master/save_ortu")?>',
+	        url: '<?= base_url("admin/Master/save_ortu_siswa")?>',
 	        type: 'POST',
 	        dataType: 'JSON',
 	        data: formData,

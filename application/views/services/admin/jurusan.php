@@ -192,24 +192,24 @@
 		  cancelButtonColor: '#d33',
 		  confirmButtonText: 'Ya, Hapus!'
 		}).then((result) => {
-			$.ajax({
-		        url   : '<?= base_url("admin/Master/delete_jurusan")?>',
-		        method:"POST",
-		        async : false,
-		        dataType:'json',
-		        data:{id:id},
-		        success : function(data){
-				  if (result.value) {
-				    Swal.fire(
-				      'Terhapus!',
-				      'Data Anda Sudah Terhapus.',
-				      'success'
-				    )
-				    daftar_jurusan();
-				  }
-		        }
+			if (result.value) {
+				$.ajax({
+			        url   : '<?= base_url("admin/Master/delete_jurusan")?>',
+			        method:"POST",
+			        async : false,
+			        dataType:'json',
+			        data:{id:id},
+			        success : function(data){
+					    Swal.fire(
+					      'Terhapus!',
+					      'Data Anda Sudah Terhapus.',
+					      'success'
+					    )
+					    daftar_jurusan();
+					  }
 
-		   	});
+		   		});
+		    }
 		});
     });
 

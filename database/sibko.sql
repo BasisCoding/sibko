@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Jun 2020 pada 13.56
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.6
+-- Waktu pembuatan: 17 Jun 2020 pada 18.05
+-- Versi server: 10.1.38-MariaDB
+-- Versi PHP: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -58,6 +59,8 @@ CREATE TABLE `guru` (
   `password` text NOT NULL,
   `nik` varchar(16) NOT NULL,
   `nama_lengkap` varchar(50) NOT NULL,
+  `tanggal_lahir` date NOT NULL,
+  `tempat_lahir` varchar(50) NOT NULL,
   `alamat` text NOT NULL,
   `hp` varchar(15) NOT NULL,
   `pendidikan` varchar(20) NOT NULL,
@@ -74,9 +77,8 @@ CREATE TABLE `guru` (
 -- Dumping data untuk tabel `guru`
 --
 
-INSERT INTO `guru` (`id`, `username`, `email`, `password`, `nik`, `nama_lengkap`, `alamat`, `hp`, `pendidikan`, `agama`, `jenis_kelamin`, `foto`, `status`, `level`, `created_at`, `created_by`) VALUES
-(1, 'Mohamad Masdiki', 'moh.masdiki21@gmail.com', '75f6f5649f707e10f29bbd1122f124a5f8c4698785411d32eb0ceffcc344983ee8229b7fce2e29a40b60889906b68d86f14994f693928d20eb683f59c26f0e95', '1234567678900', 'Mohamad Masdiki,S.Kom', 'Jl. Raya Serang-Petir', '089676490971', 'Strata 1', 'Islam', 'Laki-Laki', '', 'Aktif', 2, NULL, 0),
-(7, 'Maryati', 'maryati@gmail.com', '75f6f5649f707e10f29bbd1122f124a5f8c4698785411d32eb0ceffcc344983ee8229b7fce2e29a40b60889906b68d86f14994f693928d20eb683f59c26f0e95', '1234567678900', 'Maryati Intan Solehah,S.Pd', 'Jl. Raya Serang-Petir', '089676490971', 'Strata 1', 'Islam', 'Perempuan', '', 'Aktif', 2, NULL, 0);
+INSERT INTO `guru` (`id`, `username`, `email`, `password`, `nik`, `nama_lengkap`, `tanggal_lahir`, `tempat_lahir`, `alamat`, `hp`, `pendidikan`, `agama`, `jenis_kelamin`, `foto`, `status`, `level`, `created_at`, `created_by`) VALUES
+(1, 'guru', 'guru@gmail.com', '65f8e7d22d43b52fdecb8684f017e7069cba22e68f5e54f065713f005fe1728f5150b9d361a543281091f51396bf2ea701d369eba177dfce42a1c390778a1e2e', '1234567891258', 'Debi Sutisna', '2020-06-03', 'Serang', 'Jl.Raya Cilegon Km.03', '089676490971', 'SMA', 'Islam', 'Lai-Laki', '1234567891258.png', 'Aktif', 3, '2020-06-17 05:13:12', 1);
 
 -- --------------------------------------------------------
 
@@ -98,7 +100,7 @@ CREATE TABLE `jurusan` (
 --
 
 INSERT INTO `jurusan` (`id`, `kode_jurusan`, `nama_jurusan`, `semester`, `kepala_jurusan`, `logo`) VALUES
-(1, 'AP', 'Administrasi Perkantoran', 21, 0, 'aas.png'),
+(1, 'AP', 'Administrasi Perkantoran', 21, 1, 'aas.png'),
 (2, 'TKJ', 'Teknik Komputer Jaringan', 2, 0, 'TKJ.png');
 
 -- --------------------------------------------------------
@@ -118,10 +120,24 @@ CREATE TABLE `kelas` (
 --
 
 INSERT INTO `kelas` (`id`, `tingkat`, `id_jurusan`) VALUES
-(8, 2, 1),
 (9, 2, 2),
 (10, 3, 1),
 (11, 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `konseling`
+--
+
+CREATE TABLE `konseling` (
+  `id` int(11) NOT NULL,
+  `id_siswa` int(11) NOT NULL,
+  `id_guru` int(11) NOT NULL,
+  `id_pelanggaran` int(11) NOT NULL,
+  `keterangan` text NOT NULL,
+  `tanggal` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -150,7 +166,12 @@ INSERT INTO `menus` (`id`, `nama_menu`, `link`, `icon`, `sub_menu`, `level`, `wa
 (5, 'Data Kelas', 'Master/Data_Kelas', 'ni ni-building', 0, 1, 'text-warning'),
 (6, 'Data Guru', 'Master/Data_Guru', 'ni ni-satisfied', 0, 1, 'text-info'),
 (7, 'Data Orang Tua', 'Master/Data_Ortu', 'ni ni-circle-08', 0, 1, 'text-success'),
-(9, 'Data Konseling', 'Master/Data_Konseling', 'ni ni-key-25', 0, 1, 'text-danger');
+(9, 'Data Konseling', 'Master/Data_Konseling', 'ni ni-key-25', 0, 1, 'text-danger'),
+(10, 'Dashboard', 'Dashboard', 'ni ni-tv-2', 0, 3, 'text-warning'),
+(11, 'Data Siswa', 'Master/Data_Siswa', 'ni ni-circle-08', 0, 3, 'text-primary'),
+(13, 'Data Kelas', 'Master/Data_Kelas', 'ni ni-building', 0, 3, 'text-warning'),
+(15, 'Data Orang Tua', 'Master/Data_Ortu', 'ni ni-circle-08', 0, 3, 'text-success'),
+(16, 'Data Konseling', 'Master/Data_Konseling', 'ni ni-key-25', 0, 3, 'text-danger');
 
 -- --------------------------------------------------------
 
@@ -165,6 +186,8 @@ CREATE TABLE `ortu` (
   `password` text NOT NULL,
   `nik` varchar(16) NOT NULL,
   `nama_lengkap` varchar(50) NOT NULL,
+  `tempat_lahir` varchar(50) NOT NULL,
+  `tanggal_lahir` date NOT NULL,
   `alamat` text NOT NULL,
   `hp` varchar(15) NOT NULL,
   `pekerjaan` varchar(30) NOT NULL,
@@ -182,11 +205,30 @@ CREATE TABLE `ortu` (
 -- Dumping data untuk tabel `ortu`
 --
 
-INSERT INTO `ortu` (`id`, `username`, `email`, `password`, `nik`, `nama_lengkap`, `alamat`, `hp`, `pekerjaan`, `pendidikan`, `agama`, `jenis_kelamin`, `foto`, `status`, `level`, `created_at`, `created_by`) VALUES
-(1, 'orangtua', 'orangua@gmail.com', '75f6f5649f707e10f29bbd1122f124a5f8c4698785411d32eb0ceffcc344983ee8229b7fce2e29a40b60889906b68d86f14994f693928d20eb683f59c26f0e95', '', 'Orang Tua', 'jl. raya cilegon km. 03', '089676490971', 'PNS', 'SMK', 'Islam', 'Laki-Laki', '', 'Aktif', 2, NULL, 0),
-(10, 'orangtua', 'orangua@gmail.com', '75f6f5649f707e10f29bbd1122f124a5f8c4698785411d32eb0ceffcc344983ee8229b7fce2e29a40b60889906b68d86f14994f693928d20eb683f59c26f0e95', '', 'Orang Tua', 'jl. raya cilegon km. 03', '089676490971', 'PNS', 'SMK', 'Islam', 'Laki-Laki', '', 'Aktif', 2, NULL, 0),
-(11, 'orangtua', '', 'e23be19bda70cb0ffe40770ff0145f7d640648a688dc03720b4928a25c66b4ff9c6e49b80bead7ed36aa8c49d2289b6eca7c5678b089839909b67f0231ccab2d', '360404', 'ah', '', '', '', '', '', 'Laki-Laki', '', '', 0, '2020-06-14 06:32:18', 1),
-(12, 'orangtua', '', 'e23be19bda70cb0ffe40770ff0145f7d640648a688dc03720b4928a25c66b4ff9c6e49b80bead7ed36aa8c49d2289b6eca7c5678b089839909b67f0231ccab2d', '36040423', 'ah23', '', '', '', '', '', 'Perempuan', '', '', 0, '2020-06-14 06:32:47', 1);
+INSERT INTO `ortu` (`id`, `username`, `email`, `password`, `nik`, `nama_lengkap`, `tempat_lahir`, `tanggal_lahir`, `alamat`, `hp`, `pekerjaan`, `pendidikan`, `agama`, `jenis_kelamin`, `foto`, `status`, `level`, `created_at`, `created_by`) VALUES
+(11, 'username', '', 'password', '1235678', 'Jsjajas', 'Serang', '1997-02-01', 'Kele', '', '', 'SD Sederajat', '', 'Laki-Laki', '.jpg', '', 0, '2020-06-17 12:25:09', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pelanggaran`
+--
+
+CREATE TABLE `pelanggaran` (
+  `id` int(11) NOT NULL,
+  `jenis_pelanggaran` varchar(150) NOT NULL,
+  `tingkat` int(11) NOT NULL,
+  `max_langgaran` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `pelanggaran`
+--
+
+INSERT INTO `pelanggaran` (`id`, `jenis_pelanggaran`, `tingkat`, `max_langgaran`) VALUES
+(3, 'tidur di sekolah', 1, 5),
+(4, 'Keluar dari kelas', 2, 3),
+(5, 'Merokok di kelas', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -204,11 +246,11 @@ CREATE TABLE `siswa` (
   `jenis_kelamin` varchar(15) NOT NULL,
   `agama` varchar(15) NOT NULL,
   `anak_ke` int(11) DEFAULT NULL,
-  `alamat` text DEFAULT NULL,
+  `alamat` text,
   `hp` varchar(15) DEFAULT NULL,
   `id_ortu` int(11) DEFAULT NULL,
   `id_kelas` int(11) DEFAULT NULL,
-  `foto` text DEFAULT NULL,
+  `foto` text,
   `created_at` datetime DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -218,7 +260,7 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`id`, `nis`, `nama_lengkap`, `email`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `agama`, `anak_ke`, `alamat`, `hp`, `id_ortu`, `id_kelas`, `foto`, `created_at`, `created_by`) VALUES
-(10, 1101161014, 'Ahmad Fatoni', '', 'Serang', '1997-08-20', 'Laki-Laki', '', 0, 'Jl', '', 1, NULL, '1101161014.png', '2020-06-15 13:53:57', 1);
+(10, 1101161014, 'Ahmad Fatoni', '', 'Serang', '1997-08-20', 'Laki-Laki', '', 0, 'Jl', '', 0, NULL, '1101161014.jpg', '2020-06-17 12:30:58', 1);
 
 -- --------------------------------------------------------
 
@@ -239,7 +281,8 @@ CREATE TABLE `user_group` (
 
 INSERT INTO `user_group` (`id`, `nama_akses`, `level`, `link`) VALUES
 (1, 'Administrator', 1, 'admin'),
-(2, 'Orang Tua', 2, 'ortu');
+(2, 'Orang Tua', 2, 'ortu'),
+(3, 'Guru', 3, 'guru');
 
 --
 -- Indexes for dumped tables
@@ -270,6 +313,12 @@ ALTER TABLE `kelas`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `konseling`
+--
+ALTER TABLE `konseling`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `menus`
 --
 ALTER TABLE `menus`
@@ -279,6 +328,12 @@ ALTER TABLE `menus`
 -- Indeks untuk tabel `ortu`
 --
 ALTER TABLE `ortu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `pelanggaran`
+--
+ALTER TABLE `pelanggaran`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -307,7 +362,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `jurusan`
@@ -322,16 +377,28 @@ ALTER TABLE `kelas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT untuk tabel `konseling`
+--
+ALTER TABLE `konseling`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `ortu`
 --
 ALTER TABLE `ortu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT untuk tabel `pelanggaran`
+--
+ALTER TABLE `pelanggaran`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `siswa`
@@ -343,7 +410,7 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT untuk tabel `user_group`
 --
 ALTER TABLE `user_group`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

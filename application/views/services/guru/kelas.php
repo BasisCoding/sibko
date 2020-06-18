@@ -217,24 +217,24 @@
 			  cancelButtonColor: '#d33',
 			  confirmButtonText: 'Ya, Hapus!'
 			}).then((result) => {
-				if (result.value) {
-					$.ajax({
-				        url   : '<?= base_url("admin/Master/delete_kelas")?>',
-				        method:"POST",
-				        async : false,
-				        dataType:'json',
-				        data:{id:id},
-				        success : function(data){
-						    Swal.fire(
-						      'Terhapus!',
-						      'Data Anda Sudah Terhapus.',
-						      'success'
-						    )
-						    daftar_kelas();
-						  }
+				$.ajax({
+			        url   : '<?= base_url("admin/Master/delete_kelas")?>',
+			        method:"POST",
+			        async : false,
+			        dataType:'json',
+			        data:{id:id},
+			        success : function(data){
+					  if (result.value) {
+					    Swal.fire(
+					      'Terhapus!',
+					      'Data Anda Sudah Terhapus.',
+					      'success'
+					    )
+					    daftar_kelas();
+					  }
+			        }
 
-			   		});
-				}
+			   	});
 			});
 	    });
 
