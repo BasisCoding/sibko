@@ -3,7 +3,7 @@
 		data_pelanggaran();
 		function data_pelanggaran() {
 			$.ajax({
-				url: '<?= base_url('admin/Master/view_pelanggaran') ?>',
+				url: '<?= base_url('admin/Master/view_pelanggar') ?>',
 				type: 'POST',
 				dataType: 'JSON',
 				success:function (data) {

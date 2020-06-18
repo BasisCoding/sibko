@@ -241,6 +241,28 @@
 			$this->db->delete('pelanggaran', array('id' => $id));
 			$this->db->delete('konseling', array('id_pelanggaran' => $id));
 		}
+
+		function view_pelanggar()
+		{
+			$this->db->select('konseling.*, siswa.nama_lengkap, kelas.tingkat, jurusan.nama_jurusan, ortu.nama_lengkap as nama_ortu, guru.nama_lengkap as nama_guru');
+			$this->db->select('
+
+				CASE 
+				WHEN kelas.tingkat = 1 THEN "Sederhana" 
+				WHEN kelas.tingkat = 2 THEN "Buruk" 
+				WHEN kelas.tingkat = 3 THEN "Sangat Buruk" 
+				END as tingkatan', false);
+
+			$this->db->from('konseling');
+			$this->db->join('pelanggaran', 'pelanggaran.id = konseling.id_pelanggaran', 'left');
+			$this->db->join('siswa', 'siswa.id = konseling.id_siswa', 'left');
+			$this->db->join('guru', 'guru.id = konseling.id_guru', 'left');
+			$this->db->join('kelas', 'siswa.id_kelas = kelas.id', 'left');
+			$this->db->join('ortu', 'siswa.id = siswa.id_ortu', 'left');
+			$this->db->join('jurusan', 'jurusan.id = kelas.id_jurusan', 'left');
+
+			return $this->db->get()->result();
+		}
 	// Model Data Pelanggaran
 
 	}
