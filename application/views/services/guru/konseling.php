@@ -1,9 +1,23 @@
 <script type="text/javascript">
 	$(document).ready(function() {
-		data_pelanggaran();
-		function data_pelanggaran() {
+
+		$("[name='id_siswa']").select2({
+			placeholder: 'Pilih Siswa'
+		}); 
+		$("[name='id_pelanggaran']").select2({
+			placeholder: 'Pilih Pelanggaran'
+		}); 
+
+		data_pelanggar();
+		daftar_pelanggaran();
+		daftar_siswa();
+
+		let current_datetime = new Date();
+		let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate()
+
+		function data_pelanggar() {
 			$.ajax({
-				url: '<?= base_url('admin/Master/view_pelanggar') ?>',
+				url: '<?= base_url('guru/Master/view_pelanggar') ?>',
 				type: 'POST',
 				dataType: 'JSON',
 				success:function (data) {
@@ -12,47 +26,87 @@
 		            var i;
 		            if (data.length > 0) {
 		                for (i = 0; i < data.length; i++) {
+		                	var tgl = data[i].tanggal;
+							var d = new Date(tgl);
+							var n = d.toJSON().slice(0,10).split('-').reverse().join('-');
 
 		                	html += '<tr>'+
+					                   '<td>'+data[i].nis+'</td>'+
+					                   '<td>'+data[i].nama_lengkap+'</td>'+
 					                   '<td>'+data[i].jenis_pelanggaran+'</td>'+
-					                   '<td>'+data[i].tingkatan+'</td>'+
-					                   '<td>'+data[i].max_langgaran+'</td>'+
-					                   '<td><button class="btn btn-danger btn-sm delete-pelanggaran" data-id="'+data[i].id+'">-</button></td>'+
+					                   '<td>'+n+'</td>'+
+					                   '<td>'+data[i].keterangan+'</td>'+
+					                   '<td><button class="btn btn-danger btn-sm delete-pelanggar" data-id="'+data[i].id+'">-</button></td>'+
 					                '</tr>'
 						}
-						$('#show_data_pelanggaran').html(html);
+						$('#show_data_pelanggar').html(html);
 		            }else{
-						$('#show_data_pelanggaran').html('<tr><td colspan="4" class="text-center"><span class="badge badge-pill badge-lg badge-success">Data Tidak Di Temukan</span></td></tr>');
+						$('#show_data_pelanggar').html('<tr><td colspan="4" class="text-center"><span class="badge badge-pill badge-lg badge-success">Data Tidak Di Temukan</span></td></tr>');
 		            }
 				}
 			});	
 		}
 
-		$('#btn-add-pelanggaran').on('click', function() {
-			var jenis_pelanggaran = $('[name="jenis_pelanggaran"]').val();
-			var tingkat = $('[name="tingkat"]').val();
-			var max_langgaran = $('[name="max_pelanggaran"]').val();
+		function daftar_siswa() {
+	    	$.ajax({
+	    		url: '<?= base_url('guru/Master/select_siswa') ?>',
+	    		type: 'POST',
+	    		dataType: 'JSON',
+	    		success:function (data) {
+	    			var siswa = '';
+		        	var i;
+		        	for (var i = 0; i < data.length; i++) {
+		        		siswa += '<option value="'+data[i].id+'">'+data[i].nama_lengkap+'</option>';
+		        	}
+		        	$('[name="id_siswa"]').html('<option></option>'+siswa);	
+	    		}
+	    	}); 	
+	    }
+
+	    function daftar_pelanggaran() {
+	    	$.ajax({
+	    		url: '<?= base_url('guru/Master/select_pelanggaran') ?>',
+	    		type: 'POST',
+	    		dataType: 'JSON',
+	    		success:function (data) {
+	    			var pelanggaran = '';
+		        	var i;
+		        	for (var i = 0; i < data.length; i++) {
+		        		pelanggaran += '<option value="'+data[i].id+'">'+data[i].jenis_pelanggaran+'</option>';
+		        	}
+		        	$('[name="id_pelanggaran"]').html('<option></option>'+pelanggaran);	
+	    		}
+	    	}); 	
+	    }
+
+		$('#btn-add-pelanggar').on('click', function() {
+			var id_siswa = $('[name="id_siswa"]').val();
+			var id_pelanggaran = $('[name="id_pelanggaran"]').val();
+			var tanggal = $('[name="tanggal"]').val();
+			var keterangan = $('[name="keterangan"]').val();
 
 	    	$('.loader').css('display', 'inline-block');
 	    	$(this).attr('disabled');
 			$.ajax({
-				url: '<?= base_url('admin/Master/save_pelanggaran') ?>',
+				url: '<?= base_url('guru/Master/tambah_pelanggar') ?>',
 				type: 'POST',
 				dataType: 'JSON',
-				data: {jenis_pelanggaran:jenis_pelanggaran, tingkat:tingkat, max_langgaran:max_langgaran},
+				data: {id_siswa:id_siswa, id_pelanggaran:id_pelanggaran, tanggal:tanggal, keterangan:keterangan},
 				success:function (data) {
 					if (data.status == 'success') {
 
-			            $('[name="jenis_pelanggaran"]').val('');
-			            $('[name="max_langgaran"]').val(''); 
+			            $('[name="id_siswa"]').val('');
+						$('[name="id_pelanggaran"]').val('');
+						$('[name="tanggal"]').val('');
+						$('[name="keterangan"]').val('');
 
-			            $('#add-modal-pelanggaran').modal('hide');
+			            $('#add-modal-pelanggar').modal('hide');
 			            $(this).removeAttr('disabled');
 						$('.loader').css('display', 'none');
-			            data_pelanggaran();
+			            data_pelangga();
 
 		        	}else{
-			            $('#add-modal-pelanggaran').modal('hide');
+			            $('#add-modal-pelanggar').modal('hide');
 			            $(this).removeAttr('disabled');
 						$('.loader').css('display', 'none');
 		        	}
@@ -69,12 +123,12 @@
 			});
 		});
 
-		$('#show_data_pelanggaran').on('click', '.delete-pelanggaran', function() {
+		$('#show_data_pelanggar').on('click', '.delete-pelanggar', function() {
 			var id = $(this).attr('data-id');
 			
 			Swal.fire({
 			  title: 'Are you sure ?',
-			  text: "Jika Anda Hapus Maka Siswa Yang Mempunyai Masalah ini akan terhapus",
+			  text: "Jangan Hapus Jika Siswa Masih Bermasalah !!!",
 			  icon: 'warning',
 			  showCancelButton: true,
 			  confirmButtonColor: '#3085d6',
@@ -82,7 +136,7 @@
 			  confirmButtonText: 'Ya, Hapus!'
 			}).then((result) => {
 				$.ajax({
-			        url   : '<?= base_url("admin/Master/delete_pelanggaran")?>',
+			        url   : '<?= base_url("guru/Master/delete_pelanggar")?>',
 			        method:"POST",
 			        async : false,
 			        dataType:'json',
@@ -94,13 +148,12 @@
 					      'Data Anda Sudah Terhapus.',
 					      'success'
 					    )
-					    daftar_kelas();
+					    daftar_pelanggar();
 					  }
 			        }
 
 			   	});
 			});
-			
 		});
 	});
 </script>

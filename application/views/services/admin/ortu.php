@@ -147,24 +147,24 @@ $(document).ready(function(){
 		  cancelButtonColor: '#d33',
 		  confirmButtonText: 'Ya, Hapus!'
 		}).then((result) => {
-			$.ajax({
-		        url   : '<?= base_url("admin/Master/delete_ortu")?>',
-		        method:"POST",
-		        async : false,
-		        dataType:'json',
-		        data:{nik:nik},
-		        success : function(data){
-				  if (result.value) {
-				    Swal.fire(
-				      'Terhapus!',
-				      'Data Anda Sudah Terhapus.',
-				      'success'
-				    )
-				    daftar_ortu();
-				  }
-		        }
+			if (result.value) {
+				$.ajax({
+			        url   : '<?= base_url("admin/Master/delete_ortu")?>',
+			        method:"POST",
+			        async : false,
+			        dataType:'json',
+			        data:{nik:nik},
+			        success : function(data){
+					    Swal.fire(
+					      'Terhapus!',
+					      'Data Anda Sudah Terhapus.',
+					      'success'
+					    )
+					    daftar_ortu();
+					  }
 
-		   	});
+			   	});
+			}
 		});
     });
 
