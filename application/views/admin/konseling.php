@@ -42,6 +42,7 @@
                 <th scope="col">NIS</th>
                 <th scope="col">NAMA LENGKAP</th>
                 <th scope="col">JENIS PELANGGARAN</th>
+                <th scope="col">TANGGAL</th>
                 <th scope="col">KETERANGAN</th>
                 <th scope="col"></th>
                 
