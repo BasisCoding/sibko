@@ -2,11 +2,19 @@
 	defined('BASEPATH') OR exit('No direct script access allowed');
 	
 	class MasterModel extends CI_Model {
-	
+		
+		function total_data()
+		{
+			$this->db->select('COUNT(siswa.id) total_siswa, COUNT(guru.id) total_guru, COUNT(kelas.id) total_kelas, COUNT(konseling.id) as total_pelanggar');
+			$this->db->from('siswa, guru, kelas, konseling');
+			return $this->db->get()->result();
+		}
+
+
 	// Model Data Siswa
 		function data_siswa($query)
 		{
-			$this->db->select('siswa.*, ortu.nama_lengkap as nama_ortu, kelas.tingkat, jurusan.nama_jurusan, jurusan.semester, jurusan.kode_jurusan, COUNT(siswa.id) as total_siswa');
+			$this->db->select('siswa.*, ortu.nama_lengkap as nama_ortu, kelas.tingkat, jurusan.nama_jurusan, jurusan.semester, jurusan.kode_jurusan');
 			$this->db->from('siswa');
 			$this->db->join('ortu', 'ortu.id = siswa.id_ortu', 'left');
 			$this->db->join('kelas', 'kelas.id = siswa.id_kelas', 'left');
@@ -68,7 +76,7 @@
 
 		function data_jurusan($query)
 		{
-			$this->db->select('jurusan.*, guru.nama_lengkap, COUNT(jurusan.id) as total_jurusan');
+			$this->db->select('jurusan.*, guru.nama_lengkap');
 			$this->db->from('jurusan');
 			$this->db->join('guru', 'guru.id = jurusan.kepala_jurusan', 'left');
 			if ($query != '') {
@@ -108,7 +116,7 @@
 
 		function data_kelas($query)
 		{
-			$this->db->select('kelas.*, jurusan.nama_jurusan, jurusan.kode_jurusan, COUNT(kelas.id) as total_kelas');
+			$this->db->select('kelas.*, jurusan.nama_jurusan, jurusan.kode_jurusan');
 			$this->db->from('kelas');
 			$this->db->join('jurusan', 'jurusan.id = kelas.id_jurusan', 'left');
 			if ($query != '') {
@@ -148,7 +156,7 @@
 	// Mode Data Orang Tua
 		function data_ortu($query)
 		{
-			$this->db->select('nik,nama_lengkap,pendidikan,pekerjaan,jenis_kelamin,status,username,email,id,tanggal_lahir,tempat_lahir,alamat,hp,agama,foto, COUNT(ortu.id) as total_ortu');
+			$this->db->select('nik,nama_lengkap,pendidikan,pekerjaan,jenis_kelamin,status,username,email,id,tanggal_lahir,tempat_lahir,alamat,hp,agama,foto');
 			$this->db->from('ortu');
 			
 			if ($query != '') {
@@ -198,7 +206,7 @@
 
 		function data_guru($query)
 		{
-			$this->db->select('nik,nama_lengkap,pendidikan,jenis_kelamin,status,username,email,id,tanggal_lahir,tempat_lahir,alamat,hp,agama,foto, COUNT(guru.id) as total_guru');
+			$this->db->select('nik,nama_lengkap,pendidikan,jenis_kelamin,status,username,email,id,tanggal_lahir,tempat_lahir,alamat,hp,agama,foto');
 			$this->db->from('guru');
 			
 			if ($query != '') {
@@ -256,7 +264,7 @@
 
 		function view_pelanggar($sesi_guru)
 		{
-			$this->db->select('konseling.*,siswa.nis, siswa.nama_lengkap, kelas.tingkat, jurusan.nama_jurusan, ortu.nama_lengkap as nama_ortu, guru.nama_lengkap as nama_guru, pelanggaran.jenis_pelanggaran,pelanggaran.tingkat, COUNT(konseling.id) as total_pelanggar');
+			$this->db->select('konseling.*,siswa.nis, siswa.nama_lengkap, kelas.tingkat, jurusan.nama_jurusan, ortu.nama_lengkap as nama_ortu, guru.nama_lengkap as nama_guru, pelanggaran.jenis_pelanggaran,pelanggaran.tingkat');
 			$this->db->select('
 
 				CASE 
