@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Jun 2020 pada 18.05
+-- Waktu pembuatan: 18 Jun 2020 pada 16.04
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.3
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `id_user` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `nama_lengkap` varchar(150) NOT NULL,
   `username` varchar(150) NOT NULL,
   `email` varchar(150) NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE `admin` (
 -- Dumping data untuk tabel `admin`
 --
 
-INSERT INTO `admin` (`id_user`, `nama_lengkap`, `username`, `email`, `password`, `status`, `foto`, `level`) VALUES
+INSERT INTO `admin` (`id`, `nama_lengkap`, `username`, `email`, `password`, `status`, `foto`, `level`) VALUES
 (1, 'Ahmad Fatoni', 'admin', 'achmad.fatoni33@gmail.com', '0ae02c00d2b1196589a5be37f718fbeec0c6f07968f90f41dbc2b167fdd919f57e9616c08130157ed4a22f7f7cae387276d456d01a98310f1b1d5f00999d5cb0', 'Aktif', 'admin.png', 1);
 
 -- --------------------------------------------------------
@@ -136,8 +136,15 @@ CREATE TABLE `konseling` (
   `id_guru` int(11) NOT NULL,
   `id_pelanggaran` int(11) NOT NULL,
   `keterangan` text NOT NULL,
-  `tanggal` int(11) NOT NULL
+  `tanggal` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `konseling`
+--
+
+INSERT INTO `konseling` (`id`, `id_siswa`, `id_guru`, `id_pelanggaran`, `keterangan`, `tanggal`) VALUES
+(3, 10, 1, 4, 'Anak ini enak banget', '2020-06-24');
 
 -- --------------------------------------------------------
 
@@ -260,7 +267,7 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`id`, `nis`, `nama_lengkap`, `email`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `agama`, `anak_ke`, `alamat`, `hp`, `id_ortu`, `id_kelas`, `foto`, `created_at`, `created_by`) VALUES
-(10, 1101161014, 'Ahmad Fatoni', '', 'Serang', '1997-08-20', 'Laki-Laki', '', 0, 'Jl', '', 0, NULL, '1101161014.jpg', '2020-06-17 12:30:58', 1);
+(10, 1101161014, 'Ahmad Fatoni', '', 'Serang', '1997-08-20', 'Laki-Laki', 'Islam', 2, 'Jl', '', 11, 9, '1101161014.jpg', '2020-06-18 14:09:46', 1);
 
 -- --------------------------------------------------------
 
@@ -292,7 +299,7 @@ INSERT INTO `user_group` (`id`, `nama_akses`, `level`, `link`) VALUES
 -- Indeks untuk tabel `admin`
 --
 ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `guru`
@@ -356,13 +363,13 @@ ALTER TABLE `user_group`
 -- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `jurusan`
@@ -380,7 +387,7 @@ ALTER TABLE `kelas`
 -- AUTO_INCREMENT untuk tabel `konseling`
 --
 ALTER TABLE `konseling`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `menus`

@@ -16,7 +16,7 @@
 		public function ceklogin()
 		{
 			$username = $this->input->post('username'); 
-			$password = hash('sha512', 'test' . config_item('encryption_key'));
+			$password = hash('sha512', $this->input->post('password') . config_item('encryption_key'));
 			$table = 'guru';
 
 			$cek = $this->LoginModel->data_login(
