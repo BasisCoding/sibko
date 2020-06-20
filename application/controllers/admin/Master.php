@@ -420,6 +420,7 @@
 		 			'hp' 					=> $this->input->post('hp_ortu'),
 		 			'email' 				=> $this->input->post('email_ortu'),
 		 			'status' 				=> 'Aktif',
+		 			'level' 				=> 2,
 		 			'password' 				=> hash('sha512', $this->input->post('password') . config_item('encryption_key')),
 		 			
 		 			'created_at' 			=> date('Y-m-d H:i:s'),
@@ -486,8 +487,9 @@
 		 			'hp' 				=> $this->input->post('hp'),
 		 			'email' 			=> $this->input->post('email'),
 		 			'username' 			=> $this->input->post('username'),
-		 			'password' 			=> $this->input->post('password'),
-		 			
+		 			'password' 			=> hash('sha512', $this->input->post('password') . config_item('encryption_key')),
+		 			'status' 			=> 'Aktif',
+		 			'level' 			=> 2,
 		 			'created_at' 		=> date('Y-m-d H:i:s'),
 		 			'created_by' 		=> $this->session->userdata('id'),
 		 			'foto' 				=> $foto
@@ -704,7 +706,8 @@
 		 			'email' 			=> $this->input->post('email'),
 		 			'username' 			=> $this->input->post('username'),
 		 			'password' 			=> hash('sha512', $this->input->post('password') . config_item('encryption_key')),
-		 			
+		 			'status' 			=> 'Aktif',
+		 			'level' 			=> 3,
 		 			'created_at' 		=> date('Y-m-d H:i:s'),
 		 			'created_by' 		=> $this->session->userdata('id'),
 		 			'foto' 				=> $foto

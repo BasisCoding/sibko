@@ -50,6 +50,18 @@
 		{
 			$this->db->update('siswa', $data, array('id' => $id));
 		}
+
+		function view_data_anak($id)
+		{
+			$this->db->select('siswa.*, ortu.nama_lengkap as nama_ortu, kelas.tingkat, jurusan.nama_jurusan, jurusan.semester, jurusan.kode_jurusan');
+			$this->db->from('siswa');
+			$this->db->join('ortu', 'ortu.id = siswa.id_ortu', 'left');
+			$this->db->join('kelas', 'kelas.id = siswa.id_kelas', 'left');
+			$this->db->join('jurusan', 'jurusan.id = kelas.id_jurusan', 'left');
+			$this->db->where('id_ortu', $id);
+			
+			return $this->db->get()->result();
+		}
 	// Model Data Siswa
 
 	// Model Data Jurusan
@@ -289,6 +301,28 @@
 		function hapus_pelanggar($id)
 		{
 			$this->db->delete('konseling',array('id' => $id));
+		}
+
+		function view_data_konseling($id)
+		{
+			$this->db->select('konseling.*,siswa.nis, siswa.nama_lengkap, kelas.tingkat, jurusan.nama_jurusan, ortu.nama_lengkap as nama_ortu, guru.nama_lengkap as nama_guru, pelanggaran.jenis_pelanggaran,pelanggaran.tingkat');
+			$this->db->select('
+
+				CASE 
+				WHEN kelas.tingkat = 1 THEN "Sederhana" 
+				WHEN kelas.tingkat = 2 THEN "Buruk" 
+				WHEN kelas.tingkat = 3 THEN "Sangat Buruk" 
+				END as tingkatan', false);
+
+			$this->db->from('konseling');
+			$this->db->join('pelanggaran', 'pelanggaran.id = konseling.id_pelanggaran', 'left');
+			$this->db->join('siswa', 'siswa.id = konseling.id_siswa', 'left');
+			$this->db->join('guru', 'guru.id = konseling.id_guru', 'left');
+			$this->db->join('kelas', 'siswa.id_kelas = kelas.id', 'left');
+			$this->db->join('ortu', 'ortu.id = siswa.id_ortu', 'left');
+			$this->db->join('jurusan', 'jurusan.id = kelas.id_jurusan', 'left');
+			$this->db->where('id_ortu', $id);
+			return $this->db->get()->result();
 		}
 	// Model Data Pelanggaran
 
