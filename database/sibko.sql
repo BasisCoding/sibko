@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 18 Jun 2020 pada 16.04
+-- Waktu pembuatan: 20 Jun 2020 pada 13.49
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.3
 
@@ -78,7 +78,7 @@ CREATE TABLE `guru` (
 --
 
 INSERT INTO `guru` (`id`, `username`, `email`, `password`, `nik`, `nama_lengkap`, `tanggal_lahir`, `tempat_lahir`, `alamat`, `hp`, `pendidikan`, `agama`, `jenis_kelamin`, `foto`, `status`, `level`, `created_at`, `created_by`) VALUES
-(1, 'guru', 'guru@gmail.com', '65f8e7d22d43b52fdecb8684f017e7069cba22e68f5e54f065713f005fe1728f5150b9d361a543281091f51396bf2ea701d369eba177dfce42a1c390778a1e2e', '1234567891258', 'Debi Sutisna', '2020-06-03', 'Serang', 'Jl.Raya Cilegon Km.03', '089676490971', 'SMA', 'Islam', 'Lai-Laki', '1234567891258.png', 'Aktif', 3, '2020-06-17 05:13:12', 1);
+(1, 'guru', 'guru@gmail.com', '0ae02c00d2b1196589a5be37f718fbeec0c6f07968f90f41dbc2b167fdd919f57e9616c08130157ed4a22f7f7cae387276d456d01a98310f1b1d5f00999d5cb0', '1234567891258', 'Debi Sutisna', '2020-06-03', 'Serang', 'Jl.Raya Cilegon Km.03', '089676490971', 'SMA', 'Islam', 'Lai-Laki', '1234567891258.png', 'Aktif', 3, '2020-06-17 05:13:12', 1);
 
 -- --------------------------------------------------------
 
@@ -178,7 +178,10 @@ INSERT INTO `menus` (`id`, `nama_menu`, `link`, `icon`, `sub_menu`, `level`, `wa
 (11, 'Data Siswa', 'Master/Data_Siswa', 'ni ni-circle-08', 0, 3, 'text-primary'),
 (13, 'Data Kelas', 'Master/Data_Kelas', 'ni ni-building', 0, 3, 'text-warning'),
 (15, 'Data Orang Tua', 'Master/Data_Ortu', 'ni ni-circle-08', 0, 3, 'text-success'),
-(16, 'Data Konseling', 'Master/Data_Konseling', 'ni ni-key-25', 0, 3, 'text-danger');
+(16, 'Data Konseling', 'Master/Data_Konseling', 'ni ni-key-25', 0, 3, 'text-danger'),
+(17, 'Dashboard', 'Dashboard', 'ni ni-tv-2', 0, 2, 'text-warning'),
+(18, 'Data Anak', 'Data_Anak', 'ni ni-circle-08', 0, 2, 'text-primary'),
+(19, 'Data Konseling', 'Data_Anak/konseling', 'ni ni-key-25', 0, 2, 'text-danger');
 
 -- --------------------------------------------------------
 
@@ -213,7 +216,7 @@ CREATE TABLE `ortu` (
 --
 
 INSERT INTO `ortu` (`id`, `username`, `email`, `password`, `nik`, `nama_lengkap`, `tempat_lahir`, `tanggal_lahir`, `alamat`, `hp`, `pekerjaan`, `pendidikan`, `agama`, `jenis_kelamin`, `foto`, `status`, `level`, `created_at`, `created_by`) VALUES
-(11, 'username', '', 'password', '1235678', 'Jsjajas', 'Serang', '1997-02-01', 'Kele', '', '', 'SD Sederajat', '', 'Laki-Laki', '.jpg', '', 0, '2020-06-17 12:25:09', 1);
+(11, 'ortu', '', 'cdd1778f41bb937fee97bcc8d310cd56c9ca39ad87be31c26b93a534356189b222e47a5b5657816269bcd213ed4c6b0618053d0a2d2b370ae5125ecc97a58580', '1235678', 'Jsjajas', 'Serang', '1997-02-01', 'Kele', '', '', 'SD Sederajat', '', 'Laki-Laki', '.jpg', 'Aktif', 2, '2020-06-17 12:25:09', 1);
 
 -- --------------------------------------------------------
 
@@ -369,7 +372,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `jurusan`
@@ -393,7 +396,7 @@ ALTER TABLE `konseling`
 -- AUTO_INCREMENT untuk tabel `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `ortu`
