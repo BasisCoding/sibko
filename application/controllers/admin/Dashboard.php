@@ -23,7 +23,13 @@
 			$this->load->view('_partials/plugin');
 			$this->load->view('services/admin/dashboard');
 		}	
+
+		public function view_dashboard()
+		{
+			
+		}
 	}
+
 	
 	/* End of file Login.php */
 	/* Location: ./application/controllers/Login.php */
