@@ -1,6 +1,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		data_pelanggaran();
+		data_pelanggar();
 		function data_pelanggaran() {
 			$.ajax({
 				url: '<?= base_url('admin/Master/view_pelanggaran') ?>',
@@ -23,6 +24,37 @@
 						$('#show_data_pelanggaran').html(html);
 		            }else{
 						$('#show_data_pelanggaran').html('<tr><td colspan="4" class="text-center"><span class="badge badge-pill badge-lg badge-success">Data Tidak Di Temukan</span></td></tr>');
+		            }
+				}
+			});	
+		}
+
+		function data_pelanggar() {
+			$.ajax({
+				url: '<?= base_url('admin/Master/view_pelanggar') ?>',
+				type: 'POST',
+				dataType: 'JSON',
+				success:function (data) {
+					var base_url = ''
+		            var html = '';
+		            var i;
+		            if (data.length > 0) {
+		                for (i = 0; i < data.length; i++) {
+		                	var tgl = data[i].tanggal;
+							var d = new Date(tgl);
+							var n = d.toJSON().slice(0,10).split('-').reverse().join('-');
+
+		                	html += '<tr>'+
+					                   '<td>'+data[i].nis+'</td>'+
+					                   '<td>'+data[i].nama_lengkap+'</td>'+
+					                   '<td>'+data[i].jenis_pelanggaran+'</td>'+
+					                   '<td>'+n+'</td>'+
+					                   '<td>'+data[i].keterangan+'</td>'+
+					                '</tr>'
+						}
+						$('#show_data_pelanggar').html(html);
+		            }else{
+						$('#show_data_pelanggar').html('<tr><td colspan="6" class="text-center"><span class="badge badge-pill badge-lg badge-success">Data Tidak Di Temukan</span></td></tr>');
 		            }
 				}
 			});	

@@ -40,6 +40,12 @@
 			echo json_encode($data);
 		}
 
+		public function select_siswa()
+		{
+			$data = $this->MasterModel->pilih_siswa();
+			echo json_encode($data);
+		}
+
 	// Controller Data Siswa
 
 	// Controller Data Jurusan
@@ -124,6 +130,17 @@
 
 	// Controller Data Pelanggaran
 
+		public function data_konseling()
+		{
+			$this->load->view('_partials/head');
+			$this->load->view('_partials/navbar');
+			$this->load->view('_partials/header');
+			$this->load->view('guru/konseling');
+			$this->load->view('_partials/footer');
+			$this->load->view('_partials/plugin');
+			$this->load->view('services/guru/konseling');
+		}
+
 		public function view_pelanggaran()
 		{
 			$data = $this->MasterModel->view_pelanggaran();
@@ -132,8 +149,44 @@
 
 		public function view_pelanggar()
 		{
-			$data = $this->MasterModel->view_pelanggar();
+			$sesi_guru = $this->session->userdata('id');
+			$data = $this->MasterModel->view_pelanggar($sesi_guru);
 			echo json_encode($data);
+		}
+
+		public function select_pelanggaran()
+		{
+			$data = $this->MasterModel->pilih_pelanggaran();
+			echo json_encode($data);
+		}
+
+		public function tambah_pelanggar()
+		{
+			$data['id_siswa'] = $this->input->post('id_siswa');
+			$data['id_pelanggaran'] = $this->input->post('id_pelanggaran');
+			$data['tanggal'] = $this->input->post('tanggal');
+			$data['keterangan'] = $this->input->post('keterangan');
+			$data['id_guru'] = $this->session->userdata('id');
+
+			$this->MasterModel->tambah_pelanggar($data);
+			$respond = array(
+					'status' => 'success',
+					'title' => 'SUKSES !!!',
+					'message' => 'Siswa Bermasalah Sudah Di tambah',
+				 );
+			echo json_encode($respond);
+		}
+
+		public function delete_pelanggar()
+		{
+			$id = $this->input->post('id');
+			$this->MasterModel->hapus_pelanggar($id);
+			$respond = array(
+					'status' => 'success',
+					'title' => 'SUKSES !!!',
+					'message' => 'Data Sudah dihapus',
+				 );
+			echo json_encode($respond);
 		}
 
 	// Controller Data Pelanggaran

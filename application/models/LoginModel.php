@@ -5,7 +5,7 @@ class LoginModel extends CI_Model {
 
 	function data_login($field1, $field2, $table)
 	{		
-		$this->db->select('*');
+		$this->db->select($table.'.nama_lengkap,'. $table.'.id,'. $table.'.level,'. $table.'.foto,'. $table.'.email, user_group.nama_akses, user_group.link,'. $table.'.status');
 		$this->db->from($table);
 		$this->db->join('user_group', 'user_group.id = '.$table.'.level', 'left');
 		$this->db->where($field1);

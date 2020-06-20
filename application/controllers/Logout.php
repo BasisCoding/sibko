@@ -6,9 +6,21 @@ class Logout extends CI_Controller {
 
 	public function index()
 	{
-		$link = $this->session->userdata('link');
-		$this->session->sess_destroy();
-		redirect(base_url($link.'/login'));
+
+		if ($this->session->userdata('link') == 'admin') {
+			$this->session->sess_destroy();
+			redirect(base_url('admin/login'));
+		}
+		if ($this->session->userdata('link') == 'guru') {
+			$this->session->sess_destroy();
+			redirect(base_url('guru/login'));
+		}
+		if ($this->session->userdata('link') == 'ortu') {
+			$this->session->sess_destroy();
+			redirect(base_url('login'));
+		}
+
+
 	}
 
 }

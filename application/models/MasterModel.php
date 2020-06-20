@@ -242,9 +242,9 @@
 			$this->db->delete('konseling', array('id_pelanggaran' => $id));
 		}
 
-		function view_pelanggar()
+		function view_pelanggar($sesi_guru)
 		{
-			$this->db->select('konseling.*, siswa.nama_lengkap, kelas.tingkat, jurusan.nama_jurusan, ortu.nama_lengkap as nama_ortu, guru.nama_lengkap as nama_guru');
+			$this->db->select('konseling.*,siswa.nis, siswa.nama_lengkap, kelas.tingkat, jurusan.nama_jurusan, ortu.nama_lengkap as nama_ortu, guru.nama_lengkap as nama_guru, pelanggaran.jenis_pelanggaran,pelanggaran.tingkat');
 			$this->db->select('
 
 				CASE 
@@ -258,10 +258,37 @@
 			$this->db->join('siswa', 'siswa.id = konseling.id_siswa', 'left');
 			$this->db->join('guru', 'guru.id = konseling.id_guru', 'left');
 			$this->db->join('kelas', 'siswa.id_kelas = kelas.id', 'left');
-			$this->db->join('ortu', 'siswa.id = siswa.id_ortu', 'left');
+			$this->db->join('ortu', 'ortu.id = siswa.id_ortu', 'left');
 			$this->db->join('jurusan', 'jurusan.id = kelas.id_jurusan', 'left');
-
+			if ($sesi_guru != '') {
+				$this->db->where('konseling.id_guru', $sesi_guru);
+			}
 			return $this->db->get()->result();
+		}
+
+		function pilih_pelanggaran()
+		{
+			$this->db->select('pelanggaran.id, pelanggaran.jenis_pelanggaran');
+			$this->db->from('pelanggaran');
+			return $this->db->get()->result();
+		}
+
+		function pilih_siswa()
+		{
+			$this->db->select('siswa.nis, siswa.nama_lengkap, siswa.jenis_kelamin, siswa.id');
+			$this->db->from('siswa');
+			$this->db->where('id_kelas !=', NULL);
+			return $this->db->get()->result();
+		}
+
+		function tambah_pelanggar($data)
+		{
+			$this->db->insert('konseling', $data);
+		}
+
+		function hapus_pelanggar($id)
+		{
+			$this->db->delete('konseling',array('id' => $id));
 		}
 	// Model Data Pelanggaran
 
