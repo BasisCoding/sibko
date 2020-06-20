@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Jun 2020 pada 17.30
+-- Waktu pembuatan: 20 Jun 2020 pada 13.49
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.3
 
@@ -78,12 +78,7 @@ CREATE TABLE `guru` (
 --
 
 INSERT INTO `guru` (`id`, `username`, `email`, `password`, `nik`, `nama_lengkap`, `tanggal_lahir`, `tempat_lahir`, `alamat`, `hp`, `pendidikan`, `agama`, `jenis_kelamin`, `foto`, `status`, `level`, `created_at`, `created_by`) VALUES
-(1, 'guru', 'guru@gmail.com', '0ae02c00d2b1196589a5be37f718fbeec0c6f07968f90f41dbc2b167fdd919f57e9616c08130157ed4a22f7f7cae387276d456d01a98310f1b1d5f00999d5cb0', '1234567891258', 'Debi Sutisna', '2020-06-03', 'Serang', 'Jl.Raya Cilegon Km.03', '089676490971', 'SMA', 'Islam', 'Lai-Laki', '1234567891258.png', 'Aktif', 3, '2020-06-17 05:13:12', 1),
-(2, 'rizky', 'dikiaja2011@java.com', '0ae02c00d2b1196589a5be37f718fbeec0c6f07968f90f41dbc2b167fdd919f57e9616c08130157ed4a22f7f7cae387276d456d01a98310f1b1d5f00999d5cb0', '3604193008910000', 'Rizky Amanda,S.Kom', '1991-08-03', 'Serang', 'Kp. Cirogol RT 02/01 Ds. Cirogol Kec. Cikeusal Kab. Serang', '081123456876', 'S1', '', 'Perempuan', '3604193008910000.png', 'Aktif', 3, '2020-06-20 16:15:24', 1),
-(3, 'taufik', 'M.taufik@gmail.com', '0ae02c00d2b1196589a5be37f718fbeec0c6f07968f90f41dbc2b167fdd919f57e9616c08130157ed4a22f7f7cae387276d456d01a98310f1b1d5f00999d5cb0', '3604190984635000', 'Muhamad Taufik, ST', '1987-07-08', 'Serang', 'Komp. Korem RT 008/04 Kel. Cipocok Kec. Cipocok-Serang', '089736454637', 'S1', '', 'Laki-Laki', '', 'Aktif', 3, '2020-06-20 16:19:13', 1),
-(4, 'masitoh', 'masitoh@gmail.com', '0ae02c00d2b1196589a5be37f718fbeec0c6f07968f90f41dbc2b167fdd919f57e9616c08130157ed4a22f7f7cae387276d456d01a98310f1b1d5f00999d5cb0', '360412345960000', 'Masitoh,S.Pd', '1997-06-07', 'Cilegon', 'Kp, Panyairan RT 08/05 Ds. Cikeusal Kec.Cikeusal Kab Serang', '08123456098', '', '', 'Laki-Laki', '', 'Aktif', 3, '2020-06-20 16:21:16', 1),
-(5, 'hadi', 'hadisupriyadi@gmail.com', '0ae02c00d2b1196589a5be37f718fbeec0c6f07968f90f41dbc2b167fdd919f57e9616c08130157ed4a22f7f7cae387276d456d01a98310f1b1d5f00999d5cb0', '3450856435341000', 'Hadi Supriyadi,S.Ag', '1987-02-08', 'Serang', 'Kp. Curug RT 08/01 Kel. Curug Kec. Curug-Serang', '081234556677', '', '', 'Laki-Laki', '', 'Aktif', 3, '2020-06-20 16:23:15', 1),
-(6, 'guru', 'masdikiaww12@gmail.com', '0ae02c00d2b1196589a5be37f718fbeec0c6f07968f90f41dbc2b167fdd919f57e9616c08130157ed4a22f7f7cae387276d456d01a98310f1b1d5f00999d5cb0', '360412345600001', 'Ir. Mohamad Masduki,MT', '1981-01-09', 'Ambon', 'Kp. Cibuah RT 02/01 Ds. Mangga Kec. Asem', '0812344556687', 'S2', '', 'Laki-Laki', '', 'Aktif', 3, '2020-06-20 16:41:11', 1);
+(1, 'guru', 'guru@gmail.com', '0ae02c00d2b1196589a5be37f718fbeec0c6f07968f90f41dbc2b167fdd919f57e9616c08130157ed4a22f7f7cae387276d456d01a98310f1b1d5f00999d5cb0', '1234567891258', 'Debi Sutisna', '2020-06-03', 'Serang', 'Jl.Raya Cilegon Km.03', '089676490971', 'SMA', 'Islam', 'Lai-Laki', '1234567891258.png', 'Aktif', 3, '2020-06-17 05:13:12', 1);
 
 -- --------------------------------------------------------
 
@@ -106,10 +101,7 @@ CREATE TABLE `jurusan` (
 
 INSERT INTO `jurusan` (`id`, `kode_jurusan`, `nama_jurusan`, `semester`, `kepala_jurusan`, `logo`) VALUES
 (1, 'AP', 'Administrasi Perkantoran', 21, 1, 'aas.png'),
-(2, 'TKJ', 'Teknik Komputer Jaringan', 2, 2, 'TKJ.png'),
-(3, '11ARG01', 'Agribisnis', 1, 3, ''),
-(4, '110IGR01', 'B. Inggris', 1, 4, ''),
-(5, '11TMN01', 'Teknik Mesin', 1, 6, '');
+(2, 'TKJ', 'Teknik Komputer Jaringan', 2, 0, 'TKJ.png');
 
 -- --------------------------------------------------------
 
@@ -130,9 +122,7 @@ CREATE TABLE `kelas` (
 INSERT INTO `kelas` (`id`, `tingkat`, `id_jurusan`) VALUES
 (9, 2, 2),
 (10, 3, 1),
-(11, 2, 1),
-(12, 1, 3),
-(13, 1, 5);
+(11, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -226,14 +216,7 @@ CREATE TABLE `ortu` (
 --
 
 INSERT INTO `ortu` (`id`, `username`, `email`, `password`, `nik`, `nama_lengkap`, `tempat_lahir`, `tanggal_lahir`, `alamat`, `hp`, `pekerjaan`, `pendidikan`, `agama`, `jenis_kelamin`, `foto`, `status`, `level`, `created_at`, `created_by`) VALUES
-(11, 'ortu', '', 'cdd1778f41bb937fee97bcc8d310cd56c9ca39ad87be31c26b93a534356189b222e47a5b5657816269bcd213ed4c6b0618053d0a2d2b370ae5125ecc97a58580', '1235678', 'Jsjajas', 'Serang', '1997-02-01', 'Kele', '', '', 'SD Sederajat', '', 'Laki-Laki', '.jpg', 'Aktif', 2, '2020-06-17 12:25:09', 1),
-(12, 'ortu', 'madsudi', '0ae02c00d2b1196589a5be37f718fbeec0c6f07968f90f41dbc2b167fdd919f57e9616c08130157ed4a22f7f7cae387276d456d01a98310f1b1d5f00999d5cb0', '3608293847640000', 'Madsudi', '', '0000-00-00', '', '0812324356457', '', '', '', 'Laki-Laki', '', 'Aktif', 2, '2020-06-20 16:29:35', 1),
-(13, 'ortu', 'komasriah', '0ae02c00d2b1196589a5be37f718fbeec0c6f07968f90f41dbc2b167fdd919f57e9616c08130157ed4a22f7f7cae387276d456d01a98310f1b1d5f00999d5cb0', '3608293847640001', 'Komariah', '', '0000-00-00', '', '0812111234455', '', '', '', 'Perempuan', '', 'Aktif', 2, '2020-06-20 16:31:41', 1),
-(14, 'ortu', 'sembara', '0ae02c00d2b1196589a5be37f718fbeec0c6f07968f90f41dbc2b167fdd919f57e9616c08130157ed4a22f7f7cae387276d456d01a98310f1b1d5f00999d5cb0', '3608293847640002', 'Sembara', '', '0000-00-00', '', '0812111234455', '', '', '', 'Laki-Laki', '', 'Aktif', 2, '2020-06-20 16:34:05', 1),
-(15, 'ortu', 'Aslanali742@gmail.com', '0ae02c00d2b1196589a5be37f718fbeec0c6f07968f90f41dbc2b167fdd919f57e9616c08130157ed4a22f7f7cae387276d456d01a98310f1b1d5f00999d5cb0', '3604123340230000', 'Markonah', 'Serang', '1960-01-08', 'Kp. Kemanisan RT 01/02 Kel. Diabetes Kec. Kronis', '0812301293847', '', 'SMA Sederajat', 'Islam', 'Perempuan', '', 'Aktif', 2, '2020-06-20 16:50:08', 1),
-(16, 'ortu', 'dikiaja2011@java.com', '0ae02c00d2b1196589a5be37f718fbeec0c6f07968f90f41dbc2b167fdd919f57e9616c08130157ed4a22f7f7cae387276d456d01a98310f1b1d5f00999d5cb0', '1234556', 'sadnadjsa', 'serang', '1997-08-09', 'zdjnajdnSJ', '023847562651', '', 'S1', 'Islam', 'Laki-Laki', '', 'Aktif', 2, '2020-06-20 16:54:13', 1),
-(17, 'ortu', 'selijggfa', '0ae02c00d2b1196589a5be37f718fbeec0c6f07968f90f41dbc2b167fdd919f57e9616c08130157ed4a22f7f7cae387276d456d01a98310f1b1d5f00999d5cb0', '09876544', 'sudirman', 'serang', '1981-08-09', 'hhftdrsr', '09887665542', '', 'SMA Sederajat', '', 'Laki-Laki', '', 'Aktif', 2, '2020-06-20 16:56:09', 1),
-(18, 'ortu', 'madsuro@gmail.com', 'cdd1778f41bb937fee97bcc8d310cd56c9ca39ad87be31c26b93a534356189b222e47a5b5657816269bcd213ed4c6b0618053d0a2d2b370ae5125ecc97a58580', '360419836475000', 'Maduro', 'Serang', '1980-01-09', 'Kp. Kemanisan RT 08/01 Ds. Diabetes Kec. Kronis', '08123456780', '', 'SMA Sederajat', '', 'Laki-Laki', '', 'Aktif', 2, '2020-06-20 17:25:09', 1);
+(11, 'ortu', '', 'cdd1778f41bb937fee97bcc8d310cd56c9ca39ad87be31c26b93a534356189b222e47a5b5657816269bcd213ed4c6b0618053d0a2d2b370ae5125ecc97a58580', '1235678', 'Jsjajas', 'Serang', '1997-02-01', 'Kele', '', '', 'SD Sederajat', '', 'Laki-Laki', '.jpg', 'Aktif', 2, '2020-06-17 12:25:09', 1);
 
 -- --------------------------------------------------------
 
@@ -255,8 +238,7 @@ CREATE TABLE `pelanggaran` (
 INSERT INTO `pelanggaran` (`id`, `jenis_pelanggaran`, `tingkat`, `max_langgaran`) VALUES
 (3, 'tidur di sekolah', 1, 5),
 (4, 'Keluar dari kelas', 2, 3),
-(5, 'Merokok di kelas', 2, 3),
-(6, '', 3, 1);
+(5, 'Merokok di kelas', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -288,11 +270,7 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`id`, `nis`, `nama_lengkap`, `email`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `agama`, `anak_ke`, `alamat`, `hp`, `id_ortu`, `id_kelas`, `foto`, `created_at`, `created_by`) VALUES
-(10, 1101161014, 'Ahmad Fatoni', '', 'Serang', '1997-08-20', 'Laki-Laki', 'Islam', 2, 'Jl', '', 11, 9, '1101161014.jpg', '2020-06-18 14:09:46', 1),
-(11, 1122435401, 'Ardelia Zahra', 'Aslanali742@gmail.com', 'Serang', '2000-07-08', 'Perempuan', '', 1, 'Komp. Perum. Kelutuk RT 001/001 Ds. Siki Kec. Ambon', '08121333453', 11, NULL, '', '2020-06-20 16:35:06', 1),
-(12, 1123123445, 'Marsiah', 'masihah@gmail.com', 'Serang', '2000-01-08', 'Perempuan', '', 1, 'Kp. Semangka RT 09/01 Ds. Anggur Kec. Kokosan', '0812345473527', 0, NULL, '', '2020-06-20 16:35:56', 1),
-(13, 1123123446, 'Kokom', 'kokom@gmail.com', 'Serang', '2000-01-01', 'Perempuan', '', 1, 'Kp. Mangga RT 08/01 Ds. Manggis Kec. Asem ', '0812345567788', 0, NULL, '', '2020-06-20 16:36:36', 1),
-(14, 1123123447, 'Sarikam', 'sarikam', 'Serang', '2000-07-08', 'Laki-Laki', '', 1, 'Kp. Kokosan RT. 008/01 Kel. Pisangan Kec. Ambon', '0812345465768', 0, NULL, '', '2020-06-20 16:34:19', 1);
+(10, 1101161014, 'Ahmad Fatoni', '', 'Serang', '1997-08-20', 'Laki-Laki', 'Islam', 2, 'Jl', '', 11, 9, '1101161014.jpg', '2020-06-18 14:09:46', 1);
 
 -- --------------------------------------------------------
 
@@ -394,19 +372,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `jurusan`
 --
 ALTER TABLE `jurusan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `konseling`
@@ -424,19 +402,19 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT untuk tabel `ortu`
 --
 ALTER TABLE `ortu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `pelanggaran`
 --
 ALTER TABLE `pelanggaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_group`
