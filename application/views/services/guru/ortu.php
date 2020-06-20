@@ -53,10 +53,10 @@ $(document).ready(function(){
 				                        
 				                      '</div>' +
 				                    '</div>' +
-				                    '<div class="d-flex justify-content-between mt-1">' +
-				                      '<button type="button" class="btn btn-sm btn-success"><i class="ni ni-send"></i> Lihat Alamat</button>' +
-				                      '<button type="button" class="btn btn-sm btn-dark"><i class="ni ni-send"></i>Lihat Detail</button>' +
-				                    '</div>' +
+				                    // '<div class="d-flex justify-content-between mt-1">' +
+				                    //   '<button type="button" class="btn btn-sm btn-success"><i class="ni ni-send"></i> Lihat Alamat</button>' +
+				                    //   '<button type="button" class="btn btn-sm btn-dark"><i class="ni ni-send"></i>Lihat Detail</button>' +
+				                    // '</div>' +
 				                  '</div>' +
 				                '</div>'
 					}

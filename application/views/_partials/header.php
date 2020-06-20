@@ -35,8 +35,25 @@
                 <i class="ni ni-zoom-split-in"></i>
               </a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            
+          </ul>
+          <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+            <!-- <li class="nav-item dropdown"> -->
+              <div>
+              <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="media align-items-center">
+                  <span class="avatar avatar-sm rounded-circle">
+                    <img title="<?= $this->session->userdata('nama_lengkap'); ?>" alt="<?= base_url('assets/img/'.$this->session->userdata('link').'/'.$this->session->userdata("foto")) ?>" src="<?= base_url('assets/img/'.$this->session->userdata('link').'/'.$this->session->userdata("foto")) ?>">
+                  </span>
+                  <!-- <div class="media-body  ml-2  d-none d-lg-block">
+                    <span class="mb-0 text-sm  font-weight-bold"><?= $this->session->userdata('nama_lengkap'); ?></span>
+                  </div> -->
+                </div>
+              </a>
+            </div>
+              <div>
+              <li class="nav-item dropdown">
+              <a class="nav-link" href="#" role="button" title="Notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="ni ni-bell-55"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-xl  dropdown-menu-right  py-0 overflow-hidden">
@@ -146,42 +163,16 @@
                 <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
               </div>
             </li>
-          </ul>
-          <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
-            <li class="nav-item dropdown">
-              <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <div class="media align-items-center">
-                  <span class="avatar avatar-sm rounded-circle">
-                    <img alt="<?= base_url('assets/img/'.$this->session->userdata('link').'/'.$this->session->userdata("foto")) ?>" src="<?= base_url('assets/img/'.$this->session->userdata('link').'/'.$this->session->userdata("foto")) ?>">
-                  </span>
-                  <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold"><?= $this->session->userdata('nama_lengkap'); ?></span>
-                  </div>
-                </div>
-              </a>
-              <div class="dropdown-menu  dropdown-menu-right ">
-                <div class="dropdown-header noti-title">
-                  <h6 class="text-overflow m-0">Welcome!</h6>
-                </div>
-                <a href="<?= base_url('profil')  ?>" class="dropdown-item">
-                  <i class="ni ni-single-02"></i>
-                  <span>Profil</span>
-                </a>
-                <a href="#!" class="dropdown-item">
-                  <i class="ni ni-calendar-grid-58"></i>
-                  <span>Aktifitas</span>
-                </a>
-                <a href="#!" class="dropdown-item">
-                  <i class="ni ni-support-16"></i>
-                  <span>Bantuan</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="<?= base_url('Logout/')  ?>" class="dropdown-item">
+          </div>
+            <li>
+              <a class="nav-link" href="<?= base_url('Logout/')  ?>" role="button" aria-haspopup="true" aria-expanded="false" title="Logout">
                   <i class="ni ni-user-run"></i>
-                  <span>Keluar</span>
-                </a>
-              </div>
+              </a>
             </li>
+              
+              
+
+            <!-- </li> -->
           </ul>
         </div>
       </div>

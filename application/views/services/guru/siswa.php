@@ -53,10 +53,10 @@ $(document).ready(function(){
 				                        '<div><i class="ni education_hat mr-2"></i>'+data[i].tingkat+' '+data[i].kode_jurusan+'</div>' +
 				                      '</div>' +
 				                    '</div>' +
-				                    '<div class="d-flex justify-content-between mt-1">' +	
-				                        '<button data-nis="'+data[i].nis+'" data-nama_lengkap="'+data[i].nama_lengkap+'" data-tempat_lahir="'+data[i].tempat_lahir+'" data-tanggal_lahir="'+data[i].tanggal_lahir+'" data-jenis_kelamin="'+data[i].jenis_kelamin+'" data-agama="'+data[i].agama+'" data-alamat="'+data[i].alamat+'" data-anak_ke="'+data[i].anak_ke+'" data-id_ortu="'+data[i].id_ortu+'" data-foto="'+data[i].foto+'" data-hp="'+data[i].hp+'" data-email="'+data[i].email+'" type="button" class="btn btn-sm btn-success"><i class="ni ni-send"></i> Lihat Detail</button>' +
-				                      '<button type="button" class="btn btn-sm btn-dark"><i class="ni ni-send"></i>Lihat Alamat</button>' +
-				                    '</div>' +
+				                    // '<div class="d-flex justify-content-between mt-1">' +	
+				                    //     '<button data-nis="'+data[i].nis+'" data-nama_lengkap="'+data[i].nama_lengkap+'" data-tempat_lahir="'+data[i].tempat_lahir+'" data-tanggal_lahir="'+data[i].tanggal_lahir+'" data-jenis_kelamin="'+data[i].jenis_kelamin+'" data-agama="'+data[i].agama+'" data-alamat="'+data[i].alamat+'" data-anak_ke="'+data[i].anak_ke+'" data-id_ortu="'+data[i].id_ortu+'" data-foto="'+data[i].foto+'" data-hp="'+data[i].hp+'" data-email="'+data[i].email+'" type="button" class="btn btn-sm btn-success"><i class="ni ni-send"></i> Lihat Detail</button>' +
+				                    //   '<button type="button" class="btn btn-sm btn-dark"><i class="ni ni-send"></i>Lihat Alamat</button>' +
+				                    // '</div>' +
 				                  '</div>' +
 				                '</div>'
 					}
