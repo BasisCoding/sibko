@@ -10,6 +10,8 @@
 	  		if ($this->session->userdata('status') != 'login') {
 				redirect(base_url('admin/login'));
 			}
+
+			$this->load->model('MasterModel');
 	  	}
 
 		public function index()
@@ -23,9 +25,16 @@
 			$this->load->view('services/admin/dashboard');
 		}	
 
-		public function view_dashboard()
+		public function get_jumlah()
 		{
-			
+			$q = '';
+			$data['pelanggar'] = $this->MasterModel->get_chart();
+			$data['siswa'] = $this->MasterModel->data_siswa($q)[0]->total_siswa;
+			$data['kelas'] = $this->MasterModel->data_kelas($q)[0]->total_kelas;
+			$data['ortu'] = $this->MasterModel->data_ortu($q)[0]->total_ortu;
+			$data['guru'] = $this->MasterModel->data_guru($q)[0]->total_guru;
+			$data['siswa_pelanggar'] = $this->MasterModel->view_pelanggar($q)[0]->total_pelanggar;
+			echo json_encode($data);
 		}
 	}
 
