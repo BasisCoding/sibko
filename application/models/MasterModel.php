@@ -28,7 +28,7 @@
 	// Model Data Siswa
 		function data_siswa($query)
 		{
-			$this->db->select('siswa.*, ortu.nama_lengkap as nama_ortu, kelas.tingkat, jurusan.nama_jurusan, jurusan.semester, jurusan.kode_jurusan, COUNT(siswa.id) as total_siswa');
+			$this->db->select('siswa.*, ortu.nama_lengkap as nama_ortu, kelas.tingkat, jurusan.nama_jurusan, jurusan.semester, jurusan.kode_jurusan');
 			$this->db->from('siswa');
 			$this->db->join('ortu', 'ortu.id = siswa.id_ortu', 'left');
 			$this->db->join('kelas', 'kelas.id = siswa.id_kelas', 'left');

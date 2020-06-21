@@ -91,6 +91,12 @@
                       </div>
                     </div>
 
+                    <div class="row my-2">
+                      <div class="col-md">
+                        <input type="text" name="minat_bakat" placeholder="Minat Bakat" class="form-control form-control-sm mb-1">
+                      </div>
+                    </div>
+
                     <div class="row my-1">
                       <div class="col-md">
                         <small>Pilih Foto</small>
@@ -193,6 +199,12 @@
                           <option>Hindu</option>
                           <option>Katholik</option>
                         </select>
+                      </div>
+                    </div>
+
+                    <div class="row my-2">
+                      <div class="col-md">
+                        <input type="text" name="minat_bakat_update" placeholder="Minat Bakat" class="form-control form-control-sm mb-1">
                       </div>
                     </div>
 
