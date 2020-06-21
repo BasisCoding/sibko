@@ -2,9 +2,6 @@
 <script type="text/javascript">
 $(document).ready(function(){ 
 
-	let current_datetime = new Date();
-	let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate()
-
     daftar_anak();
     //  -----------------------------------------------------------------------------
     //  |       AMBIL DATA KE DATABASE                                              |
@@ -24,8 +21,7 @@ $(document).ready(function(){
 	            if (data.length > 0) {
 	                for (i = 0; i < data.length; i++) {
 	                	var tgl = data[i].tanggal_lahir;
-						var d = new Date(tgl);
-						var n = d.toJSON().slice(0,10).split('-').reverse().join('-');
+						var n = tgl.slice(0,10).split('-').reverse().join('-');
 
 	                	html += '<div class="col-lg-5 order-lg-3">' +
 				                  '<div class="card card-profile">' +

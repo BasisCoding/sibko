@@ -59,11 +59,10 @@
               <div class="dropdown-menu dropdown-menu-xl  dropdown-menu-right  py-0 overflow-hidden">
                 <!-- Dropdown header -->
                 <div class="px-3 py-3">
-                  <h6 class="text-sm text-muted m-0">You have <strong class="text-primary">13</strong> notifications.</h6>
+                  <h6 class="text-sm text-muted m-0">Pemberitahuan Siswa Bermasalah</h6>
                 </div>
                 <!-- List group -->
                 <div class="list-group list-group-flush" id="notifikasi">
-                                    
                 </div>
               </div>
             </li>

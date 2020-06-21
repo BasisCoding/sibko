@@ -23,9 +23,6 @@ $(document).ready(function(){
 		placeholder: 'Jenis Kelamin'
 	}); 
 
-	let current_datetime = new Date();
-	let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate()
-
     daftar_siswa();
     daftar_ortu();
 
@@ -33,7 +30,7 @@ $(document).ready(function(){
     	if ($(this).val() == 'lainnya') {
     		$('#add-modal-ortu').modal('show');
     	}
-    })
+    });
     //  -----------------------------------------------------------------------------
     //  |       AMBIL DATA KE DATABASE                                              |
     //  -----------------------------------------------------------------------------
@@ -47,14 +44,12 @@ $(document).ready(function(){
 	        data:{query:query},
 	        success : function(data){
 
-	        	var base_url = ''
 	            var html = '';
 	            var i;
 	            if (data.length > 0) {
 	                for (i = 0; i < data.length; i++) {
 	                	var tgl = data[i].tanggal_lahir;
-						var d = new Date(tgl);
-						var n = d.toJSON().slice(0,10).split('-').reverse().join('-');
+						var n = tgl.slice(0,10).split('-').reverse().join('-');
 
 	                	html += '<div class="col-lg-3 order-lg-2">' +
 				                  '<div class="card card-profile">' +
@@ -79,10 +74,6 @@ $(document).ready(function(){
 				                        '<div class="h5 mt-2"><i class="ni business_briefcase-24 mr-2"></i>'+data[i].nama_jurusan+'</div>' +
 				                        '<div><i class="ni education_hat mr-2"></i>'+data[i].tingkat+' '+data[i].kode_jurusan+'</div>' +
 				                      '</div>' +
-				                    '</div>' +
-				                    // '<div class="d-flex justify-content-between mt-1">' +
-				                    //   '<button type="button" class="btn btn-sm btn-success"><i class="ni ni-send"></i> Lihat Alamat</button>' +
-				                    //   '<button type="button" class="btn btn-sm btn-dark"><i class="ni ni-send"></i>Lihat Detail</button>' +
 				                    '</div>' +
 				                  '</div>' +
 				                '</div>'
@@ -159,7 +150,7 @@ $(document).ready(function(){
 					      'Terhapus!',
 					      'Data Anda Sudah Terhapus.',
 					      'success'
-					    )
+					    );
 					    daftar_siswa();
 					  }
 
