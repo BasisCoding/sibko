@@ -41,6 +41,7 @@
 	                	html += '<tr>'+
 				                   '<th scope="row">'+data[i].tingkat+' '+data[i].kode_jurusan+'</th>'+
 				                   '<td>'+data[i].nama_jurusan+'</td>'+
+				                   '<td>'+data[i].jumlah_siswa+'</td>'+
 				                '</tr>'
 					}
 					$('#show_data_kelas').html(html);

@@ -18,10 +18,10 @@
 			$this->load->view('_partials/head');
 			$this->load->view('_partials/navbar');
 			$this->load->view('_partials/header');
-			$this->load->view('ortu/dashboard');
+			$this->load->view('admin/dashboard');
 			$this->load->view('_partials/footer');
 			$this->load->view('_partials/plugin');
-			$this->load->view('services/ortu/dashboard');
+			$this->load->view('services/admin/dashboard');
 		}	
 	}
 	

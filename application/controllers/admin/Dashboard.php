@@ -28,10 +28,20 @@
 		public function get_jumlah()
 		{
 			$data['pelanggar'] = $this->MasterModel->get_chart();
-			$data['siswa'] = $this->MasterModel->total_data()[0]->total_siswa;
-			$data['kelas'] = $this->MasterModel->total_data()[0]->total_kelas;
-			$data['guru'] = $this->MasterModel->total_data()[0]->total_guru;
-			$data['siswa_pelanggar'] = $this->MasterModel->total_data()[0]->total_pelanggar;
+			$data['siswa'] = $this->MasterModel->total_siswa();
+			$data['kelas'] = $this->MasterModel->total_kelas();
+			$data['guru'] = $this->MasterModel->total_guru();
+			$data['siswa_pelanggar'] = $this->MasterModel->total_pelanggar();
+			echo json_encode($data);
+		}
+
+		public function get_notifikasi()
+		{
+			$sesi_guru = '';
+			if ($this->session->userdata('nama_akses') == 'ortu') {
+				$sesi_guru .= $this->session->userdata('id');
+			}
+			$data = $this->MasterModel->view_pelanggar($sesi_guru);
 			echo json_encode($data);
 		}
 	}
