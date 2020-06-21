@@ -90,7 +90,7 @@
 
 		function data_jurusan($query)
 		{
-			$this->db->select('jurusan.*, guru.nama_lengkap, COUNT(jurusan.id) as total_jurusan');
+			$this->db->select('jurusan.*, guru.nama_lengkap');
 			$this->db->from('jurusan');
 			$this->db->join('guru', 'guru.id = jurusan.kepala_jurusan', 'left');
 			if ($query != '') {
@@ -174,7 +174,7 @@
 	// Mode Data Orang Tua
 		function data_ortu($query)
 		{
-			$this->db->select('nik,nama_lengkap,pendidikan,pekerjaan,jenis_kelamin,status,username,email,id,tanggal_lahir,tempat_lahir,alamat,hp,agama,foto, COUNT(ortu.id) as total_ortu');
+			$this->db->select('nik,nama_lengkap,pendidikan,pekerjaan,jenis_kelamin,status,username,email,id,tanggal_lahir,tempat_lahir,alamat,hp,agama,foto');
 			$this->db->from('ortu');
 			
 			if ($query != '') {
@@ -224,7 +224,7 @@
 
 		function data_guru($query)
 		{
-			$this->db->select('nik,nama_lengkap,pendidikan,jenis_kelamin,status,username,email,id,tanggal_lahir,tempat_lahir,alamat,hp,agama,foto, COUNT(guru.id) as total_guru');
+			$this->db->select('nik,nama_lengkap,pendidikan,jenis_kelamin,status,username,email,id,tanggal_lahir,tempat_lahir,alamat,hp,agama,foto');
 			$this->db->from('guru');
 			
 			if ($query != '') {

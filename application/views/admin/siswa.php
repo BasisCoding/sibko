@@ -23,9 +23,9 @@
                     </form> -->
                   </div>
                   
-                  <!-- <div class="col-md-4 text-right">
+                  <div class="col-md-4 text-right">
                     <input type="text" id="search" class="form-control form-control-sm" placeholder="Search ...">
-                  </div> -->
+                  </div>
                 </div>
               </div>
             </div>
