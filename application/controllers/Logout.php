@@ -19,6 +19,10 @@ class Logout extends CI_Controller {
 			$this->session->sess_destroy();
 			redirect(base_url('login'));
 		}
+		if ($this->session->userdata('link') == 'kepsek') {
+			$this->session->sess_destroy();
+			redirect(base_url('kepsek/login'));
+		}
 
 
 	}

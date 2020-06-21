@@ -27,6 +27,7 @@
 
 		public function get_jumlah()
 		{
+
 			$data['pelanggar'] = $this->MasterModel->get_chart();
 			$data['siswa'] = $this->MasterModel->total_siswa();
 			$data['kelas'] = $this->MasterModel->total_kelas();
@@ -42,6 +43,7 @@
 				$sesi_guru .= $this->session->userdata('id');
 			}
 			$data = $this->MasterModel->view_pelanggar($sesi_guru);
+
 			echo json_encode($data);
 		}
 	}
