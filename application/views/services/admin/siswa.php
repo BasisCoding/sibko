@@ -66,7 +66,7 @@ $(document).ready(function(){
 				                    '</div>' +
 				                    '<div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">' +
 				                      '<div class="d-flex justify-content-between">' +
-				                        '<button data-nis="'+data[i].nis+'" data-nama_lengkap="'+data[i].nama_lengkap+'" data-tempat_lahir="'+data[i].tempat_lahir+'" data-tanggal_lahir="'+data[i].tanggal_lahir+'" data-jenis_kelamin="'+data[i].jenis_kelamin+'" data-agama="'+data[i].agama+'" data-alamat="'+data[i].alamat+'" data-anak_ke="'+data[i].anak_ke+'" data-id_ortu="'+data[i].id_ortu+'" data-foto="'+data[i].foto+'" data-hp="'+data[i].hp+'" data-email="'+data[i].email+'" class="btn btn-sm btn-info mr-4 update_siswa">Update</button>' +
+				                        '<button data-nis="'+data[i].nis+'" data-nama_lengkap="'+data[i].nama_lengkap+'" data-tempat_lahir="'+data[i].tempat_lahir+'" data-tanggal_lahir="'+data[i].tanggal_lahir+'" data-jenis_kelamin="'+data[i].jenis_kelamin+'" data-agama="'+data[i].agama+'" data-alamat="'+data[i].alamat+'" data-anak_ke="'+data[i].anak_ke+'" data-minat_bakat="'+data[i].minat_bakat+'" data-id_ortu="'+data[i].id_ortu+'" data-foto="'+data[i].foto+'" data-hp="'+data[i].hp+'" data-email="'+data[i].email+'" class="btn btn-sm btn-info mr-4 update_siswa">Update</button>' +
 				                        '<button data-nis="'+data[i].nis+'" class="btn btn-sm btn-danger float-right delete_siswa">Delete</button>' +
 				                      '</div>' +
 				                    '</div>' +
@@ -112,6 +112,7 @@ $(document).ready(function(){
         var jenis_kelamin=$(this).attr('data-jenis_kelamin');
         var alamat=$(this).attr('data-alamat');
         var anak_ke=$(this).attr('data-anak_ke');
+        var minat_bakat=$(this).attr('data-minat_bakat');
         var hp=$(this).attr('data-hp');
         var id_ortu=$(this).attr('data-id_ortu');
         var email=$(this).attr('data-email');
@@ -123,6 +124,7 @@ $(document).ready(function(){
         $('[name="tanggal_lahir_update"]').val(tanggal_lahir);
         $('[name="jenis_kelamin_update"]').val(jenis_kelamin);
         $('[name="alamat_update"]').val(alamat);
+        $('[name="minat_bakat_update"]').val(minat_bakat);
         $('[name="anak_ke_update"]').val(anak_ke);
         $('[name="hp_update"]').val(hp);
         $('[name="id_ortu_update"]').val(id_ortu);
@@ -200,6 +202,7 @@ $(document).ready(function(){
 	    formData.append('anak_ke', $('[name="anak_ke"]').val()); 
 	    formData.append('id_ortu', $('[name="id_ortu"]').val()); 
 	    formData.append('hp', $('[name="hp"]').val()); 
+	    formData.append('minat_bakat', $('[name="minat_bakat"]').val()); 
 	    formData.append('email', $('[name="email"]').val()); 
 	    formData.append('foto', $('[name="foto"]')[0].files[0]);
 	   
@@ -290,6 +293,7 @@ $(document).ready(function(){
 	    formData.append('anak_ke', $('[name="anak_ke_update"]').val()); 
 	    formData.append('id_ortu', $('[name="id_ortu_update"]').val()); 
 	    formData.append('hp', $('[name="hp_update"]').val()); 
+	    formData.append('minat_bakat', $('[name="minat_bakat_update"]').val()); 
 	    formData.append('email', $('[name="email_update"]').val()); 
 	    formData.append('foto_lama', $('[name="foto_lama"]').val()); 
 	    formData.append('foto', $('[name="foto_update"]')[0].files[0]);
@@ -314,6 +318,7 @@ $(document).ready(function(){
 			        $('[name="tanggal_lahir_update"]').val();
 			        $('[name="jenis_kelamin_update"]').val();
 			        $('[name="alamat_update"]').val();
+			        $('[name="minat_bakat_update"]').val();
 			        $('[name="anak_ke_update"]').val();
 			        $('[name="hp_update"]').val();
 			        $('[name="id_ortu_update"]').val();

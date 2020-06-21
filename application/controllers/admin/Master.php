@@ -67,6 +67,7 @@
 		 			'id_ortu'			=> $this->input->post('id_ortu'),
 		 			'hp' 				=> $this->input->post('hp'),
 		 			'email' 			=> $this->input->post('email'),
+		 			'minat_bakat' 		=> $this->input->post('minat_bakat'),
 		 			
 		 			'created_at' 		=> date('Y-m-d H:i:s'),
 		 			'created_by' 		=> $this->session->userdata('id'),
@@ -111,6 +112,7 @@
 	 			'id_ortu'			=> $this->input->post('id_ortu'),
 	 			'hp' 				=> $this->input->post('hp'),
 	 			'email' 			=> $this->input->post('email'),
+	 			'minat_bakat' 		=> $this->input->post('minat_bakat'),
 	 			
 	 			'created_at' 		=> date('Y-m-d H:i:s'),
 	 			'created_by' 		=> $this->session->userdata('id'),

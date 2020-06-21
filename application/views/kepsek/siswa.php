@@ -14,6 +14,7 @@
                     <th scope="col">TEMPAT LAHIR</th>
                     <th scope="col">NAMA ORANG TUA</th>
                     <th scope="col">KELAS</th>
+                    <th scope="col">MINAT BAKAT</th>
                     <th scope="col">JENIS KELAMIN</th>                    
                   </tr>
                 </thead>

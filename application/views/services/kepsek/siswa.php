@@ -55,8 +55,9 @@ $(document).ready(function(){
 	                			'<td scope="row">'+data[i].nis+'</td>'+
 			                	'<td scope="row">'+data[i].nama_lengkap+'</td>'+
 			                	'<td scope="row">'+data[i].tempat_lahir+', '+n+'</td>'+
-			                	'<td scope="row">'+data[i].nama_ortu+'</td>'+
+                                '<td scope="row">'+data[i].nama_ortu+'</td>'+
 			                	'<td scope="row">'+data[i].tingkat+' '+data[i].kode_jurusan+'</td>'+
+			                	'<td scope="row">'+data[i].minat_bakat+'</td>'+
 			                	'<td scope="row">'+data[i].jenis_kelamin+'</td>'+
 			                '</tr>';
 				}

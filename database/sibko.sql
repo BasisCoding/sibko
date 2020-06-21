@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Jun 2020 pada 20.34
+-- Waktu pembuatan: 21 Jun 2020 pada 14.41
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.3
 
@@ -132,7 +132,8 @@ CREATE TABLE `kelas` (
 INSERT INTO `kelas` (`id`, `tingkat`, `id_jurusan`) VALUES
 (9, 2, 2),
 (10, 3, 1),
-(11, 2, 1);
+(11, 2, 1),
+(12, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -300,6 +301,7 @@ CREATE TABLE `siswa` (
   `hp` varchar(15) DEFAULT NULL,
   `id_ortu` int(11) DEFAULT NULL,
   `id_kelas` int(11) DEFAULT NULL,
+  `minat_bakat` varchar(250) NOT NULL,
   `foto` text,
   `created_at` datetime DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL
@@ -309,13 +311,10 @@ CREATE TABLE `siswa` (
 -- Dumping data untuk tabel `siswa`
 --
 
-INSERT INTO `siswa` (`id`, `nis`, `nama_lengkap`, `email`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `agama`, `anak_ke`, `alamat`, `hp`, `id_ortu`, `id_kelas`, `foto`, `created_at`, `created_by`) VALUES
-(10, 1101161014, 'Ahmad Fatoni', '', 'Serang', '1997-08-20', 'Laki-Laki', 'Islam', 2, 'Jl', '', 11, 9, '1101161014.jpg', '2020-06-18 14:09:46', 1),
-(11, 1122435401, 'Ardelia Zahra', 'Aslanali742@gmail.com', 'Serang', '2000-07-08', 'Perempuan', '', 1, 'Komp. Perum. Kelutuk RT 001/001 Ds. Siki Kec. Ambon', '08121333453', 11, NULL, '', '2020-06-20 16:35:06', 1),
-(12, 1123123445, 'Marsiah', 'masihah@gmail.com', 'Serang', '2000-01-08', 'Perempuan', '', 1, 'Kp. Semangka RT 09/01 Ds. Anggur Kec. Kokosan', '0812345473527', 0, NULL, '', '2020-06-20 16:35:56', 1),
-(13, 1123123446, 'Kokom', 'kokom@gmail.com', 'Serang', '2000-01-01', 'Perempuan', '', 1, 'Kp. Mangga RT 08/01 Ds. Manggis Kec. Asem ', '0812345567788', 0, NULL, '', '2020-06-20 16:36:36', 1),
-(14, 1123123447, 'Sarikam', 'sarikam', 'Serang', '2000-07-08', 'Laki-Laki', '', 1, 'Kp. Kokosan RT. 008/01 Kel. Pisangan Kec. Ambon', '0812345465768', 0, NULL, '', '2020-06-20 16:34:19', 1),
-(15, 1101161014, 'Ahmad Fatoni', '', 'Serang', '1997-08-20', 'Laki-Laki', 'Islam', 2, 'Jl', '', 11, 9, '1101161014.jpg', '2020-06-18 14:09:46', 1);
+INSERT INTO `siswa` (`id`, `nis`, `nama_lengkap`, `email`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `agama`, `anak_ke`, `alamat`, `hp`, `id_ortu`, `id_kelas`, `minat_bakat`, `foto`, `created_at`, `created_by`) VALUES
+(11, 1122435401, 'Ardelia Zahra', 'Aslanali742@gmail.com', 'Serang', '2000-07-08', 'Perempuan', '', 1, 'Komp. Perum. Kelutuk RT 001/001 Ds. Siki Kec. Ambon', '08121333453', 11, 10, 'Sepak Bola', '', '2020-06-21 14:38:43', 1),
+(13, 1123123446, 'Kokom', 'kokom@gmail.com', 'Serang', '2000-01-01', 'Perempuan', '', 1, 'Kp. Mangga RT 08/01 Ds. Manggis Kec. Asem ', '0812345567788', 0, 11, 'Sepak Bola', '', '2020-06-21 14:39:03', 1),
+(14, 1123123447, 'Sarikam', 'sarikam', 'Serang', '2000-07-08', 'Laki-Laki', '', 1, 'Kp. Kokosan RT. 008/01 Kel. Pisangan Kec. Ambon', '0812345465768', 0, 12, 'Menyanyi', '', '2020-06-21 14:39:14', 1);
 
 -- --------------------------------------------------------
 
@@ -436,7 +435,7 @@ ALTER TABLE `jurusan`
 -- AUTO_INCREMENT untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `kepsek`
