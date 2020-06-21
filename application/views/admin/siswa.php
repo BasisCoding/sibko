@@ -8,7 +8,7 @@
                 <div class="row">
                   <div class="col-md d-flex my-1 my-md-0">
                     <button class="form-control form-control-sm col-2" id="add-data">New</button>
-                    <form method="get" class="d-flex col-md">
+                    <!-- <form method="get" class="d-flex col-md">
                       <select class="form-control form-control-sm mr-1">
                         <option readonly>Jenis Kelamin</option>
                         <option>Laki-Laki</option>
@@ -20,12 +20,12 @@
                         <option>2</option>
                         <option>3</option>
                       </select>
-                    </form>
+                    </form> -->
                   </div>
                   
-                  <div class="col-md-4 text-right">
+                  <!-- <div class="col-md-4 text-right">
                     <input type="text" id="search" class="form-control form-control-sm" placeholder="Search ...">
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>

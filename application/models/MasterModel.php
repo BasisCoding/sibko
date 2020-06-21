@@ -2,7 +2,29 @@
 	defined('BASEPATH') OR exit('No direct script access allowed');
 	
 	class MasterModel extends CI_Model {
-	
+		
+		function total_siswa()
+		{
+			$this->db->select('COUNT(id) as total_siswa');
+			return $this->db->get('siswa')->row()->total_siswa;
+		}
+		function total_kelas()
+		{
+			$this->db->select('COUNT(id) as total_kelas');
+			return $this->db->get('kelas')->row()->total_kelas;
+		}
+		function total_guru()
+		{
+			$this->db->select('COUNT(id) as total_guru');
+			return $this->db->get('guru')->row()->total_guru;
+		}
+		function total_pelanggar()
+		{
+			$this->db->select('COUNT(id) as total_pelanggar');
+			return $this->db->get('konseling')->row()->total_pelanggar;
+		}
+
+
 	// Model Data Siswa
 		function data_siswa($query)
 		{
@@ -108,15 +130,19 @@
 
 		function data_kelas($query)
 		{
-			$this->db->select('kelas.*, jurusan.nama_jurusan, jurusan.kode_jurusan, COUNT(kelas.id) as total_kelas');
+
+			$this->db->select('kelas.*, jurusan.nama_jurusan, jurusan.kode_jurusan, COUNT(siswa.id_kelas) as jumlah_siswa');
+
 			$this->db->from('kelas');
 			$this->db->join('jurusan', 'jurusan.id = kelas.id_jurusan', 'left');
+			$this->db->join('siswa', 'siswa.id_kelas = kelas.id', 'left');
 			if ($query != '') {
 				$this->db->group_start();
 			 		$this->db->or_like('nama_kelas', $query);
 			 		$this->db->or_like('nama_jurusan', $query);
 			 	$this->db->group_end();
 			}
+			$this->db->group_by('id');
 			return $this->db->get()->result();
 		}
 
@@ -256,7 +282,8 @@
 
 		function view_pelanggar($sesi_guru)
 		{
-			$this->db->select('konseling.*,siswa.nis, siswa.nama_lengkap, kelas.tingkat, jurusan.nama_jurusan, ortu.nama_lengkap as nama_ortu, guru.nama_lengkap as nama_guru, pelanggaran.jenis_pelanggaran,pelanggaran.tingkat, COUNT(konseling.id) as total_pelanggar');
+
+			$this->db->select('konseling.*,siswa.nis, siswa.nama_lengkap, siswa.foto, kelas.tingkat, jurusan.nama_jurusan, ortu.nama_lengkap as nama_ortu, guru.nama_lengkap as nama_guru, pelanggaran.jenis_pelanggaran,pelanggaran.tingkat');
 			$this->db->select('
 
 				CASE 

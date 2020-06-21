@@ -30,6 +30,7 @@
 		                	html += '<tr>'+
 					                   '<th scope="row">'+data[i].tingkat+' '+data[i].kode_jurusan+'</th>'+
 					                   '<td>'+data[i].nama_jurusan+'</td>'+
+					                   '<td>'+data[i].jumlah_siswa+'</td>'+
 					                  
 					                   '<td class="text-right">'+
 					                      '<div class="dropdown">'+
@@ -263,6 +264,7 @@
 		        success : function(data){
 				  	daftar_siswa_kelas(id_kelas);
 				  	daftar_siswa();
+				  	daftar_kelas();
 		        }
 
 		   	});

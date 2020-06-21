@@ -16,6 +16,7 @@
                   <tr>
                     <th scope="col">NAMA KELAS</th>
                     <th scope="col">JURUSAN</th>
+                    <th scope="col">JUMLAH SISWA</th>
                     <th scope="col"></th>
                     
                   </tr>
