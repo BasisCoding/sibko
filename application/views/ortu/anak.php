@@ -5,7 +5,7 @@
             <div class="card-header bg-transparent row align-items-center">
               <h3 class="mb-0 col-md-9">DAFTAR ANAK</h3>
               <!-- <div class="col-md-3 text-right">
-                <input type="text" id="search" class="form-control form-control-sm" placeholder="Search ...">
+                <input type="text" id="search" class="form-control form-control-sm" placeholder="Search ....">
               </div> -->
               
             </div>
