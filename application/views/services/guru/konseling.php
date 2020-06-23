@@ -12,9 +12,6 @@
 		daftar_pelanggaran();
 		daftar_siswa();
 
-		let current_datetime = new Date();
-		let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate()
-
 		function data_pelanggar() {
 			$.ajax({
 				url: '<?= base_url('guru/Master/view_pelanggar') ?>',
@@ -27,8 +24,7 @@
 		            if (data.length > 0) {
 		                for (i = 0; i < data.length; i++) {
 		                	var tgl = data[i].tanggal;
-							var d = new Date(tgl);
-							var n = d.toJSON().slice(0,10).split('-').reverse().join('-');
+						var n = tgl.slice(0,10).split('-').reverse().join('-');
 
 		                	html += '<tr>'+
 					                   '<td>'+data[i].nis+'</td>'+

@@ -19,10 +19,6 @@ $(document).ready(function(){
 	$("[name='pendidikan_update']").select2({
 		placeholder: 'Pilih Pendidikan'
 	});
-	
-
-	let current_datetime = new Date();
-	let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate()
 
     daftar_guru();
 
@@ -50,8 +46,7 @@ $(document).ready(function(){
 	                		status ='<span class="badge badge-danger">Tidak Aktif</span>';
 	                	}
 	                	var tgl = data[i].tanggal_lahir;
-						var d = new Date(tgl);
-						var n = d.toJSON().slice(0,10).split('-').reverse().join('-');
+						var n = tgl.slice(0,10).split('-').reverse().join('-');
 
 	                	html += '<div class="col-lg-3 order-lg-2">' +
 				                  '<div class="card card-profile">' +

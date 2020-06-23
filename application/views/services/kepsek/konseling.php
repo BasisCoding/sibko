@@ -7,9 +7,6 @@
 
 $(document).ready(function(){ 
 
-	let current_datetime = new Date();
-	let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate()
-
     daftar_konseling();
     $('#table-konseling').DataTable({
     	dom: 'Bfrt<"py-2"p>',
@@ -48,8 +45,7 @@ $(document).ready(function(){
 	            var i;
                 for (i = 0; i < data.length; i++) {
                 	var tgl = data[i].tanggal;
-					var d = new Date(tgl);
-					var n = d.toJSON().slice(0,10).split('-').reverse().join('-');
+                    var n = tgl.slice(0,10).split('-').reverse().join('-');
 
                 	html += '<tr>'+
 	                			'<td scope="row">'+data[i].nis+'</td>'+

@@ -3,9 +3,6 @@
 
 		data_pelanggar();
 
-		let current_datetime = new Date();
-		let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate()
-
 		function data_pelanggar() {
 			$.ajax({
 				url: '<?= base_url('ortu/Data_Anak/data_konseling') ?>',
@@ -17,9 +14,8 @@
 		            var i;
 		            if (data.length > 0) {
 		                for (i = 0; i < data.length; i++) {
-		                	var tgl = data[i].tanggal;
-							var d = new Date(tgl);
-							var n = d.toJSON().slice(0,10).split('-').reverse().join('-');
+		                	var tgl = data[i].tanggal_lahir;
+							var n = tgl.slice(0,10).split('-').reverse().join('-');
 
 		                	html += '<tr>'+
 					                   '<td>'+data[i].nis+'</td>'+
