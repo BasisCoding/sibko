@@ -75,14 +75,14 @@
 
 		function view_data_anak($id)
 		{
-			$this->db->select('siswa.*, ortu.nama_lengkap as nama_ortu, kelas.tingkat, jurusan.nama_jurusan, jurusan.semester, jurusan.kode_jurusan');
+			$this->db->select('siswa.*, ortu.nama_lengkap as nama_ortu, kelas.tingkat, jurusan.nama_jurusan, jurusan.semester, jurusan.kode_jurusan, ortu.hp');
 			$this->db->from('siswa');
 			$this->db->join('ortu', 'ortu.id = siswa.id_ortu', 'left');
 			$this->db->join('kelas', 'kelas.id = siswa.id_kelas', 'left');
 			$this->db->join('jurusan', 'jurusan.id = kelas.id_jurusan', 'left');
 			$this->db->where('id_ortu', $id);
 			
-			return $this->db->get()->result();
+			return $this->db->get();
 		}
 	// Model Data Siswa
 
@@ -172,6 +172,15 @@
 	// Model Data Kelas
 
 	// Mode Data Orang Tua
+		function get_ortu($id_siswa)
+		{
+			$this->db->select('siswa.nama_lengkap, ortu.nama_lengkap, ortu.hp');
+			$this->db->from('siswa');
+			$this->db->join('ortu', 'ortu.id = siswa.id_ortu', 'left');
+			$this->db->where('siswa.id', $id_siswa);
+			return $this->db->get();
+		}
+
 		function data_ortu($query)
 		{
 			$this->db->select('nik,nama_lengkap,pendidikan,pekerjaan,jenis_kelamin,status,username,email,id,tanggal_lahir,tempat_lahir,alamat,hp,agama,foto');

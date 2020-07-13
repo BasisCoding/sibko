@@ -45,7 +45,6 @@
 			$data = $this->MasterModel->pilih_siswa();
 			echo json_encode($data);
 		}
-
 	// Controller Data Siswa
 
 	// Controller Data Jurusan
@@ -72,7 +71,6 @@
 			$data = $this->MasterModel->data_jurusan($query);
 			echo json_encode($data);
 		}
-
 	// Controller Data Jurusan
 
 	// Controller Data Kelas
@@ -98,7 +96,6 @@
 			$data = $this->MasterModel->data_kelas($query);
 			echo json_encode($data);
 		}
-
 	// Controller Data Kelas
 
 	// Controller Data Orang Tua
@@ -125,7 +122,6 @@
 			$data = $this->MasterModel->data_ortu($query);
 			echo json_encode($data);
 		}
-
 	// Controller Data Orang Tua
 
 	// Controller Data Pelanggaran
@@ -169,6 +165,7 @@
 			$data['id_guru'] = $this->session->userdata('id');
 
 			$this->MasterModel->tambah_pelanggar($data);
+			$this->sendNotif($data['id_siswa'], $data['keterangan']);
 			$respond = array(
 					'status' => 'success',
 					'title' => 'SUKSES !!!',
@@ -187,6 +184,28 @@
 					'message' => 'Data Sudah dihapus',
 				 );
 			echo json_encode($respond);
+		}
+
+		public function sendNotif($siswa, $message)
+		{
+			$hp = $this->MasterModel->get_ortu($siswa)->row();
+			if ($hp != NULL) {
+				if ($hp->hp == '') {
+					return false;
+				}else{	
+
+					$basic  = new \Nexmo\Client\Credentials\Basic('d0690266', 'ddqcWQrImdt8tEsT');
+					$client = new \Nexmo\Client($basic);
+
+					$message = $client->message()->send([
+					    'to' => $hp->hp,
+					    'from' => 'Vonage APIs',
+					    'text' => $message
+					]);
+				}
+			}else{
+				return false;
+			}
 		}
 
 	// Controller Data Pelanggaran

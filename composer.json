@@ -11,7 +11,8 @@
 		"source": "https://github.com/bcit-ci/CodeIgniter"
 	},
 	"require": {
-		"php": ">=5.3.7"
+		"php": ">=5.3.7",
+		"nexmo/client": "^2.0"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
@@ -19,5 +20,16 @@
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*",
 		"phpunit/phpunit": "4.* || 5.*"
-	}
+	},
+
+	  "repositories": [
+	    {
+	      "type": "git",
+	      "url": "https://github.com/smsgatewayme/client-php.git"
+	    }
+	  ],
+	  "require": {
+	    "smsgatewayme/client": "^0.0.1"
+	  }
 }
+

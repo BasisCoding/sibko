@@ -24,7 +24,7 @@
 		public function view_data_anak()
 		{
 			$id = $this->session->userdata('id');
-			$data = $this->MasterModel->view_data_anak($id);
+			$data = $this->MasterModel->get_ortu($id)->result();
 			echo json_encode($data);
 		}
 
