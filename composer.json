@@ -20,16 +20,5 @@
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*",
 		"phpunit/phpunit": "4.* || 5.*"
-	},
-
-	  "repositories": [
-	    {
-	      "type": "git",
-	      "url": "https://github.com/smsgatewayme/client-php.git"
-	    }
-	  ],
-	  "require": {
-	    "smsgatewayme/client": "^0.0.1"
-	  }
+	}
 }
-

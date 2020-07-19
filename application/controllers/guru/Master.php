@@ -164,8 +164,11 @@
 			$data['keterangan'] = $this->input->post('keterangan');
 			$data['id_guru'] = $this->session->userdata('id');
 
+			$siswa = $this->input->post('id_siswa');
+			$keterangan = $this->input->post('keterangan');
+
 			$this->MasterModel->tambah_pelanggar($data);
-			$this->sendNotif($data['id_siswa'], $data['keterangan']);
+			$this->sendNotif($siswa, $keterangan);
 			$respond = array(
 					'status' => 'success',
 					'title' => 'SUKSES !!!',
@@ -186,7 +189,7 @@
 			echo json_encode($respond);
 		}
 
-		public function sendNotif($siswa, $message)
+		public function sendNotif($siswa, $keterangan)
 		{
 			$hp = $this->MasterModel->get_ortu($siswa)->row();
 			if ($hp != NULL) {
@@ -200,12 +203,13 @@
 					$message = $client->message()->send([
 					    'to' => $hp->hp,
 					    'from' => 'Vonage APIs',
-					    'text' => $message
+					    'text' => $keterangan
 					]);
 				}
 			}else{
 				return false;
 			}
+
 		}
 
 	// Controller Data Pelanggaran
